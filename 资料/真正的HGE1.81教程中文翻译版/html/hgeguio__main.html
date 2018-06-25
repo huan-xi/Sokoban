@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="switchContents('cnt_main.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_main.html*/,'cnt_hgeguio.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeguio.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUIObject帮助类</h1>
+<p>
+<b>hgeGUIObject</b>是一个用于自定义GUI控件的抽象类。 
+已有的<a href="hgegui_guitext.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guitext.html">hgeGUIText</a>，
+<a href="hgegui_guibutton.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guibutton.html">hgeGUIButton</a>和<a href="hgegui_guislider.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guislider.html">hgeGUISlider</a>
+都派生自它。你可以通过继承<b>hgeGUIObject</b>类来创建你自己的控件。
+<br><br>
+<b>hgeGUIObject</b>的全部方法都是<b>virtual</b>得。如果你不需要其中的一些方法，你可以只使用它的默认形式而不必重新定义他们。
+只有两个方法必须在你的实现类中定义，它们是<a href="hgeguio_constructor.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_constructor.html">Constuctor</a>和<a href="hgeguio_render.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_render.html">Render</a>。
+析构函数也可以使用原有的虚函数。
+</p>
+<h2>hgeGUIObject方法</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=22%><a href="hgeguio_constructor.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_constructor.html">构造函数</a></td>
+<td>需要实现为可初始化<b>hgeGUIObject</b>对象。</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td><a href="hgeguio_render.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_render.html">Render</a></td>
+<td>需要实现为将空间渲染到屏幕上。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_update.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_update.html">Update</a></td>
+<td>每次更新GUI时调用，用于更新控件动画。</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td><a href="hgeguio_enter.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_enter.html">Enter</a></td>
+<td>在GUI将要显示在屏幕上时调用。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_leave.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_leave.html">Leave</a></td>
+<td>在GUI将要从屏幕上消失时调用。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_reset.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_reset.html">Reset</a></td>
+<td>当用户请求GUI恢复至默认状态时调用。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_isdone.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_isdone.html">IsDone</a></td>
+<td>用于测试控件是否已经结束它的Enter/Leave动画。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_focus.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_focus.html">Focus</a></td>
+<td>当控件获得或拾取键盘输入焦点时被调用。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_mouseover.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mouseover.html">MouseOver</a></td>
+<td>当鼠标指针进入/离开控件区域时被调用。</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td><a href="hgeguio_mousemove.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mousemove.html">MouseMove</a></td>
+<td>通知控件鼠标的移动。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_mouselbutton.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mouselbutton.html">MouseLButton</a></td>
+<td>通知控件鼠标左键状态改变。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_mouserbutton.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mouserbutton.html">MouseRButton</a></td>
+<td>通知控件鼠标右键状态改变。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_mousewheel.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mousewheel.html">MouseWheel</a></td>
+<td>通知控件鼠标滚轮滚动。</td>
+</tr>
+<tr>
+<td><a href="hgeguio_keyclick.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_keyclick.html">KeyClick</a></td>
+<td>通知控件有键盘按键按下。</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td><a href="hgeguio_setcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_setcolor.html">SetColor</a></td>
+<td>当用户请求修改控件颜色的时候被调用。</td>
+</tr>
+</table>
+</p>
+<h2>相关信息</h2>
+<p>
+<a href="hgeguio_datamembers.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_datamembers.html">hgeGUIObject数据成员</a>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgegui.h<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

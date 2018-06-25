@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Music_GetInstrVolume</h1>
+<p>
+返回一段音乐中指定乐器的音量。
+</p>
+<pre>
+int Music_GetInstrVolume(
+  HMUSIC <i><b>music</b></i>,
+  int <i><b>instr</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>music</i>
+<dd>音乐句柄。
+<dt><i>instr</i>
+<dd>要查询的乐器编号。
+</dl>
+<h2>返回值</h2>
+<p>
+乐器当前音量值， 0..100。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_musicsetinstrvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetinstrvolume.html">Music_SetInstrVolume</a>,
+<a href="hgefunc_musicsetchannelvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetchannelvolume.html">Music_SetChannelVolume</a>,
+<a href="hgefunc_musicgetchannelvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetchannelvolume.html">Music_GetChannelVolume</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

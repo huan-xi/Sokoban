@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgepmanager.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgepmanager.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeParticleManager::SpawnPS</h1>
+<p>
+创建一个粒子系统的实例。
+</p>
+<pre>
+hgeParticleSystem *SpawnPS(
+  hgeParticleSystemInfo *<i><b>psi</b></i>,
+  float <i><b>x</b></i>,
+  float <i><b>y</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>psi</i>
+<dd>指向一个有效的<a href="hgeparticle_psinfo.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_psinfo.html">hgeParticleSystemInfo</a>结构指针，用以描述粒子系统。
+<dt><i>x</i>
+<dd>屏幕的X坐标。
+<dt><i>y</i>
+<dd>屏幕的Y坐标。
+</dl>
+<h2>返回值</h2>
+<p>
+如果成功则返回指向创建的粒子系统的指针，
+否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+一个管理器同时允许的粒子系统数量的最大值是100。
+如果你试图创建更多的粒子系统，<b>SpawnPS</b>将返回0。
+<br><br>
+管理器监视一个由<b>SpawnPS</b>方法创建的粒子系统，
+当粒子系统停止时移除它（无论是手动或是粒子系统的生命周期结束），粒子系统中的所有粒子都将死亡。
+<br><br>
+如果你想要通过<b>SpawnPS</b>返回的指针来访问粒子系统，
+首先你必须使用<a href="hgepmanager_ispsalive.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager_ispsalive.html">IsPSAlive</a>方法来确认该指针是有效的。
+此外，不要手动删除返回的指针，这可能会造成系统瘫痪。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeparticle.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgepmanager_ispsalive.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager_ispsalive.html">IsPSAlive</a>,
+<a href="hgepmanager_killps.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager_killps.html">KillPS</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

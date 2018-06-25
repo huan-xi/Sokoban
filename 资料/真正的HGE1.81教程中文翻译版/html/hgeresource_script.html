@@ -1,0 +1,450 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeresource.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeresource.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">资源脚本</h1>
+<p>
+资源脚本文件和<a href="hgeresource__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource__main.html">hgeResourceManager</a>帮助类一同使用，用来定义复杂的资源。
+这些文件只是含有资源定义的文本文件。
+</p>
+<h2>常用规则</h2>
+<p>
+资源脚本文件是由空白符('\t', '\n', '\r' or ' ')分隔组成的命令。
+如果遇到分好(';'),本行之后的内容将被看作是用户注释而不被解析。
+所有的命令和名称都是大小写敏感的。
+<br><br>
+通常的命令是如下这样:
+</p>
+<pre>
+ResourceType ResourceName : BaseResourceName
+{
+ Parameter1=Value1
+ Parameter2=Value2
+ ...
+ ParameterN=ValueN
+}
+</pre>
+<p>
+参数可以以任意顺序出现。绝大多数参数都有默认值并且可以被省略。如果一个参数有多个值，必须指出所有值。
+多个值通过逗号分隔：','。
+<br><br>
+资源文件名是以字母开始并以空白符分隔的单词。
+不同类型的资源文件可以使用同样的名称。
+不允许使用脚本命令或参数作为名称。
+字符 ',', ':', '{', '}'和'='也不允许出现在名称中。
+要定义一个包含空白符和/或特殊字符的资源文件名或文件路径，可以使用用引号括起来的字符串："01name:part1 part2"。
+注意用引号括起来的字符串不能放置在多行中。
+<br><br>
+如果指出了<b>BaseResourceName</b>并且以此名称命名的同类型的资源文件已经被定义了，
+那么他的所有参数都将被拷贝到新的资源文件中，
+但是只有具体指明的参数才会被新值所替代。
+<br><br>
+如果<a href="hgeresource__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource__main.html">hgeResourceManager</a>在读取脚本时遇到错误，
+它将试图跳过可能的最小片段并继续解析。
+所有的解析错误都将以最明确的含义写入日志文件。
+</p>
+<h2>快速参考</h2>
+<p>
+<table width=100%>
+<tr>
+<td>
+<a href="#include">Include</a><br>
+<a href="#resource">Resource</a><br>
+<a href="#texture">Texture</a><br>
+</td>
+<td>
+<a href="#sound">Sound</a><br>
+<a href="#music">Music</a><br>
+<a href="#stream">Stream</a><br>
+</td>
+<td>
+<a href="#target">Target</a><br>
+<a href="#sprite">Sprite</a><br>
+<a href="#animation">Animation</a><br>
+</td>
+<td>
+<a href="#font">Font</a><br>
+<a href="#particle">Particle</a><br>
+<a href="#distortion">Distortion</a><br>
+<a href="#stringtable">StringTable</a><br>
+</td>
+</tr>
+</table>
+</p>
+<a name="include"></a>
+<h2>Include</h2>
+<p>
+"Include"命令将其他脚本文件包含进处理过程，这可以实现把脚本文件分别放在多个独立文件中并通过多种组合来使用他们。
+自我引用和循环引用都会被自动检测并禁止。
+<br><br>
+Example:
+</p>
+<pre>
+Include level2.res
+</pre>
+<a name="resource"></a>
+<h2>Resource</h2>
+<p>
+"Resource"命令定义了一个未处理的资源。支持的参数：
+</p>
+<dl>
+<dt>filename
+<dd>未处理资源文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Resource level1
+{
+ filename=levels\level1.dat
+ resgroup=1
+}
+</pre>
+<a name="texture"></a>
+<h2>Texture</h2>
+<p>
+"Texture"命令定义了一个纹理，支持的参数：
+</p>
+<dl>
+<dt>filename
+<dd>纹理文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>mipmap 
+<dd>如果为"<b>true</b>", 一套mipmap层将被创建并用于该纹理。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Texture background
+{
+ filename=images\bg.jpg
+ resgroup=1
+}
+</pre>
+<a name="sound"></a>
+<h2>Sound</h2>
+<p>
+命令"Sound"定义了一个声效。支持参数如下：
+</p>
+<dl>
+<dt>filename
+<dd>声效文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Sound explosion1
+{
+ filename=sounds\expl1.ogg
+ resgroup=1
+}
+</pre>
+<a name="music"></a>
+<h2>Music</h2>
+<p>
+命令"Music"定义了一个音乐。支持参数如下：
+</p>
+<dl>
+<dt>filename
+<dd>音乐文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>amplify
+<dd>音乐振幅的等级，默认是50。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Music main_theme
+{
+ filename=sounds\music1.xm
+ amplify=70
+ resgroup=1
+}
+</pre>
+<a name="stream"></a>
+<h2>Stream</h2>
+<p>
+命令 "Stream" 定义了一个音频流。支持参数如下：
+</p>
+<dl>
+<dt>filename
+<dd>流文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Stream sountrack1
+{
+ filename=ost.mp3
+ resgroup=1
+}
+</pre>
+<a name="target"></a>
+<h2>Target</h2>
+<p>
+命令 "Target" 定义了渲染目标。支持参数如下：
+</p>
+<dl>
+<dt>size
+<dd>渲染目标的维数，两个数字，宽度和高度。
+必须是一个2的幂次的数字。默认维数是256x256。
+<dt>zbuffer
+<dd>一个布尔值，制定了是否对此渲染目标使用Z缓冲。默认值是<b>false</b>。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Target HUD
+{
+ size=256,256
+ zbuffer=false
+ resgroup=1
+}
+</pre>
+<a name="sprite"></a>
+<h2>Sprite</h2>
+<p>
+命令"Sprite"定义了一个精灵。支持的参数：
+</p>
+<dl>
+<dt>texture
+<dd>供精灵使用的纹理的名称。
+可以使一个已定义的纹理资源名或者是纯文件名。
+<dt>rect
+<dd>供精灵使用的纹理区域。四个浮点值：
+左上角X坐标，左上角Y坐标，宽度和高度。
+<dt>hotspot
+<dd>精灵锚点，两个浮点值：以精灵左上角为基准的X偏移量和Y偏移量，默认值是0，0。
+<dt>blendmode
+<dd>精灵的混合模式，如下常量列表的一个或多个。
+<b>COLORMUL</b>, <b>COLORADD</b>, <b>ALPHABLEND</b>, <b>ALPHAADD</b>,
+<b>ZWRITE</b>, <b>NOZWRITE</b>。详细描述参考<a href="hgeconst_blendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_blendmode.html">混合模式</a>。
+默认值是<b>COLORMUL</b>, <b>ALPHABLEND</b>, <b>NOZWRITE</b>。
+<dt>color
+<dd>精灵的颜色，一个十六进制值。详细请参考<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>。
+默认值是FFFFFFFF。
+<dt>zorder
+<dd>精灵的Z序(Z-order): 一个浮点值，默认值是0.5。
+<dt>flip
+<dd>两个布尔值，指明精灵是否可以被水平和垂直翻转。默认值是<b>false</b>, <b>false</b>。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Sprite wizard
+{
+ texture=characters
+ rect=0,0,32,32
+ hotspot=16,16
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Sprite orc : wizard
+{
+ rect=0,64,32,32
+ color=FF808000
+}
+</pre>
+<a name="animation"></a>
+<h2>Animation</h2>
+<p>
+命令"Animation"定义了一个动画，他支持Sprite命令的所有参数和以下额外的参数：
+</p>
+<dl>
+<dt>frames
+<dd>动画帧的总数。一个整数值，默认是1。
+<dt>fps
+<dd>动画的回放速度，以帧每秒为单位，一个浮点值。默认是12.0。
+<dt>mode
+<dd>动画回放模式，是以下常量列表的一个或多个：
+<b>FORWARD</b>, <b>REVERSE</b>, <b>PINGPONG</b>, <b>NOPINGPONG</b>,
+<b>LOOP</b>, <b>NOLOOP</b>. 详细描述参考<a href="hgeanim_setmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim_setmode.html">hgeAnimation::SetMode</a>。
+默认值是<b>FORWARD</b>, <b>LOOP</b>.
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Animation hero.walk
+{
+ texture=characters
+ rect=0,128,32,32
+ frames=8
+ fps=6.0
+ mode=FORWARD,NOLOOP
+ hotspot=16,16
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+</pre>
+<a name="font"></a>
+<h2>Font</h2>
+<p>
+命令"Font"定义了一个字体，支持如下参数：
+</p>
+<dl>
+<dt>filename
+<dd><a href="hgefont_description.html" tppabs="http://www.easis.cn/hgedoc/html/hgefont_description.html">字体描述文件</a>名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>mipmap
+<dd>如果为"<b>true</b>",一组mipmap层将被创建并用于字体纹理。
+<dt>blendmode
+<dd>字体的混合模式，是以下常量列表的一个或多个：
+<b>COLORMUL</b>, <b>COLORADD</b>, <b>ALPHABLEND</b>, <b>ALPHAADD</b>,
+<b>ZWRITE</b>, <b>NOZWRITE</b>. 详细信息请参考<a href="hgeconst_blendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_blendmode.html">混合模式</a>。
+默认值是<b>COLORMUL</b>, <b>ALPHABLEND</b>, <b>NOZWRITE</b>。
+<dt>color
+<dd>字体颜色，一个十六进制值。详细请参考<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>。
+默认值是FFFFFFFF。
+<dt>zorder
+<dd>字体的Z序(Z-order)：一个浮点值，默认值是0.5。
+<dt>scale
+<dd>字体缩放，一个浮点值，默认是1.0。
+<dt>proportion
+<dd>字体比例，一个浮点值，默认是1.0。
+<dt>rotation
+<dd>字母旋转角度，以弧度为单位。一个浮点值，默认是0.0。
+<dt>tracking
+<dd>字体的轨迹，以像素为单位，一个浮点值，可以为负值，默认是1.0。
+<dt>spacing
+<dd>行间距乘数因子，一个浮点值，默认是1.0。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Font tengwar
+{
+ filename=fonts\tengwar.fnt
+ tracking=1.0
+ resgroup=1
+}
+</pre>
+<a name="particle"></a>
+<h2>Particle</h2>
+<p>
+命令"Particle"定义了一个例子系统，支持以下参数:
+</p>
+<dl>
+<dt>filename
+<dd><a href="peditor_presets.html" tppabs="http://www.easis.cn/hgedoc/html/peditor_presets.html">粒子系统预设</a>文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>sprite
+<dd>用于粒子系统的精灵的名称。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Particle explosion1
+{
+ filename=data\explosion1.psi
+ sprite=explosion1
+ resgroup=1
+}
+</pre>
+<a name="distortion"></a>
+<h2>Distortion</h2>
+<p>
+命令"Distortion"定义一个扭曲网格。支持以下参数：
+</p>
+<dl>
+<dt>texture
+<dd>用于网格的纹理名称。
+可以使一个已定义的纹理资源或者是一个纯文件名。
+<dt>rect
+<dd>用于网格的纹理区域，四个浮点值：
+左上角X坐标，左上角Y坐标，宽度和高度。
+<dt>mesh
+<dd>网格的解析度，两个整数值：列和行。默认是2，2。
+<dt>blendmode
+<dd>网格的混合模式，可以使以下常量列表的一个或多个：
+<b>COLORMUL</b>, <b>COLORADD</b>, <b>ALPHABLEND</b>, <b>ALPHAADD</b>,
+<b>ZWRITE</b>, <b>NOZWRITE</b>. 详细信息请参考<a href="hgeconst_blendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_blendmode.html">混合模式</a>。
+默认值是<b>COLORMUL</b>, <b>ALPHABLEND</b>, <b>NOZWRITE</b>.
+<dt>color
+<dd>网格颜色，一个十六进制值，详情参考<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>。
+默认值是FFFFFFFF。
+<dt>zorder
+<dd>网格的Z序(Z-order)：一个浮点值，默认值是0.5。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+Distortion waves
+{
+ texture=title
+ rect=0,0,400,200
+ mesh=16,8
+ color=FF2060F0
+ resgroup=1
+}
+</pre>
+<a name="stringtable"></a>
+<h2>StringTable</h2>
+<p>
+命令"StringTable"定义了一个字符串表，支持以下参数：
+</p>
+<dl>
+<dt>filename
+<dd>字符串表文件名，一个指向程序文件夹或资源包根目录的绝对路径或相对路径。
+<dt>resgroup
+<dd>整型资源组标识。默认是0，代表没有指定的组。
+</dl>
+<p>
+例子:
+</p>
+<pre>
+StringTable dialogs
+{
+ filename=strings\dialogs.txt
+ resgroup=1
+}
+</pre>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

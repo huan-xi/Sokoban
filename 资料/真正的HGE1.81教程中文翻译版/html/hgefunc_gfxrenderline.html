@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Gfx_RenderLine</h1>
+<p>
+渲染一条线。
+</p>
+<pre>
+void Gfx_RenderLine(
+  float <i><b>x1</b></i>,
+  float <i><b>y1</b></i>,
+  float <i><b>x2</b></i>,
+  float <i><b>y2</b></i>,
+  DWORD <i><b>color</b></i> = 0xFFFFFFFF,
+  float <i><b>z</b></i> = 0.5f
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>x1</i>
+<dd>起始X坐标。
+<dt><i>y1</i>
+<dd>起始Y坐标。
+<dt><i>x2</i>
+<dd>终止X坐标。
+<dt><i>y2</i>
+<dd>终止Y坐标
+<dt><i>color</i>
+<dd>可选的颜色值。默认为0xFFFFFFFF。
+<dt><i>z</i>
+<dd>可选的Z顺序。默认为0.5f。
+</dl>
+<h2>被指</h2>
+<p>
+<b>Gfx_RenderLine</b>必须在<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>和<a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a>
+函数之间调用。
+<br><br>
+<b>Gfx_RenderLine</b>省略了线的最后一个点，因此你可以在不必做额外的坐标检测的前提下绘制连接线。
+颜色参数包含透明度值，详情请参考<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>部分。
+如果没有使用Z缓冲，Z顺序将被忽略。
+<br><br>
+考虑到效率问题<b>Gfx_RenderLine</b>积攒连续的几行(文字)，
+然后使用一个<b>DirectX</b>调用将其渲染出来。
+绝大多数时候你不会发现其中的不同，并且也没有必要去处理这些批处理操作。
+但是要保证准确和安全，建议还是使用原始类型组织好图形并尽可能多的一次渲染多条线。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>,
+<a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeresource.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeresource.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeResourceManager::GetStream</h1>
+<p>
+返回一个已命名的音频流句柄。
+</p>
+<pre>
+HSTREAM GetStream(
+  const char *<i><b>name</b></i>,
+  int <i><b>resgroup</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>name</i>
+<dd>音频流名称。
+<dt><i>resgroup</i>
+<dd>资源组标识。
+</dl>
+<h2>返回值</h2>
+<p>
+如果成功，返回流句柄，否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+你可以使用资源脚本中定义的名称或者直接使用一个纯文件名，
+一个程序文件夹或资源包根目录的绝对或相对路径。
+<br><br>
+如果流没有被加载，将先加载流。否则将返回指向已存在流的指针。
+<br><br>
+参数<b>resgroup</b>只有在指定了纯文件名时才会使用。
+当加载资源脚本中定义的资源时，<b>resgroup</b>从脚本中获得。
+使用这里通过<a href="hgeresource_purge.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource_purge.html">Purge</a>传递的值来释放资源，如果=0或者省略- 将不会有指定的组被分配。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeresource.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

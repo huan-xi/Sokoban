@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Stream_Load</h1>
+<p>
+从内存，资源包或磁盘中载入一个压缩音频流(Compressed Audio Stream)。
+</p>
+<pre>
+HSTREAM Stream_Load(
+  const char *<i><b>filename</b></i>,
+  DWORD <i><b>size</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>流文件名称。
+<dt><i>size</i>
+<dd>如果此参数不为0，那么他表示存有已知格式流媒体的内存块大小。
+而参数<b>filename</b>则被认为是指向该内存块的指针。
+</dl>
+<h2>返回值</h2>
+<p>
+成功则返回可供<a href="hgefunc_streamplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamplay.html">Stream_Play</a>使用的流句柄。
+否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+支持 <b>MP1</b>, <b>MP2</b>, <b>MP3</b>, <b>OGG</b>， <b>WAV</b>等文件格式。
+<br><br>
+如果<b>filename</b>是一个相对路径，将首先在所有资源包中使用<a href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html">Resource_AttachPack</a>
+来检索并加载流文件，然后在程序文件夹中检索。
+如果<b>filename</b>是一个绝对路径，流文件将直接被从磁盘加载。
+<br><br>
+如果函数调用失败，你可以使用<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>函数来获得错误信息。
+如果设置了系统标记<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>，错误信息将被写入日志。
+<br><br>
+当流不再被使用时，需要使用函数<a href="hgefunc_streamfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamfree.html">Stream_Free</a>来删除它。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_streamfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamfree.html">Stream_Free</a>,
+<a href="hgefunc_streamplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamplay.html">Stream_Play</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

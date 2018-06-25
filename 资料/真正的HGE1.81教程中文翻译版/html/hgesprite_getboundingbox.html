@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgesprite.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgesprite.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeSprite::GetBoundingBox</h1>
+<p>
+返回精灵的约束边框（矩形）。
+</p>
+<pre>
+hgeRect *GetBoundingBox(
+  float <i><b>x</b></i>,
+  float <i><b>y</b></i>,
+  hgeRect *<i><b>rect</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>x</i>
+<dd>精灵的屏幕X坐标。
+<dt><i>y</i>
+<dd>精灵的屏幕Y坐标。
+<dt><i>rect</i>
+<dd>指向<a href="hgerect__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgerect__main.html">hgeRect</a>
+对象的指针，用来存储精灵的约束边框。
+</dl>
+<h2>返回值</h2>
+<p>
+返回值为<b>rect</b>参数。
+</p>
+<h2>备注</h2>
+<p>
+边界框的计算会考虑到精灵的锚点。更多细节请查看<a href="hgesprite_sethotspot.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite_sethotspot.html">SetHotSpot</a>。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgesprite.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgesprite_getboundingboxex.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite_getboundingboxex.html">GetBoundingBoxEx</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

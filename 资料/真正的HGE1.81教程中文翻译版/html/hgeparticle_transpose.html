@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeparticle.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeparticle.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeParticleSystem::Transpose</h1>
+<p>
+增加永久的粒子系统坐标变换平移。
+</p>
+<pre>
+void Transpose(
+  float <i><b>dx</b></i>,
+  float <i><b>dy</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>dx</i>
+<dd>X坐标平移量。
+<dt><i>dy</i>
+<dd>Y坐标平移量.
+</dl>
+<h2>备注</h2>
+<p>
+不同于<a href="hgeparticle_moveto.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_moveto.html">MoveTo</a>，此函数不会直接改变放射极和它的粒子的坐标系。
+它只是向粒子系统坐标系的几何线上增加一个恒定偏移量。这在你想要整体移动一个粒子系统和他的所有粒子的时候会非常有用（比<b>MoveTo</b>更快）
+并且允许你在游戏空间坐标系（游戏关卡/地图滚动）中操作粒子系统。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeparticle.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgeparticle_gettransposition.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_gettransposition.html">GetTransposition</a>,
+<a href="hgeparticle_moveto.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_moveto.html">MoveTo</a>,
+<a href="hgeparticle_getposition.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_getposition.html">GetPosition</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

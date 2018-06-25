@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Resource_Load</h1>
+<p>
+从资源包或磁盘上加载一个资源到内存中。
+</p>
+<pre>
+void *Resource_Load(
+  const char *<i><b>filename</b></i>,
+  DWORD *<i><b>size</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>资源文件名
+<dt><i>size</i>
+<dd><b>DWORD</b>指针用来存储资源大小。如果等于0或者被省略，<b>Resource_Load</b>将不会返回资源的大小。
+<h2>返回值</h2>
+<p>
+如果成功，返回一个指针，指向为该资源分配的内存块，并将资源大小保存在<i><b>size</b></i>指向的<b>DWORD</b>类型指针中。
+否则返回0.
+</p>
+<h2>备注</h2>
+<p>
+如果<b>filename</b>是一个相对路径，则会通过<a href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html">Resource_AttachPack</a>在所有资源包范围内搜索该资源，
+然后再在程序文件夹查找。
+如果<b>filename</b>是一个绝对路径，则会直接从该磁盘路径加载资源文件。
+<br><br>
+如果函数调用失败，你可以使用<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>函数获得错误信息。
+如果设置了系统状态<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>，错误信息将被写入日志。
+<br><br>
+当资源不再有用时，你必须使用<a href="hgefunc_resourcefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcefree.html">Resource_Free</a>释放掉已分配的内存资源。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_resourcefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcefree.html">Resource_Free</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

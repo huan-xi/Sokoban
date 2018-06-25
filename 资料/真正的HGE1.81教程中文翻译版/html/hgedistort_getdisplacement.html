@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgedistort.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgedistort.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeDistortionMesh::GetDisplacement</h1>
+<p>
+返回指定扭曲节点的平移量。
+</p>
+<pre>
+void GetDisplacement(
+  int <i><b>col</b></i>,
+  int <i><b>row</b></i>,
+  float *<i><b>dx</b></i>,
+  float *<i><b>dy</b></i>,
+  int <i><b>ref</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>col</i>
+<dd>网格节点的列。列数从0开始。
+<dt><i>row</i>
+<dd>网格节点的行。行数从0开始。
+<dt><i>dx</i>
+<dd>用于存储X轴平移量的指向<b>float</b>类型的指针。
+<dt><i>dy</i>
+<dd>用于存储Y轴平移量的指向<b>float</b>类型的指针。
+<dt><i>ref</i>
+<dd>平移量引用点。可以使以下任意一个：<br>
+<b>HGEDISP_NODE</b> - 引用点是默认节点位置<br>
+<b>HGEDISP_TOPLEFT</b> - 引用点是网格的左上角<br>
+<b>HGEDISP_CENTER</b> - 引用点是网格的中心
+</dl>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgedistort.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgedistort_setdisplacement.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_setdisplacement.html">SetDisplacement</a>,
+<a href="hgedistort_getz.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_getz.html">GetZ</a>,
+<a href="hgedistort_getcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_getcolor.html">GetColor</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

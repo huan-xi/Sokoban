@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Gfx_StartBatch</h1>
+<p>
+启动用户图形元（graphic primitives）批处理的渲染。
+</p>
+<pre>
+hgeVertex *Gfx_StartBatch(
+  int <i><b>prim_type</b></i>,
+  HTEXTURE <i><b>tex</b></i>,
+  int <i><b>blend</b></i>,
+  int *<i><b>max_prim</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>prim_type</i>
+<dd>要渲染的图形元（graphic primitives）的类型:<br>
+<b>HGEPRIM_LINES</b> - 直线<br>
+<b>HGEPRIM_TRIPLES</b> - Triples<br>
+<b>HGEPRIM_QUADS</b> - Quads
+<dt><i>tex</i>
+<dd>要使用的纹理句柄或者0. 
+<dt><i>blend</i>
+<dd>混合模式。
+<dt><i>max_prim</i>
+<dd>指向<b>int</b>的指针，用来接收一次批处理中允许的最大图形（primitive）数。
+</dl>
+<h2>返回值</h2>
+<p>
+如果执行成功，则返回指向存有顶点坐标的顶点缓冲的指针并将允许的最大图形数存入<b>max_prim</b>，否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+<b>Gfx_StartBatch</b>是通向 <b>HGE</b> 和 <b>DirectX</b>核心的后门，用于专业使用。
+它提供了直接访问硬件顶点缓冲并允许高速渲染大型图形元(primitive)数组。主要用于复杂运算，纹理效果和复杂的预计算对象的渲染。
+<br><br>
+<b>Gfx_StartBatch</b>函数必须在<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>和<a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a>函数之间调用。
+要结束一个批处理可以使用<a href="hgefunc_gfxfinishbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxfinishbatch.html">Gfx_FinishBatch</a>函数。
+不允许在<b>Gfx_StartBatch</b>/<b>Gfx_FinishBatch</b>调用对之间使用其他渲染函数。
+<br><br>
+顶点缓冲的大小是常量不可以改变。它可以保存1000个quad/1333个triple/2000个line。
+向缓冲中写入时，每个Line需要2个顶点，每个triple需要3个，每个quad需要四个。
+实际写入缓冲的图形元数量（primitive）应该传给<a href="hgefunc_gfxfinishbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxfinishbatch.html">Gfx_FinishBatch</a>。
+<br><br>
+<b>Gfx_StartBatch</b>会冲掉所有之前积累的图形元。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_gfxfinishbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxfinishbatch.html">Gfx_FinishBatch</a>,
+<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>,
+<a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

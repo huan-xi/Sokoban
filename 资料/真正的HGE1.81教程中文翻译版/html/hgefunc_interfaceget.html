@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeCreate函数</h1>
+<p>
+返回一个指向<b>HGE</b>接口的指针，如果<b>HGE</b>对象不存在则会先创建它。
+</p>
+<pre>
+HGE *hgeCreate(
+  int <i><b>ver</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>ver</i>
+<dd><b>HGE</b> API 版本号。这里传递<b>HGE_VERSION</b>常量即可。
+</dl>
+<h2>返回值</h2>
+<p>
+如果加载的HGE.DLL中存在符合的API，<b>hgeCreate</b>将返回一个指向<b>HGE</b>接口的指针，否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+<b>hgeCreate</b>是一个全局的C语言函数。
+它位于所有类之外，通过引用HGE 动态链接库加载。
+<br><br>
+要访问<b>HGE</b>函数你需要由<b>hgeCreate</b>函数返回的指向HGE接口的指针
+To access <b>HGE</b> functions you need the HGE interface pointer that is returned by <b>hgeCreate</b> function.
+<b>hgeCreate</b>在必要时(没有可用的HGE对象时)会创建<b>HGE</b>对象，并将内部的引用计数器的值相应的增加。
+<b>hgeCreate</b> creates a <b>HGE</b> object if needed and increases the internal reference counter.
+要想释放到已获得的接口你必须调用<a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a>函数
+<br><br>
+你可以在你需要访问<b>HGE</b>的时候调用<b>hgeCreate</b>创建它，
+然后通过调用<a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a>释放掉它的资源。 
+或者你可以再程序启动时创建一次该接口，并将它存储在一个全局变量中，然后在程序结束释放资源时解决它。
+虽然后者被认为是一个不好的做法，但是在程序不是太大的时候，不会出现问题。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

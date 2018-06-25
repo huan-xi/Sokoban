@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Resource_EnumFiles</h1>
+<p>
+根据给定的通配符枚举文件。
+</p>
+<pre>
+char *Resource_EnumFiles(
+  const char *<i><b>wildcard</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>wildcard</i>
+<dd>
+要开始一个新的枚举，设置包括特殊字符“?”和“*”在内的相对或绝对的通配符，
+要继续前一次的枚举请使用0。
+</dl>
+<h2>返回值</h2>
+<p>
+返回找到的下一个文件名，如果没有文件或遍历到结尾则返回0。
+</p>
+<h2>备注</h2>
+<p>
+<b>Resource_EnumFiles</b>返回不包含文件路径的简单文件名。
+并且它会忽略文件夹，要枚举文件夹，请使用<a href="hgefunc_resourceenumfolders.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfolders.html">Resource_EnumFolders</a>。
+<br><br>
+要枚举文件夹中的所有文件请使用“*”通配符。
+例如<b>Resource_EnumFiles("data\\*")</b>将枚举所有位于程序所在目录中的data文件夹中的所有文件。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_resourceenumfolders.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfolders.html">Resource_EnumFolders</a>,
+<a href="hgefunc_resourcemakepath.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcemakepath.html">Resource_MakePath</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

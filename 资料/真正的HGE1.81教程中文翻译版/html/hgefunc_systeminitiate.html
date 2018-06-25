@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::System_Initiate</h1>
+<p>
+初始化引擎所需的所有软硬件并创建程序窗口。
+</p>
+<pre>
+bool System_Initiate();
+</pre>
+<h2>返回值</h2>
+<p>
+如果成功则返回<b>true</b>。否则返回<b>false</b>
+</p>
+<h2>备注</h2>
+<p>
+在调用此函数之前可使用<a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a>设置所需的系统标记。
+Before calling this function set desired system states with <a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a> calls.
+虽然绝大多数的系统标记都有默认值并可以再之后修改，但是需要注意的是><a href="hgeconst_systemstate.html#HGE_FRAMEFUNC" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_FRAMEFUNC">HGE_FRAMEFUNC</a>必须被设置。
+<br><br>
+<b>Timer_*</b>, <b>Effect_*</b>, <b>Music_*</b>, <b>Stream_*</b>, <b>Channel_*</b>, <b>Input_*</b>,
+<b>Gfx_*</b>, <b>Target_*</b> and <b>Texture_*</b> 函数群在系统初始化前无法使用。
+其他<b>HGE</b>函数可以再任何位置使用。
+<br><br>
+如果函数调用失败，你可以通过<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>获得错误信息。
+If the function fails, you may obtain error message with <a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>
+function. 
+如果设置了系统标记<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>，错误信息将被写入日志。
+<br><br>
+程序推出前必须调用<a href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html">System_Shutdown</a>复原视频模式，并释放分配的资源。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a>,
+<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>,
+<a href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html">System_Shutdown</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

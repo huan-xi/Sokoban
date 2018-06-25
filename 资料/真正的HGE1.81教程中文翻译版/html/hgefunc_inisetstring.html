@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Ini_SetString</h1>
+<p>
+将一个字符串写入初始化文件。
+</p>
+<pre>
+void Ini_SetString(
+  const char *<i><b>section</b></i>,
+  const char *<i><b>name</b></i>,
+  const char *<i><b>value</b></i>
+);
+</pre>
+<h2>Parameters</h2>
+<dl>
+<dt><i>section</i>
+<dd>初始化文件的段落(Section)名。
+<dt><i>name</i>
+<dd>键名。
+<dt><i>value</i>
+<dd>要写入的字符串。
+</dl>
+<h2>备注</h2>
+<p>
+调用此函数前需要先设置系统标记<a href="hgeconst_systemstate.html#HGE_INIFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_INIFILE">HGE_INIFILE</a>。
+<br><br>
+如果初始化文件，段落(Section)或键不存在则创建他们。段落(Section)名不区分大小写(case-independent也不知是区分还是不区分了迷糊了)。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>See also</h2>
+<p>
+<a href="hgefunc_inigetstring.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetstring.html">Ini_GetString</a>,
+<a href="hgefunc_inisetint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetint.html">Ini_SetInt</a>,
+<a href="hgefunc_inigetint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetint.html">Ini_GetInt</a>,
+<a href="hgefunc_inisetfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetfloat.html">Ini_SetFloat</a>,
+<a href="hgefunc_inigetfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetfloat.html">Ini_GetFloat</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

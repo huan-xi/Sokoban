@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_setup.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_setup.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">Borland C++ Builder 4</h1>
+<h2>1. 创建一个空的Win32 Application工程</h2>
+<p>打开<b>File->New...</b>，从<b>New</b>对话框标签中选择<b>Console Wizard</b>点击<b>OK</b>:</p>
+<center><img src="bcbsetup1.gif" tppabs="http://www.easis.cn/hgedoc/html/bcbsetup1.gif" width=443 heght=372 alt="创建一个空的工程"></center>
+<br>
+<p>
+在下一个窗口中从<b>Window Type</b>框中选择<b>Window [GUI]</b>点击<b>Finish</b>:</p>
+<center><img src="bcbsetup2.gif" tppabs="http://www.easis.cn/hgedoc/html/bcbsetup2.gif" width=486 heght=303 alt="控制台程序向导"></center>
+<br>
+<h2>2.设置头文件和库文件路径</h2>
+<p>
+打开<b>Project->Options...</b>, 选择<b>Directories/Conditionals</b>对话框并点击<b>...</b>按钮输入<b>Include path</b>的路径:</p>
+<center><img src="bcbsetup3.gif" tppabs="http://www.easis.cn/hgedoc/html/bcbsetup3.gif" width=424 heght=406 alt="工程选项"></center>
+<br>
+<p>
+找到<b>HGE</b> “include”文件夹并点击<b>Add</b>, 和<b>OK</b>:</p>
+<center><img src="bcbsetup4.gif" tppabs="http://www.easis.cn/hgedoc/html/bcbsetup4.gif" width=337 heght=340 alt="目录"></center>
+<br>
+<p>
+重复此操作将<b>HGE</b>“lib\bc”目录加入<b>Library path</b>中
+</p>
+<h2>3. 将库文件加入工程</h2>
+<p>
+打开<b>Project->Add to Project...</b>, 输入<b>HGE</b>“lib\bc”目录下的<b>hge.lib</b>和<b>hgehelp.lib</b>文件:</p>
+<center><img src="bcbsetup5.gif" tppabs="http://www.easis.cn/hgedoc/html/bcbsetup5.gif" width=428 heght=284 alt="目录"></center>
+<br>
+<h2>4. 开始编码！</h2>
+<p>
+包含<b>hge.h</b>头文件来访问<b>HGE</b>功能函数. 参考<a href="tutorials__main.html" tppabs="http://www.easis.cn/hgedoc/html/tutorials__main.html">教学指导</a> 部分了解初级编码的例子.<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

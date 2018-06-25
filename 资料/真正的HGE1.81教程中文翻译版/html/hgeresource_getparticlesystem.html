@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeresource.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeresource.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeResourceManager::GetParticleSystem</h1>
+<p>
+返回指向一个已命名的粒子系统的指针。
+</p>
+<pre>
+hgeParticleSystem *GetParticleSystem(
+  const char *<i><b>name</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>name</i>
+<dd>粒子系统名称。
+</dl>
+<h2>返回值</h2>
+<p>
+如果成功，返回指向<a href="hgeparticle__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle__main.html">hgeParticleSystem</a>对象的指针，否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+要通过<a href="hgeresource__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource__main.html">hgeResourceManager</a>使用粒子系统，必须在资源脚本中定义它。
+<br><br>
+如果粒子系统没有被创建，将先创建它。否则将返回指向已存在粒子系统句柄的指针。
+<br><br>
+你可以使用返回的粒子系统的<a href="hgeparticle_datamembers.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_datamembers.html">info</a>成员通过<a href="hgepmanager__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager__main.html">hgeParticleManager</a>来生成该对象的多个实例。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeresource.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

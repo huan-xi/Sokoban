@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_fbuilder.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_fbuilder.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">使用HGE位图字体编辑器界面</h1>
+<h2>基本信息和控制</h2>
+<p>
+当前字体纹理维数显示在屏幕左下角。
+将鼠标指针移到一个字符上在屏幕右下角会显示它的参数。
+鼠标左键拖动纹理来检查它当前在屏幕外的部分。
+
+<br><br>
+<b>Escape</b>键退出编辑器。
+<br><br>
+注意HGE字体由两个文件组成：一个描述和一个位图。
+<br><br>
+此外还需牢记一旦你生成了一个位图字体，你就可以使用图像编辑器对其附加任何效果。
+</p>
+<h2>字体参数</h2>
+<p>
+这组参数定义了字体的属性：
+</p>
+<dl>
+<dt>Typeface
+<dd>系统安装了的字体列表。选择一个你想要在游戏中使用的字体。
+要滚动列表可以使用滑块，鼠标滚轮或上/下方向键（当在列表内部单击后）。
+</dl>
+<dl>
+<dt>Bold
+<dd>是否使用粗体。
+</dl>
+<dl>
+<dt>Italic
+<dd>是否使用斜体。
+</dl>
+<dl>
+<dt>Antialiased
+<dd>是否对字符轮廓实施抗锯齿。
+注意绝大多数字体有一个大小范围，
+在此大小范围之外即使进行了抗锯齿处理也不会起作用。
+这可能会在之后的版本中修正。
+而现在你只能选择其他字体或者让该字体的稍微小一些/大一些来获得抗锯齿位图（当在HGE中使用时你可以将其恢复原状）。
+</dl>
+<dl>
+<dt>Size
+<dd>指定期望的字体高度，以像素为单位。
+</dl>
+<dl>
+<dt>Characters range
+<dd>指定字体中要包含的字母的范围。单击并拖动你需要的字母。
+</dl>
+<h2>命令和信息</h2>
+<p>
+这里是描述编辑器各种信息和命令的地方:
+</p>
+<dl>
+<dt>Show grid
+<dd>如果激活了这个复选框，将显示每个字母的边界框。
+启用这个选项你将看到字符间会产生一像素的间隔。
+这些都是源于HGE中允许字体的自由缩放的欠缺。
+</dl>
+<dl>
+<dt>Save
+<dd>打开标准的Windows<b>另存为...</b>对话框窗口。
+选择一个路径和文件名来保存字体。
+注意两个文件被保存：字体描述文件和字体位图文件。
+</dl>
+<dl>
+<dt>Help
+<dd>显示快速帮助。
+</dl>
+<dl>
+<dt>Exit
+<dd>退出编辑器。
+</dl>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

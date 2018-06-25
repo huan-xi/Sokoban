@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgestring.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgestring.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">字符串表文件格式</h1>
+<p>
+此文件必须传给<a href="hgestring_constructor.html" tppabs="http://www.easis.cn/hgedoc/html/hgestring_constructor.html">hgeStringTable构造函数</a>。
+该文件只是包含用于游戏中的文本字符串定义的普通文本文件。
+<br><br>
+将自定义字符串放在一个独立的文件中有两个好处。其一，你的程序设计者可以会在整个开发过程中不必打断你的程序员开发就可以改变原字符串内容，
+其二，这样可以更容易实现不同国家的程序本地化。
+</p>
+<p>
+文件第一行应该包含字符串表文件标记：
+</p>
+<pre>
+[HGESTRINGTABLE]
+</pre>
+<p>
+然后紧跟着的是字符串定义，格式如下：
+</p>
+<pre>
+StringName="The string itself"
+</pre>
+<p>
+一个文本文件可以放置任意多的字符串。
+字符串名是大小写敏感的并且不允许使用诸如空格，制表符之类的空白符号。
+字符串名的最大长度是63，超过的部分将被忽略。
+<br><br>
+字符串的值以双引号包围，可以将字符串放置在若干行，每行开头和结尾的空白符号将被忽略：
+</p>
+<pre>
+Chapter1Story =
+  "Once upon a time in a deep deep forest there was a hero
+   of unbelievable strength. His glory spread around the
+   world faster than light."
+</pre>
+<p>
+三个特殊符号可以通过使用前缀'\来使用原意：'\n' - 换行符，
+'\"' - 双引号，'\\' - 反斜杠本身。另外也可以使用<b>printf</b>分类符。
+它们不会被<b>hgeStringTable</b>类解析，通过<a href="hgestring_getstring.html" tppabs="http://www.easis.cn/hgedoc/html/hgestring_getstring.html">GetString</a>返回的结果如下：
+</p>
+<pre>
+OutOfRange =
+  "Player \"%s\" is out of range.\nUse the radar to locate him."
+</pre>
+<p>
+可以使用";"符号来注释。本行此符号之后的所有内容将被忽略。
+</p>
+<pre>
+; 注释
+; 看起来是这样的
+</pre>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

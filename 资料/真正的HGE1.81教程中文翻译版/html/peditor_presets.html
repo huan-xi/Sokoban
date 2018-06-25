@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_peditor.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_peditor.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">在你的游戏中使用HGE粒子系统编辑器预设</h1>
+<p>
+<b>编</b>辑器将预设保存在文件<b>particle1.psi</b> - <b>particle9.psi</b>中，
+这些文件在游戏中可以直接被加载。下面手把手解释如何使用它们。
+</p>
+<h2>初始化，简单的方式</h2>
+<p>
+假如你只是需要预设中的粒子系统参数并且已经准备好了用于渲染粒子的精灵，可以使用这个方法：
+</p>
+<pre>
+hgeParticleSystem *ps;
+ps = new hgeParticleSystem("particle1.psi", sprite);
+</pre>
+<p>
+Viola！粒子系统准备就绪！
+</p>
+<h2>初始化，不怎么简单的方式</h2>
+<p>
+假如你想要像它在编辑器中那样的效果而重新创建粒子系统，只能使用预设中的信息。
+<br><br>
+首先，你需要载入粒子系统的预设和纹理，获得并保持粒子的图像：
+</p>
+<pre>
+HTEXTURE tex = hge->Texture_Load("particles.png");
+hgeParticleSystemInfo *psi =
+          hge->Resource_Load("particle1.psi");
+</pre>
+<p>
+现在必须创建并准备好精灵对象。你可以使用任何你拥有的精灵，如果你想要使用编辑器的精灵参数，
+需要知道它们被以以下形式保存在了<a href="hgeparticle_psinfo.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_psinfo.html">hgeParticleSystemInfo</a>结构的<b>sprite</b>成员中：
+高位的<b>WORD</b>包含有混合模式，而低位的<b>WORD</b>包含有精灵编号，编号从0到15。要是用这些值可用如下代码：
+</p>
+<pre>
+int nSprite = ((DWORD)psi->sprite & 0xFFFF);
+int blend = ((DWORD)psi->sprite >> 16);
+</pre>
+<p>
+那么，现在让我们创建精灵并将他的指针保存在预设中：
+</p>
+<pre>
+#define SIZE 32
+
+// calculate the texx and texy texture coordinates here
+// based on editor's sprite number or in any other way you want
+float texx = SIZE * (nSprite % 4);
+float texy = SIZE * (nSprite / 4);
+
+hgeSprite *spr = new hgeSprite(tex, texx, texy, SIZE, SIZE);
+spr->SetHotSpot(SIZE/2, SIZE/2);
+spr->SetBlendMode(blend);
+psi->sprite = spr;
+</pre>
+<p>
+如果你想使用非32x32的其他维数的精灵，你必须校对粒子系统预设中的<b>fSizeStart</b>和<b>fSizeEnd</b>参数
+来保证粒子的大小和他在编辑器中的大小保持一致：
+</p>
+<pre>
+psi->fSizeStart = 32.0f * psi->fSizeStart / SIZE;
+psi->fSizeEnd = 32.0f * psi->fSizeEnd / SIZE;
+</pre>
+<p>
+最后让我们创建粒子系统对象，因为预设已经不再使用，我们从内存中将其删除：
+</p>
+<pre>
+hgeParticleSystem *ps = new hgeParticleSystem(psi);
+hge->Resource_Free(psi);
+</pre>
+<p>
+粒子系统现在已经初始化完毕并准备就绪！
+<br><br>
+你可以将预设保存在内存中，在以后的粒子系统使用中，可以手动或使用<a href="hgepmanager__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager__main.html">hgeParticleManager</a>来生成它的实例。
+</p>
+<h2>Running</h2>
+<p>
+现在就可以调用<a href="hgeparticle__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle__main.html">hgeParticleSystem</a>的<a href="hgeparticle_fireat.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_fireat.html">FireAt</a>方法来启动一个粒子系统了：
+</p>
+<pre>
+ps->FireAt(100, 100);
+</pre>
+<p>
+接下来可以在你的帧函数中使用<a href="hgeparticle_update.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_update.html">Update</a>方法和<a href="hgeparticle_render.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_render.html">Render</a>方法
+来更新和渲染粒子系统：
+</p>
+<pre>
+ps->Update(fDeltaTime);
+ps->Render();
+</pre>
+<p>
+此外你可以使用<a href="hgeparticle_stop.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_stop.html">Stop</a>和<a href="hgeparticle_moveto.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_moveto.html">MoveTo</a>方法
+或通过编辑它自身的<a href="hgeparticle_datamembers.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_datamembers.html">info</a>结构成员来控制粒子系统。
+</p>
+<h2>Clean up</h2>
+<p>
+当不再使用粒子系统时，你必须将它以及与他相关的资源删除：
+</p>
+<pre>
+delete ps;
+delete spr;
+hge->Texture_Free(tex);
+</pre>
+<h2>另见</h2>
+<p>
+<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>,
+<a href="hgeparticle__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle__main.html">hgeParticleSystem</a>,
+<a href="hgepmanager__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager__main.html">hgeParticleManager</a>,
+<a href="tutorials_tut03.html" tppabs="http://www.easis.cn/hgedoc/html/tutorials_tut03.html">教学指导03</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

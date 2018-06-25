@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefont.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefont.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeFont::Render</h1>
+<p>
+将文本字符串渲染到屏幕上。
+</p>
+<pre>
+void Render(
+  float <i><b>x</b></i>,
+  float <i><b>y</b></i>,
+  int <i><b>align</b></i>,
+  const char *<i><b>string</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>x</i>
+<dd>屏幕X坐标。
+<dt><i>y</i>
+<dd>屏幕Y坐标。
+<dt><i>align</i>
+<dd>排列分类符。可以使如下之一:
+<b>HGETEXT_LEFT</b>, <b>HGETEXT_RIGHT</b>, <b>HGETEXT_CENTER</b>.
+<dt><i>string</i>
+<dd>要渲染的字符串。
+</dl>
+<h2>备注</h2>
+<p>
+换行符('\n')可以被正确处理。所有其他负号将被看做普通字母处理。
+字体中未定义的符号将被渲染为'?'。
+</p>
+<h2>需要/h2>
+<p>
+<b>头文件:</b> hgefont.h<br>
+<b>库文件:</b> hgehelp.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefont_printf.html" tppabs="http://www.easis.cn/hgedoc/html/hgefont_printf.html">printf</a>,
+<a href="hgefont_printfb.html" tppabs="http://www.easis.cn/hgedoc/html/hgefont_printfb.html">printfb</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

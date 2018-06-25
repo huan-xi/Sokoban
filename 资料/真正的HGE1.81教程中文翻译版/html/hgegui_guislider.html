@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgegui.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgegui.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUISlider类</h1>
+<p>
+<b>hgeGUISlider</b>是一个滑动条GUI控件类。
+要创建一个<b>hgeGUISlider</b>对象可以使用如下构造函数：
+</p>
+<pre>
+hgeGUISlider(
+  int       <i><b>id</b></i>,
+  float     <i><b>x</b></i>,
+  float     <i><b>y</b></i>,
+  float     <i><b>w</b></i>,
+  float     <i><b>h</b></i>,
+  HTEXTURE  <i><b>tex</b></i>,
+  float     <i><b>tx</b></i>,
+  float     <i><b>ty</b></i>,
+  float     <i><b>sw</b></i>,
+  float     <i><b>sh</b></i>,
+  bool      <i><b>vertical</b></i> = false
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>id</i>
+<dd>已创建的控件整型标识。
+<dt><i>x</i>
+<dd>滑动条的左上角X坐标。
+<dt><i>y</i>
+<dd>滑动条的左上角Y坐标。
+<dt><i>w</i>
+<dd>滑动条的宽度。
+<dt><i>h</i>
+<dd>滑动条的高度。
+<dt><i>tex</i>
+<dd>纹理句柄，保存有滑动条的图像。根据滑动条模式的不同图像也会有不同的解释方式。
+详情参考<a href="hgegui_guislider_setmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guislider_setmode.html">SetMode</a>函数的描述。
+<dt><i>tx</i>
+<dd>滑动条图像左上角纹理X坐标，以像素为单位。
+<dt><i>ty</i>
+<dd>滑动条图像左上角纹理Y坐标，以像素为单位。
+<dt><i>sw</i>
+<dd>滑动条图像的宽度。
+<dt><i>sh</i>
+<dd>滑动条图像的高度。
+<dt><i>vertical</i>
+<dd>指明滑动条是否垂直。
+</dl>
+<h2>其他方法</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td><a href="hgegui_guislider_setmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guislider_setmode.html">SetMode</a></td>
+<td>设置滑动条的行为模式。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guislider_setvalue.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guislider_setvalue.html">SetValue</a></td>
+<td>设置当前滑动条的位置。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guislider_getvalue.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guislider_getvalue.html">GetValue</a></td>
+<td>返回当前滑动条的位置。</td>
+</tr>
+</table>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeguictrls.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

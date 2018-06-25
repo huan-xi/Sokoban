@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgesprite.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgesprite.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeSprite::GetColor</h1>
+<p>
+返回指定精灵顶点的颜色。
+</p>
+<pre>
+DWORD GetColor(
+  int <i><b>i</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>i</i>
+<dd>可选，精灵顶点的索引。
+顶点按照顺时针方向索引，从左上角开始范围0-3。
+如果省略，将返回第一个顶点的颜色。
+</dl>
+<h2>返回值</h2>
+<p>
+返回指定精灵顶点的颜色。
+</p>
+<h2>备注</h2>
+<p>
+颜色参数包含透明度。更多细节请参考<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>。
+颜色的在精灵上的叠加方式取决于精灵的混合模式。
+更新信息请参考<a href="hgeconst_blendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_blendmode.html">混合模式</a>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgesprite.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgesprite_setcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite_setcolor.html">SetColor</a>,
+<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

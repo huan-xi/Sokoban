@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeguio.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeguio.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUIObject::MouseWheel</h1>
+<p>
+通知控件鼠标滚轮滚动。
+</p>
+<pre>
+virtual bool MouseWheel(
+  int <i><b>nNotches</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt>nNotches
+<dd>
+鼠标滚轮滚动刻度单位数。
+正值代表鼠标滚轮向前滚动，远离用户；
+负值代表鼠标滚轮向后滚动，朝向用户。
+</dl>
+<h2>返回值</h2>
+<p>
+如果控件已经编辑了它自身的状态，并且想要通知调用者，
+<b>MouseWheel</b>应返回<b>true</b>。否则它应返回<b>false</b>。
+</p>
+<h2>备注</h2>
+<p>
+<a href="hgeguio__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio__main.html">hgeGUIObject</a>有默认的实现，
+因此如果没有必要，你可以不必重定义该方法。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgegui.h<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgeguio_mouselbutton.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mouselbutton.html">MouseLButton</a>,
+<a href="hgeguio_mouserbutton.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mouserbutton.html">MouseRButton</a>,
+<a href="hgeguio_mousemove.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio_mousemove.html">MouseMove</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

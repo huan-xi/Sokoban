@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_peditor.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_peditor.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">使用HGE粒子系统编辑器界面</h1>
+<h2>一般信息和控件</h2>
+<p>
+在黑色区域使用鼠标左键来激活粒子系统。
+按住鼠标右键来保持粒子系统跟随鼠标移动。
+<br><br>
+使用按键<b>1</b>到<b>9</b>来快速切换预设置。
+预设值会自动加载和保存。
+<b>Escape</b>键退出编辑器。
+使用<b>TAB</b>键来隐藏界面，<b>SPACE</b>键来运行粒子预设置。
+<br><br>
+粒子系统的绝大多数参数是使用一组滑块来控制的。
+有两种基本控制方案。一个<b>min</b>/<b>max</b>滑块组为各自的参数定义了一个常量范围。
+一组<b>strt</b>/<b>end</b>/<b>var</b>滑块，
+定义了开始值结束值和开始值在<b>strt</b>和<b>end</b>范围之间的改变量。
+<br><br>
+使用锁定按钮(<img src="lock.gif" tppabs="http://www.easis.cn/hgedoc/html/lock.gif" width=16 height=11 alt="">)来强迫<b>min</b>/<b>max</b>或<b>strt</b>/<b>end</b>
+参数保持相同值进行变化。其他的控制选项都相当常见，对你来说不会是什么难题。
+</p>
+<h2>系统参数</h2>
+<p>
+这组参数定义了整个粒子系统的行为：
+</p>
+<dl>
+<dt>System lifetime
+<dd>定义了粒子系统生成新的粒子的时候粒子所持续的时间。
+如果<b>continuous</b>复选框被选中 - 粒子将一直存在。
+</dl>
+<dl>
+<dt>Emission
+<dd>定义每秒生成多少新的粒子。
+</dl>
+<dl>
+<dt>Particle lifetime
+<dd>定义一个指定的粒子存活多久时间。
+</dl>
+<dl>
+<dt>Texture
+<dd>指定16个精灵中哪个将用于该粒子。
+</dl>
+<dl>
+<dt>Blend mode
+<dd>指定粒子的混合模式：<b>additive</b> - 一个粒子颜色被加入屏幕上已存在的图像中，产生光照效果，
+<b>blend</b> - 一个粒子颜色与屏幕上已存在的图像混合。
+</dl>
+<h2>粒子移动</h2>
+<p>
+这组参数定义了指定粒子的移动相关信息：
+</p>
+<dl>
+<dt>Direction
+<dd>这是一个角度。定义了粒子放射的方向。如果<b>relative</b>复选框被激活 - 角度将被看做是与当前粒子系统的移动方向相关。
+</dl>
+<dl>
+<dt>Spread
+<dd>这个角度定义了粒子放射的扇形角度。
+例如，如果它是40， 放射粒子的方向则在<b>Direction</b>-20和<b>Direction</b>+20之间。
+如果<b>Spread</b>是360，<b>Direction</b>参数将变得没有意义，因为整个圆周角度都被覆盖。
+</dl>
+<dl>
+<dt>Start speed
+<dd>定义粒子的初始速度范围。
+</dl>
+<dl>
+<dt>Gravity
+<dd>定义粒子的重力值范围（从根本上讲，它只是一个沿着Y轴的加速度）。
+</dl>
+<dl>
+<dt>Radial acceleration
+<dd>定义方向指向粒子系统中心的加速度范围值。
+以此可以创建向中心吸引粒子的粒子系统。
+</dl>
+<dl>
+<dt>Tangential acceleration
+<dd>
+定义方向垂直于向心加速度的加速度的范围值。以此来确保粒子绕着粒子系统的中心旋转。
+</dl>
+<h2>Particle Appearance</h2>
+<p>
+这组参数定义了指定粒子的外观形态：
+</p>
+<dl>
+<dt>Particle size
+<dd>定义了指定粒子的初始和最终大小以及初始大小的改变量。注意粒子越大所需要渲染的时间越长。
+</dl>
+<dl>
+<dt>Particle spin
+<dd>此参数定义了指定粒子绕着它的锚点旋转的速度。
+设置初始和终止旋转速度以及它的初始旋转速度改变量。
+</dl>
+<dl>
+<dt>Particle alpha
+<dd>定义了指定粒子的初始和终止不透明度以及它的初始不透明度改变量。
+</dl>
+<dl>
+<dt>Particle color
+<dd>定义了指定粒子的初始和终止颜色以及他们的初始颜色改变量。
+</dl>
+<h2>Presets & Stuff</h2>
+<p>
+此标题下罗列了的各种编辑器信息和命令：
+</p>
+<dl>
+<dt>Preset No.
+<dd>使用此组按钮在粒子系统的多种预设值之间进行切换。
+预设自动被夹在和保存在文件名为<b>particle1.psi</b> - <b>particle9.psi</b>的文件中。
+</dl>
+<dl>
+<dt>Show bounding box
+<dd>如果此复选框被激活，将显示粒子系统的边界框。
+因此你可以校正参数以保证整个粒子系统位于期望的空间范围中。需要注意的是当计算边界框时，
+只考虑粒子的位置，而忽略粒子精灵的维数。
+</dl>
+<dl>
+<dt>Particles alive
+<dd>显示当前有多少粒子存活。保证此值尽可能的小，以确保你的程序运行的高效性。
+影响此值的两个参数是<b>Emission</b>和<b>Particle lifetime</b>。
+</dl>
+<dl>
+<dt>FPS
+<dd>显示当前的每秒帧数。
+</dl>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

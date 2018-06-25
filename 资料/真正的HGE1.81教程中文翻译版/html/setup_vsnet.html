@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_setup.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_setup.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">Visual Studio .NET</h1>
+<h2>1. 设置头文件和库文件路径</h2>
+<p>打开<b>Tools->Options->Projects->VC++ Directories</b>, 将<b>HGE</b>的头文件“include”目录加入并移到顶部。:</p>
+<center><img src="vsnetsetup1.gif" tppabs="http://www.easis.cn/hgedoc/html/vsnetsetup1.gif" width=486 heght=382 alt="加入头文件路径"></center>
+<br>
+<p>
+在相同的标签下从<b>Show directories for</b>下拉列表中选择<b>Library files</b>
+加入<b>HGE</b>的库文件“lib\vc”目录并移到顶部</p>:
+</p>
+<center><img src="vsnetsetup2.gif" tppabs="http://www.easis.cn/hgedoc/html/vsnetsetup2.gif" width=486 heght=382 alt="加入库文件路径"></center>
+<br>
+<p>
+点击<b>OK</b>.
+<br><br>
+现在你可以不必指出准确的路径就能在你的工程中使用<b>HGE游戏引擎</b>了。这步只需配置一次，以后不必在配置。
+</p>
+<h2>2. 创建一个空的Win32 Application工程</h2>
+<p>
+打开<b>File->New...->Projects</b>对话框标签, 选择<b>Win32 Project</b>,输入你的<b>工程名</b>和<b>存放路径</b>:
+</p>
+<center><img src="vsnetsetup3.gif" tppabs="http://www.easis.cn/hgedoc/html/vsnetsetup3.gif" width=486 heght=393 alt="创建空的工程, 1 of 2"></center>
+<br>
+<p>
+点击<b>OK</b>.
+<br><br>
+在下一个窗口，选择<b>Application Settings</b>。确保<b>Application Type</b>下的<b>Windows Application</b>被设置。
+然后勾选<b>Additional Options</b>下的<b>Empty project</b>，如果你想要软件帮你生成一个简单的文件结构可以不选中它：
+</p>
+<center><img src="vsnetsetup4.gif" tppabs="http://www.easis.cn/hgedoc/html/vsnetsetup4.gif" width=486 heght=437 alt="创建空的工程, 2 of 2"></center>
+<br>
+<p>
+点击<b>Finish</b>。哐啷! 你的工程创建完毕。
+</p>
+<h2>3. 向工程中加入库文件</h2>
+<p>
+打开<b>Project->Properties...->Linker->Input</b>向<b>Additional Dependencies</b>中加入如下库文件:
+</p>
+<ul>
+<li><b>hge.lib</b> - HGE系统层DLL加载库
+<li><b>hgehelp.lib</b> - HGE帮助类库文件
+</ul>
+<p>
+如果你不调用任何<b>Windows</b>函数，你只需加载这两个库文件。
+</p>
+<center><img src="vsnetsetup5.gif" tppabs="http://www.easis.cn/hgedoc/html/vsnetsetup5.gif" width=486 heght=440 alt="向工程中加入库文件"></center>
+<br>
+<p>
+然后从<b>Configuration</b> 下拉列表中选择<b>Release</b>重复上面的操作。 
+<br><br>
+点击<b>OK</b>。
+</p>
+<h2>4. 开始编码!</h2>
+<p>
+包含<b>hge.h</b>头文件来访问<b>HGE</b>功能函数. 参考<a href="tutorials__main.html" tppabs="http://www.easis.cn/hgedoc/html/tutorials__main.html">教学指导</a> 部分了解初级编码的例子.<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

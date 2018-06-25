@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgedata.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgedata.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE 输入事件（Input Event）结构</h1>
+<p>
+输入事件结构结合<a href="hgefunc_inputgetevent.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetevent.html">Input_GetEvent</a>函数使用来获得缓冲的输入事件：
+</p>
+<pre>
+struct hgeInputEvent
+{
+  int    <b>type</b>;
+  int    <b>key</b>;
+  int    <b>flags</b>;
+  int    <b>chr</b>;
+  int    <b>wheel</b>;
+  float  <b>x</b>;
+  float  <b>y</b>;
+};
+</pre>
+<h2>成员</h2>
+<dl>
+<dt>type
+<dd>事件类型，可以是如下之一：<br>
+<b>INPUT_KEYDOWN</b> - 键盘按键按下<br>
+<b>INPUT_KEYUP</b> - 键盘按键松开<br>
+<b>INPUT_MBUTTONDOWN</b> - 鼠标按键按下<br>
+<b>INPUT_MBUTTONUP</b> - 鼠标按键松开<br>
+<b>INPUT_MOUSEMOVE</b> - 鼠标移动<br>
+<b>INPUT_MOUSEWHEEL</b> - 鼠标滚轮滚动<br>
+<dt>key
+<dd>键值，只对事件
+<b>INPUT_KEYDOWN</b>, <b>INPUT_KEYUP</b>, <b>INPUT_MBUTTONDOWN</b>
+and <b>INPUT_MBUTTONUP</b>有效。
+<dt>flags
+<dd>按位或使用（|）连接如下常量，来指定事件上下文：
+<b>HGEINP_SHIFT</b> - 任意shift键按下<br>
+<b>HGEINP_CTRL</b> - 任意ctrl键按下<br>
+<b>HGEINP_ALT</b> - 任意alt键按下<br>
+<b>HGEINP_CAPSLOCK</b> - 大写锁定(Caps Lock)启用<br>
+<b>HGEINP_NUMLOCK</b> - 小键盘数字锁定（Num Lock）启用<br>
+<b>HGEINP_SCROLLLOCK</b> - 滚动锁定（Scroll Lock）启用<br>
+<b>HGEINP_REPEAT</b> - 对于<b>INPUT_KEYDOWN</b>:此事件由自动重复特性产生；
+对于<b>INPUT_MBUTTONDOWN</b>此事件是双击<br>
+<dt>chr
+<dd>字符代码，表示当前键盘状态和输入地域。只对<b>INPUT_KEYDOWN</b>和<b>INPUT_KEYUP</b>时间有效。 
+<dt>wheel
+<dd>
+鼠标滚轮滚动的刻度数。
+正值表示滚轮向前滚动，远离用户；
+负值表示滚轮向后滚动，朝向用户。
+只对事件<b>INPUT_MOUSEWHEEL</b>有效。
+<dt>x
+<dd>鼠标指针的X坐标。
+<dt>y
+<dd>鼠标指针的Y坐标。
+</dl>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_inputgetevent.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetevent.html">Input_GetEvent</a>,
+<a href="hgeconst_keycodes.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_keycodes.html">键值</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

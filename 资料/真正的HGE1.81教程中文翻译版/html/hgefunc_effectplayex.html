@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Effect_PlayEx</h1>
+<p>
+启动并播放一个声效，可以设置额外的参数。
+</p>
+<pre>
+HCHANNEL Effect_PlayEx(
+  HEFFECT <i><b>effect</b></i>,
+  int <i><b>volume</b></i> = 100,
+  int <i><b>pan</b></i> = 0,
+  float <i><b>pitch</b></i> = 1.0,
+  bool <i><b>loop</b></i> = false
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>effect</i>
+<dd>要播放的声效句柄。
+<dt><i>volume</i>
+<dd>可选的声效音量0~100，默认为100，即最大音量。
+<dt><i>pan</i>
+<dd>可选的声效平衡(pan)，-100 ~ 100，默认为0，即中间值。
+<dt><i>pitch</i>
+<dd>可选的音效音高乘数。默认是1.0，即默认音高。Optional effect pitch multiplier. Default is 1.0, meaning default pitch.
+<dt><i>loop</i>
+<dd>可选参数，如果为<b>true</b>，音效会一直循环播放直至音频通道被关闭，默认值是<b>false</b>。
+</dl>
+<h2>返回值</h2>
+<p>
+返回播放声效的音频通道句柄。
+可以用其调用音频通道控制函数。
+</p>
+<h2>Remarks</h2>
+<p>
+一次只能有最多4个实例同事运行。
+如果调用<b>Effect_PlayEx</b>时所有4个进程都在使用，
+那么音量最小的进程将以新的参数重新运行。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_effectload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectload.html">Effect_Load</a>,
+<a href="hgefunc_effectfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectfree.html">Effect_Free</a>,
+<a href="hgefunc_effectplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectplay.html">Effect_Play</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

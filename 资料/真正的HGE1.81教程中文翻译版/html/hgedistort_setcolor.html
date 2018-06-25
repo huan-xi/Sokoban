@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgedistort.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgedistort.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeDistortionMesh::SetColor</h1>
+<p>
+为指定的扭曲节点设置颜色和透明度。
+</p>
+<pre>
+void SetColor(
+  int <i><b>col</b></i>,
+  int <i><b>row</b></i>,
+  DWORD <i><b>color</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>col</i>
+<dd>要改变的节点的列。列数字从0开始。
+<dt><i>row</i>
+<dd>要改变的节点的行。行数字从0开始。
+<dt><i>color</i>
+<dd>新的颜色值。
+</dl>
+<h2>备注</h2>
+<p>
+颜色参数中包含了透明度值。详情请参考<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">Hardware color format</a>部分。
+颜色叠加到纹理数据上的方式取决于混合模式。
+更多信息请参考<a href="hgeconst_blendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_blendmode.html">Blending modes</a>。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgedistort.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgedistort_getcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_getcolor.html">GetColor</a>,
+<a href="hgedistort_setz.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_setz.html">SetZ</a>,
+<a href="hgedistort_setdisplacement.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_setdisplacement.html">SetDisplacement</a>,
+<a href="hgedistort_setblendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort_setblendmode.html">SetBlendMode</a>,
+<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

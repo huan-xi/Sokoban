@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgegui.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgegui.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">控件管理宏</h1>
+<p>
+<b>为</b>了简化默认GUI控件的管理，<b>hgeguictrls.h</b>中定义了一些宏：
+</p>
+<pre>
+#define hgeButtonGetState(gui,id)
+              ((hgeGUIButton*)gui->GetCtrl(id))->GetState()
+
+#define hgeButtonSetState(gui,id,b)
+              ((hgeGUIButton*)gui->GetCtrl(id))->SetState(b)
+
+#define hgeSliderGetValue(gui,id)
+              ((hgeGUISlider*)gui->GetCtrl(id))->GetValue()
+
+#define hgeSliderSetValue(gui,id,f)
+              ((hgeGUISlider*)gui->GetCtrl(id))->SetValue(f)
+
+#define hgeGetTextCtrl(gui,id)
+              ((hgeGUIText*)gui->GetCtrl(id))
+
+#define hgeGetListboxCtrl(gui,id)
+              ((hgeGUIListbox*)gui->GetCtrl(id))
+
+</pre>
+<h2>宏</h2>
+<dl>
+<dt>hgeButtonGetState
+<dd>返回一个按钮的状态 (<b>bool</b>)。
+参数<b>gui</b>是一个指向<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>对象的指针(<b>hgeGUI *</b>)，
+参数<b>id</b>是该按钮的标识(<b>int</b>)。
+<dt>hgeButtonSetState
+<dd>修改一个按钮的状态。
+参数<b>gui</b>是一个指向<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>对象的指针(<b>hgeGUI *</b>)，
+参数<b>id</b>是该按钮的标识(<b>int</b>)，
+参数<b>b</b>是该按钮的新状态(<b>bool</b>)。
+<dt>hgeSliderGetValue
+<dd>返回滑动条的当前位置(<b>float</b>)。
+参数<b>gui</b>是一个指向<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>对象的指针(<b>hgeGUI *</b>)，
+参数<b>id</b>是该滑动条的标识(<b>int</b>)。
+<dt>hgeSliderSetValue
+<dd>修改一个滑动条的当前位置。
+参数<b>gui</b>是一个指向<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>对象的指针(<b>hgeGUI *</b>)，
+参数<b>id</b>是该滑动条的标识(<b>int</b>)，
+参数<b>f</b>是该滑动条的新位置(<b>float</b>)。
+<dt>hgeGetTextCtrl
+<dd>根据其标识返回一个指向<a href="hgegui_guitext.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guitext.html">hgeGUIText</a>对象的指针。
+参数<b>gui</b>是一个指向<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>对象的指针(<b>hgeGUI *</b>)，
+参数<b>id</b>是该文本的标识(<b>int</b>)。
+<dt>hgeGetListboxCtrl
+<dd>根据其标识返回一个指向<a href="hgegui_guilistbox.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox.html">hgeGUIListbox</a>对象的指针。
+参数<b>gui</b>是一个指向<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>对象的指针(<b>hgeGUI *</b>)，
+参数<b>id</b>是该列表框的标识(<b>int</b>)。
+</dl>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeguictrls.h<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

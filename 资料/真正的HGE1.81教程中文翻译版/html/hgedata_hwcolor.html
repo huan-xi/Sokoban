@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgedata.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgedata.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE 硬件颜色格式</h1>
+<p>
+<b>某</b>些<b>HGE</b>函数使用颜色作为参数或返回值。
+实际上他们只是一个<b>DWORD</b>类型，包含四个表示红，绿，蓝和透明度的8位值，格式如下：<b>0xAARRGGBB</b>。
+<br><br>
+也就是说<b>DWORD</b>的最高<b>字节</b>存储透明度值。
+第二个<b>字节</b>存储红色值，然后是绿色值，最低<b>字节</b>存储蓝色值。
+</p>
+<h2>Macros</h2>
+<p>
+你可以使用如下的宏来操作<b>DWORD</b>颜色值：
+</p>
+<pre>
+ARGB(a,r,g,b)
+  ((DWORD(a)<<24) + (DWORD(r)<<16) + (DWORD(g)<<8) + DWORD(b))
+</pre>
+<p>
+<b>ARGB</b>宏通过它的分量创建出一个<b>DWORD</b>颜色。
+</p>
+<pre>
+GETA(col)      ((col)>>24)
+GETR(col)      (((col)>>16) & 0xFF)
+GETG(col)      (((col)>>8) & 0xFF)
+GETB(col)      ((col) & 0xFF)
+</pre>
+<p>
+<b>GETA</b>, <b>GETR</b>, <b>GETG</b> 和 <b>GETB</b>宏返回<b>DWORD</b>颜色组合中指定的分量。
+</p>
+<pre>
+SETA(col,a)    (((col) & 0x00FFFFFF) + (DWORD(a)<<24))
+SETR(col,r)    (((col) & 0xFF00FFFF) + (DWORD(r)<<16))
+SETG(col,g)    (((col) & 0xFFFF00FF) + (DWORD(g)<<8))
+SETB(col,b)    (((col) & 0xFFFFFF00) + DWORD(b))
+</pre>
+<p>
+<b>SETA</b>, <b>SETR</b>, <b>SETG</b> 和 <b>SETB</b>宏修改<b>DWORD</b>颜色组合中指定的分量。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgecolor__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgecolor__main.html">hgeColor帮助类</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

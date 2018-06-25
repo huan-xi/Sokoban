@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Texture_Lock</h1>
+<p>
+锁定一个纹理，以便对其进行访问。
+</p>
+<pre>
+DWORD *Texture_Lock(
+  HTEXTURE <i><b>texture</b></i>,
+  bool <i><b>bReadOnly</b></i> = true,
+  int <i><b>left</b></i> = 0,
+  int <i><b>top</b></i> = 0,
+  int <i><b>width</b></i> = 0,
+  int <i><b>height</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>texture</i>
+<dd>要锁定的纹理句柄。
+<dt><i>bReadOnly</i>
+<dd>可选项。如果为<b>true</b>，纹理在解锁之后将不会被更新。
+<dt><i>left</i>
+<dd>可选项，要锁定的纹理区域的左上角X坐标。
+<dt><i>top</i>
+<dd>可选项，要锁定的纹理区域的左上角Y坐标。
+<dt><i>width</i>
+<dd>可选项，要锁定的纹理区域的宽度。
+<dt><i>height</i>
+<dd>可选项，要锁定的纹理区域的高度。
+</dl>
+<h2>返回值</h2>
+<p>
+如果执行成功，则返回被锁定的纹理数据的指针，否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+被锁定的纹理数据是一个<b>DWORD</b>类型的<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">color values</a>数组。
+只有32位的纹理可以被锁定。因此在诸如<b>Intel Solano</b>这些比较老的显卡上无法锁定纹理。
+渲染目标和压缩纹理也无法被锁定。
+<br><br>
+如果纹理区域被指定，返回的指针将从纹理数据的起始位置跳过一段。
+要访问指定区域的纹理像素可以使用如下的语法：
+</p>
+<pre>DWORD color = locked_ptr[y*tex_width+x];</pre>
+<p>
+这里<b>tex_width</b>是纹理的宽度，可以通过<a href="hgefunc_texturegetwidth.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturegetwidth.html">Texture_GetWidth</a>获得。
+<br><br>
+如果你不想编辑该纹理而只是想读取一些像素，那么请务必设置<b>bReadOnly</b>为<b>true</b>，
+这将跳过显卡的更新文理过程，从而加快执行效率。另外如果你只是编辑纹理的一部分，请务必指定纹理区域，因为只有这部分会在显存中更新。
+<br><br>
+当结束纹理访问时，必须使用<a href="hgefunc_textureunlock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureunlock.html">Texture_Unlock</a>函数对其进行解锁。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_textureunlock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureunlock.html">Texture_Unlock</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

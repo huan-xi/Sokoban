@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeparticle.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeparticle.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeParticleSystem::FireAt</h1>
+<p>
+在指定的屏幕位置激活粒子系统。
+</p>
+<pre>
+void FireAt(
+  float <i><b>x</b></i>,
+  float <i><b>y</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>x</i>
+<dd>显示屏上的X坐标。
+<dt><i>y</i>
+<dd>显示屏上的Y坐标。
+</dl>
+<h2>备注</h2>
+<p>
+如果粒子系统已经在运行中，<b>FireAt</b>会重新运行它，而不会终结活动的粒子。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeparticle.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgeparticle_fire.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_fire.html">Fire</a>,
+<a href="hgeparticle_update.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_update.html">Update</a>,
+<a href="hgeparticle_stop.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_stop.html">Stop</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

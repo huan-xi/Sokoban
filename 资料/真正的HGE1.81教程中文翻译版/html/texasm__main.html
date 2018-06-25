@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_main.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_main.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">纹理封装器</h1>
+<p>
+<b>Texture Assembler</b>是一个处理你的图像文件夹或资源脚本并根据相关资源通过精灵创建优化的纹理块的工具
+<b>Texture Assembler</b> is a tool that processes your image folders or resource scripts
+语法是：
+</p>
+<pre>
+texasm.exe &lt;res-file&gt;|&lt;wildcard&gt; &lt;output-wildcard&gt; [&lt;task&gt;]
+</pre>
+
+<dl>
+<dt>&lt;res-file&gt;
+<dd>用于处理的资源脚本
+要能锁定资源位置，taxasm.exe必须在使用指定脚本的可执行文件的文件夹运行。
+<dt>&lt;wildcard&gt;
+<dd>使用通配符来检索用于处理的图像文件。
+要么指定&lt;res-file&gt;要么指定&lt;wildcard&gt;，两者选其一。
+可以处理HGE支持的所有图像格式。
+
+<dt>&lt;output-wildcard&gt;
+<dd>用于存储结果的通配符。
+例如，"opt_textures\TitleTex"将生成下列文件：
+<br>&nbsp;&nbsp;opt_textures\TitleTex1.png, opt_textures\TitleTex1.res
+<br>&nbsp;&nbsp;opt_textures\TitleTex2.png, opt_textures\TitleTex2.res
+<br>&nbsp;&nbsp;...
+
+<dt>&lt;task&gt;
+<dd>可选的资源过滤器
+如果省略，将处理所有在script/folder文件夹中找到的资源。
+赋予文件夹资源的默认的resgroup是0。
+</dl>
+<h2>例如:</h2>
+<p>
+<b>texasm game.res tex 2</b><br>
+处理game.res里描述的所有resgroup=2的精灵（或者是其中包含的脚本）。
+将结果保存在tex01.png, tex01.res, tex02.png, tex02.res等文件中。
+</p>
+<p>
+<b>texasm game.res out\tex 7+sprFlower/sprLeaf/sprTrunk</b><br>
+处理game.res里描述的所有resgroup=7或名字以sprFlower, sprLeaf或sprTrunk开始的的精灵（或者是其中包含的脚本）。
+将结果保存在out\tex01.png, out\tex01.res, out\tex02.png, out\tex02.res等文件中。
+</p>
+<p>
+<b>texasm data\* tex</b><br>
+处理所有在文件夹"data"中找到的图像文件。将resgroup=0赋予生成的描述文件。
+将结果保存在tex01.png, tex01.res, tex02.png, tex02.res等文件中。
+</p>
+<p>
+<b>texasm data\* tex 3-gui\menu\title</b><br>
+处理所有在文件夹"data"中找到的名字不以gui，menu或title开始的图像文件。将resgroup=3赋予生成的描述文件。
+将结果保存在tex01.png, tex01.res, tex02.png, tex02.res等文件中。
+</p>
+<p>
+<b>texasm data\* tex +mars/earth/mercury</b><br>
+处理所有在文件夹"data"中找到的名字以gui，menu或title开始的图像文件。将resgroup=0赋予生成的描述文件。
+将结果保存在tex01.png, tex01.res, tex02.png, tex02.res等文件中。
+</p>
+<p>
+<b>texasm game.res tex -gui\\menu\\title</b><br>
+处理game.res里描述的所有名字不以gui, menu或title开始的精灵（或者是其中包含的脚本）。
+将结果保存在tex01.png, tex01.res, tex02.png, tex02.res等文件中。
+</p>
+<p>
+<b>注意:</b>当前只支持Sprite资源和32位PNG输出。
+</p>
+
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

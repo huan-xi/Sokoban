@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Resource_AttachPack</h1>
+<p>
+附加(attach)一个资源文件。
+Attaches a resource pack.
+</p>
+<pre>
+bool Resource_AttachPack(
+  const char *<i><b>filename</b></i>,
+  const char *<i><b>password</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>资源包文件名(相对[相对于程序目录]路径或绝对路径).
+<dt><i>password</i>
+<dd>可选的密码参数
+</dl>
+<h2>返回值</h2>
+<p>
+成功返回<b>true</b>，失败则返回<b>false</b>。
+</p>
+<h2>备注</h2>
+<p>
+如果函数调用失败，你可以使用<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>函数获得错误信息。
+如果设置了系统状态<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>，错误信息将被写入日志。
+<br><br>
+当加载资源时，越晚加载的包具有越高的优先级。
+更多资源包相关的信息请参考<a href="main_respack.html" tppabs="http://www.easis.cn/hgedoc/html/main_respack.html">Compiling resource pack</a>部分。
+<br><br>
+当资源包不再有用时，必须使用<a href="hgefunc_resourceremovepack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremovepack.html">Resource_RemovePack</a>移除。
+所有未被移除的包都会在调用<a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a>函数时被删除。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_resourceremovepack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremovepack.html">Resource_RemovePack</a>,
+<a href="hgefunc_resourceremoveallpacks.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremoveallpacks.html">Resource_RemoveAllPacks</a>,
+<a href="hgefunc_resourceload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceload.html">Resource_Load</a>,<br>
+<a href="main_respack.html" tppabs="http://www.easis.cn/hgedoc/html/main_respack.html">Compiling resource pack</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

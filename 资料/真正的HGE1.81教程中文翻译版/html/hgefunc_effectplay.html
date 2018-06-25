@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Effect_Play</h1>
+<p>
+启动并播放一个声效。
+</p>
+<pre>
+HCHANNEL Effect_Play(
+  HEFFECT <i><b>effect</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>effect</i>
+<dd>要播放的声效句柄。
+</dl>
+<h2>返回值</h2>
+<p>
+返回播放声效的音频通道句柄。
+可以用其调用音频通道控制函数。
+</p>
+<h2>备注</h2>
+<p>
+一次只能有最多4个实例同时运行。
+如果调用<b>Effect_Play</b>时所有4个进程都在使用，
+那么音量最小的进程将以默认参数重新运行。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_effectload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectload.html">Effect_Load</a>,
+<a href="hgefunc_effectfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectfree.html">Effect_Free</a>,
+<a href="hgefunc_effectplayex.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectplayex.html">Effect_PlayEx</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

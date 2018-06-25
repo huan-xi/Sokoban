@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Input_GetChar</h1>
+<p>
+返回自上一次调用用户帧函数起，最近一次按下的字符按键。
+</p>
+<pre>
+int Input_GetChar();
+</pre>
+<h2>返回值</h2>
+<p>
+返回字符值，如果没有按键按下或者没有相关的字符对应按下的键则返回0.
+</p>
+<h2>备注</h2>
+<p>
+<b>Input_GetChar</b>根据键盘的当前状态和输入地域将按下的键值翻译成字符。
+<br><br>
+按键状态在用户的帧函数外被更新，所以不要在循环中使用<b>Input_GetChar</b>判断一个按键是否被按下或释放，这将造成系统挂起。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_inputgetkeyname.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeyname.html">Input_GetKeyName</a>,
+<a href="hgefunc_inputgetkeystate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeystate.html">Input_GetKeyState</a>,
+<a href="hgefunc_inputgetkey.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkey.html">Input_GetKey</a>,
+<a href="hgeconst_keycodes.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_keycodes.html">Key codes</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

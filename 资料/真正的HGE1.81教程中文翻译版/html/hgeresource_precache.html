@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeresource.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeresource.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeResourceManager::Precache</h1>
+<p>
+在内存中创建所有指定组的资源。
+</p>
+<pre>
+bool Precache(
+  int <i><b>groupid</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>groupid</i>
+<dd>要在内存中创建的资源组的标识。
+如果=0或者省略，所有脚本中描述的资源都将被创建。
+</dl>
+<h2>返回值</h2>
+<p>
+如果所有资源被成功创建则返回<b>true</b>。
+否则返回<b>false</b>。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeresource.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgeresource_purge.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource_purge.html">Purge</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

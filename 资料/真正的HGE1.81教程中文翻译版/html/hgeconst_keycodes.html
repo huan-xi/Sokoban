@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeconst.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeconst.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE 虚拟键值</h1>
+<p>
+<b>HGE</b> 虚拟键值结合<a href="hgefunc_inputgetkeystate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeystate.html">Input_GetKeyState</a>,
+<a href="hgefunc_inputgetkey.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkey.html">Input_GetKey</a>和其他输入函数使用用以指明键盘或鼠标按键他们定义在<b>hge.h</b>头文件中:
+<br><br>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr><td width=30%><b>HGEK_LBUTTON</b></td><td>鼠标左键</td></tr>
+<tr><td><b>HGEK_RBUTTON</b></td><td>鼠标右键</td></tr>
+<tr><td><b>HGEK_MBUTTON</b></td><td>鼠标中键(滚轮)</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_ESCAPE</b></td><td>ESC键</td></tr>
+<tr><td><b>HGEK_BACKSPACE</b></td><td>BACKSPACE键（退格键）</td></tr>
+<tr><td><b>HGEK_TAB</b></td><td>TAB键</td></tr>
+<tr><td><b>HGEK_ENTER</b></td><td>任意回车键（主键盘和小键盘区）</td></tr>
+<tr><td><b>HGEK_SPACE</b></td><td>空格键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_SHIFT</b></td><td>任意SHIFT键</td></tr>
+<tr><td><b>HGEK_CTRL</b></td><td>任意CTRL键</td></tr>
+<tr><td><b>HGEK_ALT</b></td><td>任意ALT键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_LWIN</b></td><td>左视窗键</td></tr>
+<tr><td><b>HGEK_RWIN</b></td><td>右视窗键</td></tr>
+<tr><td><b>HGEK_APPS</b></td><td>程序功能键（右视窗和右CTRL键之间的键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_PAUSE</b></td><td>暂停键</td></tr>
+<tr><td><b>HGEK_CAPSLOCK</b></td><td>大写锁定键</td></tr>
+<tr><td><b>HGEK_NUMLOCK</b></td><td>数字锁定键</td></tr>
+<tr><td><b>HGEK_SCROLLLOCK</b></td><td>滚动锁定键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_PGUP</b></td><td>PAGE UP 键</td></tr>
+<tr><td><b>HGEK_PGDN</b></td><td>PAGE DOWN 键</td></tr>
+<tr><td><b>HGEK_HOME</b></td><td>HOME 键</td></tr>
+<tr><td><b>HGEK_END</b></td><td>END 键</td></tr>
+<tr><td><b>HGEK_INSERT</b></td><td>INSERT 键</td></tr>
+<tr><td><b>HGEK_DELETE</b></td><td>DELETE 键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_LEFT</b></td><td>左方向键</td></tr>
+<tr><td><b>HGEK_UP</b></td><td>上方向键</td></tr>
+<tr><td><b>HGEK_RIGHT</b></td><td>右方向键</td></tr>
+<tr><td><b>HGEK_DOWN</b></td><td>下方向键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_0</b></td><td>主键区 '0' 键</td></tr>
+<tr><td><b>HGEK_1</b></td><td>主键区 '1' 键</td></tr>
+<tr><td><b>HGEK_2</b></td><td>主键区 '2' 键</td></tr>
+<tr><td><b>HGEK_3</b></td><td>主键区 '3' 键</td></tr>
+<tr><td><b>HGEK_4</b></td><td>主键区 '4' 键</td></tr>
+<tr><td><b>HGEK_5</b></td><td>主键区 '5' 键</td></tr>
+<tr><td><b>HGEK_6</b></td><td>主键区 '6' 键</td></tr>
+<tr><td><b>HGEK_7</b></td><td>主键区 '7' 键</td></tr>
+<tr><td><b>HGEK_8</b></td><td>主键区 '8' 键</td></tr>
+<tr><td><b>HGEK_9</b></td><td>主键区 '9' 键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_A</b></td><td>'A' 键</td></tr>
+<tr><td><b>HGEK_B</b></td><td>'B' 键</td></tr>
+<tr><td><b>HGEK_C</b></td><td>'C' 键</td></tr>
+<tr><td><b>HGEK_D</b></td><td>'D' 键</td></tr>
+<tr><td><b>HGEK_E</b></td><td>'E' 键</td></tr>
+<tr><td><b>HGEK_F</b></td><td>'F' 键</td></tr>
+<tr><td><b>HGEK_G</b></td><td>'G' 键</td></tr>
+<tr><td><b>HGEK_H</b></td><td>'H' 键</td></tr>
+<tr><td><b>HGEK_I</b></td><td>'I' 键</td></tr>
+<tr><td><b>HGEK_J</b></td><td>'J' 键</td></tr>
+<tr><td><b>HGEK_K</b></td><td>'K' 键</td></tr>
+<tr><td><b>HGEK_L</b></td><td>'L' 键</td></tr>
+<tr><td><b>HGEK_M</b></td><td>'M' 键</td></tr>
+<tr><td><b>HGEK_N</b></td><td>'N' 键</td></tr>
+<tr><td><b>HGEK_O</b></td><td>'O' 键</td></tr>
+<tr><td><b>HGEK_P</b></td><td>'P' 键</td></tr>
+<tr><td><b>HGEK_Q</b></td><td>'Q' 键</td></tr>
+<tr><td><b>HGEK_R</b></td><td>'R' 键</td></tr>
+<tr><td><b>HGEK_S</b></td><td>'S' 键</td></tr>
+<tr><td><b>HGEK_T</b></td><td>'T' 键</td></tr>
+<tr><td><b>HGEK_U</b></td><td>'U' 键</td></tr>
+<tr><td><b>HGEK_V</b></td><td>'V' 键</td></tr>
+<tr><td><b>HGEK_W</b></td><td>'W' 键</td></tr>
+<tr><td><b>HGEK_X</b></td><td>'X' 键</td></tr>
+<tr><td><b>HGEK_Y</b></td><td>'Y' 键</td></tr>
+<tr><td><b>HGEK_Z</b></td><td>'Z' 键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_GRAVE</b></td><td>重音符 (`)</td></tr>
+<tr><td><b>HGEK_MINUS</b></td><td>主键区 负号键 (-)</td></tr>
+<tr><td><b>HGEK_EQUALS</b></td><td>主键区 等号键 (=)</td></tr>
+<tr><td><b>HGEK_BACKSLASH</b></td><td>BACK 反斜杠键 (\)</td></tr>
+<tr><td><b>HGEK_LBRACKET</b></td><td>左方括号([)</td></tr>
+<tr><td><b>HGEK_RBRACKET</b></td><td>右方括号 (])</td></tr>
+<tr><td><b>HGEK_SEMICOLON</b></td><td>分好 (;)</td></tr>
+<tr><td><b>HGEK_APOSTROPHE</b></td><td>单引号 (')</td></tr>
+<tr><td><b>HGEK_COMMA</b></td><td>逗号 (,)</td></tr>
+<tr><td><b>HGEK_PERIOD</b></td><td>主键区 句点键 (.)</td></tr>
+<tr><td><b>HGEK_SLASH</b></td><td>主键区 斜杠键 (/)</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_NUMPAD0</b></td><td>小键盘区 '0' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD1</b></td><td>小键盘区 '1' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD2</b></td><td>小键盘区 '2' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD3</b></td><td>小键盘区 '3' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD4</b></td><td>小键盘区 '4' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD5</b></td><td>小键盘区 '5' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD6</b></td><td>小键盘区 '6' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD7</b></td><td>小键盘区 '7' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD8</b></td><td>小键盘区 '8' 键</td></tr>
+<tr><td><b>HGEK_NUMPAD9</b></td><td>小键盘区 '9' 键</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_MULTIPLY</b></td><td>小键盘区乘号键 (*)</td></tr>
+<tr><td><b>HGEK_DIVIDE</b></td><td>小键盘区除号键 (/)</td></tr>
+<tr><td><b>HGEK_ADD</b></td><td>小键盘区加号键 (+)</td></tr>
+<tr><td><b>HGEK_SUBTRACT</b></td><td>小键盘区减号键 (-)</td></tr>
+<tr><td><b>HGEK_DECIMAL</b></td><td>小键盘区句点键 (.)</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td><b>HGEK_F1</b></td><td>F1 键</td></tr>
+<tr><td><b>HGEK_F2</b></td><td>F2 键</td></tr>
+<tr><td><b>HGEK_F3</b></td><td>F3 键</td></tr>
+<tr><td><b>HGEK_F4</b></td><td>F4 键</td></tr>
+<tr><td><b>HGEK_F5</b></td><td>F5 键</td></tr>
+<tr><td><b>HGEK_F6</b></td><td>F6 键</td></tr>
+<tr><td><b>HGEK_F7</b></td><td>F7 键</td></tr>
+<tr><td><b>HGEK_F8</b></td><td>F8 键</td></tr>
+<tr><td><b>HGEK_F9</b></td><td>F9 键</td></tr>
+<tr><td><b>HGEK_F10</b></td><td>F10 键</td></tr>
+<tr><td><b>HGEK_F11</b></td><td>F11 键</td></tr>
+<tr><td><b>HGEK_F12</b></td><td>F12 键</td></tr>
+</table>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_inputgetkeyname.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeyname.html">Input_GetKeyName</a>,
+<a href="hgefunc_inputgetkeystate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeystate.html">Input_GetKeyState</a>,
+<a href="hgefunc_inputgetkey.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkey.html">Input_GetKey</a>,
+<a href="hgefunc_inputgetevent.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetevent.html">Input_GetEvent</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

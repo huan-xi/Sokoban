@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Target_GetTexture</h1>
+<p>
+返回一个渲染目标的纹理句柄。
+</p>
+<pre>
+HTEXTURE Target_GetTexture(
+  HTARGET <i><b>target</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>target</i>
+<dd>指定的渲染目标句柄，函数将返回该句柄的纹理句柄。
+</dl>
+<h2>返回值</h2>
+<p>
+返回渲染目标的纹理句柄。
+</p>
+<h2>备注</h2>
+<p>
+你可以使用返回的纹理来渲染到屏幕上或者用于其他渲染目标。
+<br><br>
+<b>不要</b>删除使用<b>Target_GetTexture</b>获得的纹理！
+结果是可预测的。一个渲染目标的纹理会在渲染目标被删除时自动删除。
+<br><br>
+由<b>Target_GetTexture</b>返回的纹理句柄会在显存内容丢失（例如：模式转换）时改变，
+因此最好在每次需要时重新获得纹理，如果你想使用缓存的句柄，你必须在函数<a href="hgeconst_systemstate.html#HGE_GFXRESTOREFUNC" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_GFXRESTOREFUNC">HGE_GFXRESTOREFUNC</a>中将其更新。
+<br><br>
+渲染目标的内容可能会因为模式转换事件造成丢失。
+如果你在每个框架中渲染了一个纹理，是不会发生这个问题的。但是如果你只在初始化时渲染一次，
+你必须在<b>HGE</b>的标记之后重新渲染它。
+要这样做，写一个渲染函数，并通过设置<a href="hgeconst_systemstate.html#HGE_GFXRESTOREFUNC" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_GFXRESTOREFUNC">HGE_GFXRESTOREFUNC</a>标记来加载他。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

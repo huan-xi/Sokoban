@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgecolorhsv.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgecolorhsv.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeColorHSV运算符</h1>
+<p>
+<b>hgeColorHSV</b>类定义了如下运算符：
+<p>
+<pre>
+hgeColorHSV   operator-  (const hgeColorHSV &c);
+hgeColorHSV   operator+  (const hgeColorHSV &c);
+hgeColorHSV   operator*  (const hgeColorHSV &c);
+hgeColorHSV&  operator-= (const hgeColorHSV &c);
+hgeColorHSV&  operator+= (const hgeColorHSV &c);
+bool          operator== (const hgeColorHSV &c);
+bool          operator!= (const hgeColorHSV &c);
+
+hgeColorHSV   operator/  (float scalar);
+hgeColorHSV   operator*  (float scalar);
+hgeColorHSV&  operator*= (float scalar);
+
+hgeColorHSV&  operator=  (const hgeColorHSV &c);
+</pre>
+<p>
+因此，你可以在表达式中像下面这样使用<b>hgeColorHSV</b>对象
+<br><br>
+<b>color1</b> = <b>color2</b> + <b>color3</b> * 0.5f;<br>
+if(<b>color1</b> != <b>color2</b>) <b>color1</b> += <b>color3</b>;<br>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgecolor.h<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

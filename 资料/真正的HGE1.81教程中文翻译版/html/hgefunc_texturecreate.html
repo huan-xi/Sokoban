@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Texture_Create</h1>
+<p>
+创建一个空纹理。
+</p>
+<pre>
+HTEXTURE Texture_Create(
+  int <i><b>width</b></i>,
+  int <i><b>height</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>width</i>
+<dd>要创建的纹理的宽度。
+<dt><i>height</i>
+<dd>要创建的纹理的高度。
+</dl>
+<h2>返回值</h2>
+<p>
+如果执行成功，返回纹理句柄。
+否则返回0.
+</p>
+<h2>备注</h2>
+<p>
+渲染目标维数必须是2的幂数，如果此条件不满足，请求的维数将被自动转换为最接近的2的幂数值的维数，大于请求的维数。
+<br><br>
+你可以使用<a href="hgefunc_texturelock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturelock.html">Texture_Lock</a> 和 <a href="hgefunc_textureunlock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureunlock.html">Texture_Unlock</a>函数
+来给纹理填充一些数据。
+<br><br>
+当纹理不再被使用时，必须使用<a href="hgefunc_texturefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturefree.html">Texture_Free</a>函数来删除它。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_textureload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureload.html">Texture_Load</a>,
+<a href="hgefunc_texturefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturefree.html">Texture_Free</a>,
+<a href="hgefunc_texturelock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturelock.html">Texture_Lock</a>,
+<a href="hgefunc_textureunlock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureunlock.html">Texture_Unlock</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

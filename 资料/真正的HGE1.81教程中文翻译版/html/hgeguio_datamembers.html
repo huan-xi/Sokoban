@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeguio.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeguio.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUIObject数据成员</h1>
+<p>
+<b>hgeGUIObject</b>的数据成员是公有的，因此你可以直接访问它们：
+</p>
+<pre>
+int      <i><b>id</b></i>;
+bool     <i><b>bStatic</b></i>;
+bool     <i><b>bVisible</b></i>;
+bool     <i><b>bEnabled</b></i>;
+hgeRect  <i><b>rect</b></i>;
+DWORD    <i><b>color</b></i>;
+
+hgeGUI       *<i><b>gui</b></i>;
+hgeGUIObject *<i><b>next</b></i>;
+hgeGUIObject *<i><b>prev</b></i>;
+
+static HGE   *<i><b>hge</b></i>;
+</pre>
+<h2>数据成员</h2>
+<dl>
+<dt>id
+<dd>你的构造函数必须将此字段设置为用于GUI的控件的标识。
+<dt>bStatic
+<dd>如果此字段为<b>true</b>，控件将无法获得焦点并且将无法接受键盘事件。
+控件也会快速导航忽视。你必须在构造函数中初始化<b>bStatic</b>。
+<dt>bVisible
+<dd>如果此字段为<b>true</b>控件将被渲染到GUI，否则将无法看到它。
+你必须在构造函数中初始化<b>bVisible</b>。
+<dt>bEnabled
+<dd>如果此字段为<b>false</b>控件将不会响应用户输入。
+控件仍会接受信息，因此正确处理好该字段是你的任务。
+你必须在构造函数中初始化<b>bEnabled</b>。
+<dt>rect
+<dd>此字段保存控件在屏幕坐标系上的边界框。
+你必须在构造函数中初始化<b>rect</b>。
+<dt>color
+<dd>此字段保存控件的<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">颜色</a>。
+你必须在构造函数中初始化<b>color</b>。
+<dd>&nbsp;
+<dt>&nbsp;
+<dt>gui
+<dd>这是一个指向使用该控件的GUI对象的指针。
+当把控件加入GUI时，此字段由GUI初始化。
+你可以使用<b>gui</b>来跟GUI交互，但是千万不能改变它。
+<dt>next
+<dd>这是一个内部字段，用于将所有的控件关联在一起。派生类千万不要修改它。
+<dt>prev
+<dd>这是一个内部字段，用于将所有的控件关联在一起。派生类千万不要修改它。
+<dd>&nbsp;
+<dt>&nbsp;
+<dt>hge
+<dd>这是一个使你可以在派生类中使用<b>HGE</b>接口的指针。
+</dl>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgegui.h<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

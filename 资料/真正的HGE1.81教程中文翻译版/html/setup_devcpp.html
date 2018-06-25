@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_setup.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_setup.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">Dev C++ 5</h1>
+<h2>1. 创建一个空的Win32 Application工程</h2>
+<p>打开<b>File->New->Project...->Basic</b>对话框标签.输入你的项目名并点击<b>Windows Application</b>图标:</p>
+<center><img src="devcppsetup1.gif" tppabs="http://www.easis.cn/hgedoc/html/devcppsetup1.gif" width=486 heght=299 alt="创建工程对话框"></center>
+<br>
+<p>点击<b>Ok</b>.
+<br><br>
+在下一个窗口中从你的工程中选择或者创建一个目录并点击<b>Save</b>:</p>
+<center><img src="devcppsetup2.gif" tppabs="http://www.easis.cn/hgedoc/html/devcppsetup2.gif" width=486 heght=419 alt="保存工程对话框"></center>
+<br>
+<h2>2. 设置头文件和库文件路径</h2>
+<p>
+打开<b>Project->Project Options->Directories</b>对话框标签并选择<b>Library Directories</b>子标签.
+点击<b>...</b>按钮,找到<b>HGE</b>“lib\gcc”目录并点击<b>Ok</b>。然后点击<b>Add</b>:</p>
+<center><img src="devcppsetup3.gif" tppabs="http://www.easis.cn/hgedoc/html/devcppsetup3.gif" width=477 heght=348 alt="库文件目录"></center>
+<br>
+<p>
+现在选择<b>Include Directories</b>子标签，并重复和对<b>HGE</b>“include”目录相同的操作：</p>
+<center><img src="devcppsetup4.gif" tppabs="http://www.easis.cn/hgedoc/html/devcppsetup4.gif" width=477 heght=348 alt="头文件目录"></center>
+<br>
+<p>现在不要点击<b>Ok</b>按钮。</p>
+<h2>3. 向工程中加入库文件</h2>
+<p>
+在相同的对话框中选择<b>Parameters</b>标签，点击<b>Add Library or Object</b>按钮，找到“hge.a”文件并点击<b>Open</b>按钮。
+重复上面的操作将“hgehelp.a”加入：
+<center><img src="devcppsetup5.gif" tppabs="http://www.easis.cn/hgedoc/html/devcppsetup5.gif" width=477 heght=348 alt="向工程中加入库文件"></center>
+<br>
+<p>
+点击<b>Ok</b>。
+</p>
+<h2>4. 开始编码！</h2>
+<p>
+包含<b>hge.h</b>头文件来访问<b>HGE</b>功能函数. 参考<a href="tutorials__main.html" tppabs="http://www.easis.cn/hgedoc/html/tutorials__main.html">教学指导</a> 部分了解初级编码的例子.<br></p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Channel_GetLength</h1>
+<p>
+返回正在播放的通道的长度。
+</p>
+<pre>
+float Channel_GetLength(
+  HCHANNEL <i><b>channel</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>channel</i>
+<dd>要查询的音频通道的句柄。
+</dl>
+<h2>返回值</h2>
+<p>
+如果成功返回通道的总持续时间，按秒数。否则返回-1。
+</p>
+<h2>备注</h2>
+<p>
+当你对一个通道使用了<a href="hgefunc_channelstop.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelstop.html">stop</a>函数，你将不会在查询到他的长度。</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_channelgetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelgetpos.html">Channel_GetPos</a>,
+<a href="hgefunc_channelsetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpos.html">Channel_SetPos</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

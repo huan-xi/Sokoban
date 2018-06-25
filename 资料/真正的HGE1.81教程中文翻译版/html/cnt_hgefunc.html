@@ -1,0 +1,166 @@
+<html>
+
+<head>
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+</head>
+
+<body bgcolor=#699FC3 leftmargin=10 topmargin=10 marginwidth=10 marginheight=10>
+<table width=100% cellspacing=0 cellpadding=0 border=0><tr><td>
+<img src="title.gif" tppabs="http://www.easis.cn/hgedoc/html/title.gif" width=163 height=33 alt="Haaf's Game Engine - Hardware accelerated 2D games engine">
+</td></tr></table>
+<br>
+<h3><a class=mnu href="main_overview.html" tppabs="http://www.easis.cn/hgedoc/html/main_overview.html" target="info">综述</a></h3>
+<h3><a class=mnu href="main_package.html" tppabs="http://www.easis.cn/hgedoc/html/main_package.html" target="info">文件列表</a></h3>
+<h3><a class=mnu href="main_history.html" tppabs="http://www.easis.cn/hgedoc/html/main_history.html" target="info">历史版本</a></h3>
+<h3><a class=mnu href="main_upgrade.html" tppabs="http://www.easis.cn/hgedoc/html/main_upgrade.html" target="info">从旧HGE版本升级</a></h3>
+<h3><a class=mnu href="setup__main.html" tppabs="http://www.easis.cn/hgedoc/html/setup__main.html" target="info">配置一个HGE项目</a></h3>
+<h3><a class=mnu href="main_childwin.html" tppabs="http://www.easis.cn/hgedoc/html/main_childwin.html" target="info">字窗口中的HGE</a></h3>
+<h3><a class=mnu href="main_power.html" tppabs="http://www.easis.cn/hgedoc/html/main_power.html" target="info">电源管理</a></h3>
+<img src="sep3.gif" tppabs="http://www.easis.cn/hgedoc/html/sep3.gif" width=163 height=13 alt="">
+<h3><a class=mnu href="hgefunc__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc__main.html" target="info">HGE函数</a></h3>
+<h4><a class=mnu href="hgefunc_interfaceget.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfaceget.html" target="info">hgeCreate</a></h4>
+<h4><a class=mnu href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html" target="info">Release</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html" target="info">System_Initiate</a></h4>
+<h4><a class=mnu href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html" target="info">System_Shutdown</a></h4>
+<h4><a class=mnu href="hgefunc_systemstart.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemstart.html" target="info">System_Start</a></h4>
+<h4><a class=mnu href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html" target="info">System_SetState</a></h4>
+<h4><a class=mnu href="hgefunc_systemgetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgetstate.html" target="info">System_GetState</a></h4>
+<h4><a class=mnu href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html" target="info">System_GetErrorMessage</a></h4>
+<h4><a class=mnu href="hgefunc_systemlog.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemlog.html" target="info">System_Log</a></h4>
+<h4><a class=mnu href="hgefunc_systemlaunch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemlaunch.html" target="info">System_Launch</a></h4>
+<h4><a class=mnu href="hgefunc_systemsnapshot.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsnapshot.html" target="info">System_Snapshot</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_resourceload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceload.html" target="info">Resource_Load</a></h4>
+<h4><a class=mnu href="hgefunc_resourcefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcefree.html" target="info">Resource_Free</a></h4>
+<h4><a class=mnu href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html" target="info">Resource_AttachPack</a></h4>
+<h4><a class=mnu href="hgefunc_resourceremovepack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremovepack.html" target="info">Resource_RemovePack</a></h4>
+<h4><a class=mnu href="hgefunc_resourceremoveallpacks.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremoveallpacks.html" target="info">Resource_RemoveAllPacks</a></h4>
+<h4><a class=mnu href="hgefunc_resourcemakepath.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcemakepath.html" target="info">Resource_MakePath</a></h4>
+<h4><a class=mnu href="hgefunc_resourceenumfiles.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfiles.html" target="info">Resource_EnumFiles</a></h4>
+<h4><a class=mnu href="hgefunc_resourceenumfolders.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfolders.html" target="info">Resource_EnumFolders</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_inisetint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetint.html" target="info">Ini_SetInt</a></h4>
+<h4><a class=mnu href="hgefunc_inigetint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetint.html" target="info">Ini_GetInt</a></h4>
+<h4><a class=mnu href="hgefunc_inisetfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetfloat.html" target="info">Ini_SetFloat</a></h4>
+<h4><a class=mnu href="hgefunc_inigetfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetfloat.html" target="info">Ini_GetFloat</a></h4>
+<h4><a class=mnu href="hgefunc_inisetstring.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetstring.html" target="info">Ini_SetString</a></h4>
+<h4><a class=mnu href="hgefunc_inigetstring.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetstring.html" target="info">Ini_GetString</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_randomseed.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_randomseed.html" target="info">Random_Seed</a></h4>
+<h4><a class=mnu href="hgefunc_randomint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_randomint.html" target="info">Random_Int</a></h4>
+<h4><a class=mnu href="hgefunc_randomfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_randomfloat.html" target="info">Random_Float</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_timergettime.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergettime.html" target="info">Timer_GetTime</a></h4>
+<h4><a class=mnu href="hgefunc_timergetdelta.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergetdelta.html" target="info">Timer_GetDelta</a></h4>
+<h4><a class=mnu href="hgefunc_timergetfps.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergetfps.html" target="info">Timer_GetFPS</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_effectload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectload.html" target="info">Effect_Load</a></h4>
+<h4><a class=mnu href="hgefunc_effectfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectfree.html" target="info">Effect_Free</a></h4>
+<h4><a class=mnu href="hgefunc_effectplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectplay.html" target="info">Effect_Play</a></h4>
+<h4><a class=mnu href="hgefunc_effectplayex.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectplayex.html" target="info">Effect_PlayEx</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_musicload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicload.html" target="info">Music_Load</a></h4>
+<h4><a class=mnu href="hgefunc_musicfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicfree.html" target="info">Music_Free</a></h4>
+<h4><a class=mnu href="hgefunc_musicplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicplay.html" target="info">Music_Play</a></h4>
+<h4><a class=mnu href="hgefunc_musicsetamplification.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetamplification.html" target="info">Music_SetAmplification</a></h4>
+<h4><a class=mnu href="hgefunc_musicgetamplification.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetamplification.html" target="info">Music_GetAmplification</a></h4>
+<h4><a class=mnu href="hgefunc_musicgetlength.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetlength.html" target="info">Music_GetLength</a></h4>
+<h4><a class=mnu href="hgefunc_musicsetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetpos.html" target="info">Music_SetPos</a></h4>
+<h4><a class=mnu href="hgefunc_musicgetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetpos.html" target="info">Music_GetPos</a></h4>
+<h4><a class=mnu href="hgefunc_musicsetinstrvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetinstrvolume.html" target="info">Music_SetInstrVolume</a></h4>
+<h4><a class=mnu href="hgefunc_musicgetinstrvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetinstrvolume.html" target="info">Music_GetInstrVolume</a></h4>
+<h4><a class=mnu href="hgefunc_musicsetchannelvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetchannelvolume.html" target="info">Music_SetChannelVolume</a></h4>
+<h4><a class=mnu href="hgefunc_musicgetchannelvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetchannelvolume.html" target="info">Music_GetChannelVolume</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_streamload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamload.html" target="info">Stream_Load</a></h4>
+<h4><a class=mnu href="hgefunc_streamfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamfree.html" target="info">Stream_Free</a></h4>
+<h4><a class=mnu href="hgefunc_streamplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamplay.html" target="info">Stream_Play</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_channelsetpanning.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpanning.html" target="info">Channel_SetPanning</a></h4>
+<h4><a class=mnu href="hgefunc_channelsetvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetvolume.html" target="info">Channel_SetVolume</a></h4>
+<h4><a class=mnu href="hgefunc_channelsetpitch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpitch.html" target="info">Channel_SetPitch</a></h4>
+<h4><a class=mnu href="hgefunc_channelpause.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelpause.html" target="info">Channel_Pause</a></h4>
+<h4><a class=mnu href="hgefunc_channelresume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelresume.html" target="info">Channel_Resume</a></h4>
+<h4><a class=mnu href="hgefunc_channelstop.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelstop.html" target="info">Channel_Stop</a></h4>
+<h4><a class=mnu href="hgefunc_channelpauseall.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelpauseall.html" target="info">Channel_PauseAll</a></h4>
+<h4><a class=mnu href="hgefunc_channelresumeall.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelresumeall.html" target="info">Channel_ResumeAll</a></h4>
+<h4><a class=mnu href="hgefunc_channelstopall.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelstopall.html" target="info">Channel_StopAll</a></h4>
+<h4><a class=mnu href="hgefunc_channelisplaying.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelisplaying.html" target="info">Channel_IsPlaying</a></h4>
+<h4><a class=mnu href="hgefunc_channelgetlength.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelgetlength.html" target="info">Channel_GetLength</a></h4>
+<h4><a class=mnu href="hgefunc_channelsetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpos.html" target="info">Channel_SetPos</a></h4>
+<h4><a class=mnu href="hgefunc_channelgetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelgetpos.html" target="info">Channel_GetPos</a></h4>
+<h4><a class=mnu href="hgefunc_channelslideto.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelslideto.html" target="info">Channel_SlideTo</a></h4>
+<h4><a class=mnu href="hgefunc_channelissliding.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelissliding.html" target="info">Channel_IsSliding</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_inputgetmousepos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetmousepos.html" target="info">Input_GetMousePos</a></h4>
+<h4><a class=mnu href="hgefunc_inputsetmousepos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputsetmousepos.html" target="info">Input_SetMousePos</a></h4>
+<h4><a class=mnu href="hgefunc_inputgetmousewheel.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetmousewheel.html" target="info">Input_GetMouseWheel</a></h4>
+<h4><a class=mnu href="hgefunc_inputismouseover.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputismouseover.html" target="info">Input_IsMouseOver</a></h4>
+<h4><a class=mnu href="hgefunc_inputkeydown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputkeydown.html" target="info">Input_KeyDown</a></h4>
+<h4><a class=mnu href="hgefunc_inputkeyup.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputkeyup.html" target="info">Input_KeyUp</a></h4>
+<h4><a class=mnu href="hgefunc_inputgetkeyname.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeyname.html" target="info">Input_GetKeyName</a></h4>
+<h4><a class=mnu href="hgefunc_inputgetkeystate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeystate.html" target="info">Input_GetKeyState</a></h4>
+<h4><a class=mnu href="hgefunc_inputgetkey.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkey.html" target="info">Input_GetKey</a></h4>
+<h4><a class=mnu href="hgefunc_inputgetchar.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetchar.html" target="info">Input_GetChar</a></h4>
+<h4><a class=mnu href="hgefunc_inputgetevent.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetevent.html" target="info">Input_GetEvent</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html" target="info">Gfx_BeginScene</a></h4>
+<h4><a class=mnu href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html" target="info">Gfx_EndScene</a></h4>
+<h4><a class=mnu href="hgefunc_gfxclear.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxclear.html" target="info">Gfx_Clear</a></h4>
+<h4><a class=mnu href="hgefunc_gfxrenderline.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrenderline.html" target="info">Gfx_RenderLine</a></h4>
+<h4><a class=mnu href="hgefunc_gfxrendertriple.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrendertriple.html" target="info">Gfx_RenderTriple</a></h4>
+<h4><a class=mnu href="hgefunc_gfxrenderquad.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrenderquad.html" target="info">Gfx_RenderQuad</a></h4>
+<h4><a class=mnu href="hgefunc_gfxstartbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxstartbatch.html" target="info">Gfx_StartBatch</a></h4>
+<h4><a class=mnu href="hgefunc_gfxfinishbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxfinishbatch.html" target="info">Gfx_FinishBatch</a></h4>
+<h4><a class=mnu href="hgefunc_gfxsetclipping.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxsetclipping.html" target="info">Gfx_SetClipping</a></h4>
+<h4><a class=mnu href="hgefunc_gfxsettransform.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxsettransform.html" target="info">Gfx_SetTransform</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_targetcreate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetcreate.html" target="info">Target_Create</a></h4>
+<h4><a class=mnu href="hgefunc_targetfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetfree.html" target="info">Target_Free</a></h4>
+<h4><a class=mnu href="hgefunc_targetgettexture.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetgettexture.html" target="info">Target_GetTexture</a></h4>
+<br>
+<h4><a class=mnu href="hgefunc_texturecreate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturecreate.html" target="info">Texture_Create</a></h4>
+<h4><a class=mnu href="hgefunc_textureload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureload.html" target="info">Texture_Load</a></h4>
+<h4><a class=mnu href="hgefunc_texturefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturefree.html" target="info">Texture_Free</a></h4>
+<h4><a class=mnu href="hgefunc_texturegetwidth.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturegetwidth.html" target="info">Texture_GetWidth</a></h4>
+<h4><a class=mnu href="hgefunc_texturegetheight.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturegetheight.html" target="info">Texture_GetHeight</a></h4>
+<h4><a class=mnu href="hgefunc_texturelock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturelock.html" target="info">Texture_Lock</a></h4>
+<h4><a class=mnu href="hgefunc_textureunlock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureunlock.html" target="info">Texture_Unlock</a></h4>
+<br>
+<h3><a class=mnu href="hgedata__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata__main.html" target="info">HGE函数</a></h3>
+<h3><a class=mnu href="hgeconst__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst__main.html" target="info">HGE数据类型</a></h3>
+<img src="sep3.gif" tppabs="http://www.easis.cn/hgedoc/html/sep3.gif" width=163 height=13 alt="">
+<h3><a class=mnu href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html" target="info">hgeSprite</a></h3>
+<h3><a class=mnu href="hgeanim__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim__main.html" target="info">hgeAnimation</a></h3>
+<h3><a class=mnu href="hgefont__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgefont__main.html" target="info">hgeFont</a></h3>
+<h3><a class=mnu href="hgeparticle__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle__main.html" target="info">hgeParticleSystem</a></h3>
+<h3><a class=mnu href="hgepmanager__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager__main.html" target="info">hgeParticleManager</a></h3>
+<h3><a class=mnu href="hgedistort__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort__main.html" target="info">hgeDistortionMesh</a></h3>
+<h3><a class=mnu href="hgestring__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgestring__main.html" target="info">hgeStringTable</a></h3>
+<h3><a class=mnu href="hgeresource__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource__main.html" target="info">hgeResourceManager</a></h3>
+<h3><a class=mnu href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html" target="info">hgeGUI</a></h3>
+<h3><a class=mnu href="hgeguio__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeguio__main.html" target="info">hgeGUIObject</a></h3>
+<h3><a class=mnu href="hgerect__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgerect__main.html" target="info">hgeRect</a></h3>
+<h3><a class=mnu href="hgevector__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgevector__main.html" target="info">hgeVector</a></h3>
+<h3><a class=mnu href="hgecolor__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgecolor__main.html" target="info">hgeColor</a></h3>
+<h3><a class=mnu href="hgecolorrgb__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgecolorrgb__main.html" target="info">hgeColorRGB</a></h3>
+<h3><a class=mnu href="hgecolorhsv__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgecolorhsv__main.html" target="info">hgeColorHSV</a></h3>
+<img src="sep3.gif" tppabs="http://www.easis.cn/hgedoc/html/sep3.gif" width=163 height=13 alt="">
+<h3><a class=mnu href="peditor__main.html" tppabs="http://www.easis.cn/hgedoc/html/peditor__main.html" target="info">粒子系统编辑器</a></h3>
+<h3><a class=mnu href="fbuilder__main.html" tppabs="http://www.easis.cn/hgedoc/html/fbuilder__main.html" target="info">位图字体编辑器</a></h3>
+<h3><a class=mnu href="texasm__main.html" tppabs="http://www.easis.cn/hgedoc/html/texasm__main.html" target="info">纹理封装器</a></h3>
+<h3><a class=mnu href="pngopt__main.html" tppabs="http://www.easis.cn/hgedoc/html/pngopt__main.html" target="info">PNG优化器</a></h3>
+<h3><a class=mnu href="main_respack.html" tppabs="http://www.easis.cn/hgedoc/html/main_respack.html" target="info">编译资源文件</a></h3>
+<img src="sep3.gif" tppabs="http://www.easis.cn/hgedoc/html/sep3.gif" width=163 height=13 alt="">
+<h3><a class=mnu href="main_hints.html" tppabs="http://www.easis.cn/hgedoc/html/main_hints.html" target="info">建议和提示</a></h3>
+<h3><a class=mnu href="tutorials__main.html" tppabs="http://www.easis.cn/hgedoc/html/tutorials__main.html" target="info">教学指导</a></h3>
+<h3><a class=mnu href="main_license.html" tppabs="http://www.easis.cn/hgedoc/html/main_license.html" target="info">许可</a></h3>
+<h3><a class=mnu href="main_credits.html" tppabs="http://www.easis.cn/hgedoc/html/main_credits.html" target="info">致谢</a></h3>
+<h3><a class=mnu href="main_support.html" tppabs="http://www.easis.cn/hgedoc/html/main_support.html" target="info">支持和联系方式</a></h3>
+<br>
+
+</body>
+
+</html>

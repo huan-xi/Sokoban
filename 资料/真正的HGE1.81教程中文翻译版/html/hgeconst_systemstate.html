@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeconst.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeconst.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE 系统标记</h1>
+<p>
+<b>HGE</b>拥有大量的内部标记，可以使用
+<a href="hgefunc_systemgetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgetstate.html">System_GetState</a>和<a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a>函数进行获得和修改。
+标记名称使用<b>hgeState</b>枚举类型定义:
+<br><br>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr class=titl><td width=32%>系统标记</td><td width=12%>类型</td><td width=13%>默认</td><td>介绍</td></tr>
+<tr><td colspan=4>&nbsp;</td></tr>
+
+<tr>
+<td valign=top><a name=HGE_FRAMEFUNC></a><b>HGE_FRAMEFUNC</b></td>
+<td valign=top>bool*()</td><td valign=top>NULL</td>
+<td>
+
+指向一个用户定义的帧函数，此函数不带参数，返回<b>bool</b>类型。
+此函数每一帧都会被调用一次，将你的游戏逻辑代码放在这里，当你希望程序终止时返回<b>true</b>，否则返回<b>false</b>。
+虽然此标记可以再运行后的任何时间修改，但如果此标记没有设置，函数<a href="hgefunc_systemstart.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemstart.html">System_Start</a>的调用将会失败。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_RENDERFUNC></a><b>HGE_RENDERFUNC</b></td>
+<td valign=top>bool*()</td><td valign=top>NULL</td>
+<td>
+指向一个用户自定义函数，该函数会在程序窗口需要重绘时被调用。将你的渲染代码放在这里。
+此函数不带参数，并且应该总是返回<b>false</b>。此标记可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><b><a name=HGE_GFXRESTOREFUNC></a>HGE_GFXRESTOREFUNC</b></td>
+<td valign=top>bool*()</td><td valign=top>NULL</td>
+<td>
+指向一个用户自定义函数，此函数会在现存内容丢失时被调用（例如：视频模式切换时）。
+所有纹理会被自动恢复，此函数只对<a href="hgefunc_targetgettexture.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetgettexture.html">render targets</a>有意义。
+此函数不带参数，如果执行成功，将返回<b>true</b>，否则返回<b>false</b>。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_FOCUSLOSTFUNC></a><b>HGE_FOCUSLOSTFUNC</b></td>
+<td valign=top>bool*()</td><td valign=top>NULL</td>
+<td>
+指向一个用户自定义函数，此函数会在程序失去焦点时（只是当用户切换到其他程序时，不包括程序主窗口被销毁时）
+或者在显示模式改变之前被调用。此函数不带参数，并且应该总是返回<b>false</b>。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><b><a name=HGE_FOCUSGAINFUNC></a>HGE_FOCUSGAINFUNC</b></td>
+<td valign=top>bool*()</td><td valign=top>NULL</td>
+<td>
+指向一个用户自定义函数，此函数会在程序获得焦点时（只是当用户从其他程序切换回此程序时，不包括程序主窗口被创建时）被调用。
+次幻术不带参数，并且应该总是返回<b>false</b>。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><b><a name=HGE_EXITFUNC></a>HGE_EXITFUNC</b></td>
+<td valign=top>bool*()</td><td valign=top>NULL</td>
+<td>
+指向一个用户自定义函数，此函数会在用户试图关闭程序时被调用。
+如果你想要允许程序被终止，让此函数返回<b>true</b>。
+如果此函数返回<b>false</b>程序将继续运行。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr><td colspan=4><br><br></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_ICON></a><b>HGE_ICON</b></td>
+<td valign=top>char*</td><td valign=top>NULL</td>
+<td>
+由Win32 API宏<b>MAKEINTRESOURCE</b>返回的一个字符串或值，指明程序主窗口图标的图标资源。如果没有设置此标记，
+程序窗口将使用一个默认的窗口图标。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_TITLE></a><b>HGE_TITLE</b></td>
+<td valign=top>char*</td><td valign=top>"HGE"</td>
+<td>
+表示程序窗口标题的字符串。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_SCREENWIDTH></a><b>HGE_SCREENWIDTH</b></td>
+<td valign=top>int</td><td valign=top>800</td>
+<td>
+期望的程序窗口宽度。在全屏模式下该值受制于可用的视频模式。
+此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_SCREENHEIGHT></a><b>HGE_SCREENHEIGHT</b></td>
+<td valign=top>int</td><td valign=top>600</td>
+<td>
+期望的程序窗口高度。在全屏模式下该值受制于可用的视频模式。
+此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_SCREENBPP></a><b>HGE_SCREENBPP</b></td>
+<td valign=top>int</td><td valign=top>32</td>
+<td>
+期望的程序窗口位深度。可以是16位或32位。
+在窗口模式下此标记被忽略而使用桌面的位深度。
+当读取时，实际的位深度被返回，而不是所请求的值。
+此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_WINDOWED></a><b>HGE_WINDOWED</b></td>
+<td valign=top>bool</td><td valign=top>false</td>
+<td>
+使用何种模式运行程序，全屏还是窗口模式。
+此函数可以在除了<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>/<a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a>对之外的你想要的任何时间设置和改变
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_ZBUFFER></a><b>HGE_ZBUFFER</b></td>
+<td valign=top>bool</td><td valign=top>false</td>
+<td>
+是否使用Z缓冲
+此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_TEXTUREFILTER></a><b>HGE_TEXTUREFILTER</b></td>
+<td valign=top>bool</td><td valign=top>true</td>
+<td>
+是否使用纹理过滤。例如，当渲染一个块地图(tile map)时，临时禁止掉纹理过滤将会很有用。
+因为一些视频卡存在可能导致不正确的块交叉的错误。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr><td colspan=4><br><br></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_INIFILE></a><b>HGE_INIFILE</b></td>
+<td valign=top>char*</td><td valign=top>NULL</td>
+<td>
+供<b>HGE</b>的<b>Ini_XXXXX</b>函数使用的初始化文件名
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_LOGFILE></a><b>HGE_LOGFILE</b></td>
+<td valign=top>char*</td><td valign=top>NULL</td>
+<td>
+日志文件名。如果设置此标记，将创建一个日志文件，所有之后产生的
+<b>HGE</b>错误和文本信息都将被写入其中。
+你也可以使用<a href="hgefunc_systemlog.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemlog.html">System_Log</a>函数将自己需要的信息写入日志。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr><td colspan=4><br><br></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_USESOUND></a><b>HGE_USESOUND</b></td>
+<td valign=top>bool</td><td valign=top>true</td>
+<td>
+是否使用<b>HGE</b>声音特性。
+如果你不想使用<b>BASS</b>而是有你自己的声音例程或者你想要自己的程序保持静音，可以将此标记设置为<b>false</b>。
+此函数可以在你想要的任何时间设置和改变。
+需要注意的是将声音关闭将会删除之前所有载入的音频资源。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_SAMPLERATE></a><b>HGE_SAMPLERATE</b></td>
+<td valign=top>int</td><td valign=top>44100</td>
+<td>
+所播放声音的采样率。
+此值受到音频驱动性能的约束。
+此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_FXVOLUME></a><b>HGE_FXVOLUME</b></td>
+<td valign=top>int</td><td valign=top>100</td>
+<td>
+定义全局音效（sound）音量，范围从0到100。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_MUSVOLUME></a><b>HGE_MUSVOLUME</b></td>
+<td valign=top>int</td><td valign=top>100</td>
+<td>
+定义全局音乐（music）音量，范围从0到100。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_STREAMVOLUME></a><b>HGE_STREAMVOLUME</b></td>
+<td valign=top>int</td><td valign=top>100</td>
+<td>
+定义全局流媒体音量，范围从0到100。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr><td colspan=4><br><br></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_FPS></a><b>HGE_FPS</b></td>
+<td valign=top>int</td><td valign=top>0</td>
+<td>
+以帧为单位定义帧函数每秒的被调用率。
+特殊值：<b>HGEFPS_UNLIMITED</b> - 帧率是无限的；
+<b>HGEFPS_VSYNC</b> - 帧率和屏幕刷新率同步。
+此函数可以在除<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>/<a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a>函数对之外你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_DONTSUSPEND></a><b>HGE_DONTSUSPEND</b></td>
+<td valign=top>bool</td><td valign=top>false</td>
+<td>
+如果此标记为<b>true</b>，程序将不会在其失去焦点时挂起。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_HIDEMOUSE></a><b>HGE_HIDEMOUSE</b></td>
+<td valign=top>bool</td><td valign=top>true</td>
+<td>
+是否隐藏系统鼠标指针。
+此函数可以在你想要的任何时间设置和改变。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_HWND></a><b>HGE_HWND</b></td>
+<td valign=top>HWND</td><td valign=top>n/a</td>
+<td>
+只读。如果在<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>
+函数和<a href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html">System_Shutdown</a>函数之间被调用，将返回<b>HGE</b>窗口句柄，否则返回0。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_HWNDPARENT></a><b>HGE_HWNDPARENT</b></td>
+<td valign=top>HWND</td><td valign=top>n/a</td>
+<td>
+定义<b>HGE</b>父窗口句柄并开启子窗口模式。
+此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+更多请查看<a href="main_childwin.html" tppabs="http://www.easis.cn/hgedoc/html/main_childwin.html">这里</a>
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_SHOWSPLASH></a><b>HGE_SHOWSPLASH</b></td>
+<td valign=top>bool</td><td valign=top>true</td>
+<td>
+指定<b>HGE</b>是否要显示分屏。很明显要使之生效，此标记必须在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置。
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+<tr>
+<td valign=top><a name=HGE_POWERSTATUS></a><b>HGE_POWERSTATUS</b></td>
+<td valign=top>int</td><td valign=top>n/a</td>
+<td>
+只读。如果当前的点换是AC，返回<b>HGEPWR_AC</b>。
+否则返回当前电池的电量。0-100。如果不支持显示电池状态，将返回<b>HGEPWR_UNSUPPORTED</b>
+详情请参考<a href="main_power.html" tppabs="http://www.easis.cn/hgedoc/html/main_power.html">Power Management</a>
+</td>
+</tr>
+<tr><td colspan=4><img src="1.gif" tppabs="http://www.easis.cn/hgedoc/html/1.gif" width=1 height=7></td></tr>
+
+</table>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_systemgetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgetstate.html">System_GetState</a>,
+<a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

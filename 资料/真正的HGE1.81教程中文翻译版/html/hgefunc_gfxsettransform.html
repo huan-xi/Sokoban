@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Gfx_SetTransform</h1>
+<p>
+为所有即将被渲染的图形设置全局转换（global transformation）。
+</p>
+<pre>
+void Gfx_SetTransform(
+  float <i><b>x</b></i> = 0,
+  float <i><b>y</b></i> = 0,
+  float <i><b>dx</b></i> = 0,
+  float <i><b>dy</b></i> = 0,
+  float <i><b>rot</b></i> = 0,
+  float <i><b>hscale</b></i> = 0,
+  float <i><b>vscale</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>x</i>
+<dd>中心点X坐标。
+<dt><i>y</i>
+<dd>中心点Y坐标。
+<dt><i>dx</i>
+<dd>中心点X位移。
+<dt><i>dy</i>
+<dd>中心点Y位移。
+<dt><i>rot</i>
+<dd>旋转角度（单位：弧度）。
+<dt><i>hscale</i>
+<dd>水平缩放因子。
+<dt><i>vscale</i>
+<dd>垂直缩放因子。
+</dl>
+<h2>备注</h2>
+<p>
+转换将以如下顺序进行：首先缩放，然后旋转，最后位移。
+<br><br>
+如果所有参数被设置为0或者省略，全局转换将被重置。
+如果渲染目标转换为其他目标，全局转换也将被重置。
+<br><br>
+<b>Gfx_SetTransform</b>会冲掉所有之前积累的图形元（graphic primitives）。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

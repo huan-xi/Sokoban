@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Resource_MakePath</h1>
+<p>
+创建一个绝对文件路径。
+Builds absolute file path.
+</p>
+<pre>
+char *Resource_MakePath(
+  const char *<i><b>filename</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>相对或绝对路径，或0。
+</dl>
+<h2>返回值</h2>
+<p>
+如果<b>filename</b>是相对路径，则将其当做相对于程序目录的路径并返回从磁盘根目录开始的完全路径。
+如果<b>filename</b>是绝对路径，则将其拷贝到临时缓存，并返回指向该缓存的指针。
+如果<b>filename</b>等于0或者被省略，则返回程序所在文件夹的绝对路径跟着一个“\”。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_resourceenumfiles.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfiles.html">Resource_EnumFiles</a>,
+<a href="hgefunc_resourceenumfolders.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfolders.html">Resource_EnumFolders</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

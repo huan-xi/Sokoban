@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Music_Load</h1>
+<p>
+从内存，资源包或者磁盘文件中载入一段音乐。
+</p>
+<pre>
+HMUSIC Music_Load(
+  const char *<i><b>filename</b></i>,
+  DWORD <i><b>size</b></i> = 0
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>音乐文件名。
+<dt><i>size</i>
+<dd>如果此参数不是0，则此参数指明包含任意有效格式音乐的内存块的大小。
+而参数<b>filename</b>则被认为是指向该内存块的指针。
+</dl>
+<h2>返回值</h2>
+<p>
+成功则返回可供<a href="hgefunc_musicplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicplay.html">Music_Play</a>函数使用的音乐句柄。
+否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+支持<b>MO3</b>, <b>IT</b>, <b>XM</b>, <b>S3M</b>, <b>MTM</b>, <b>MOD</b> 和 <b>UMX</b>等音乐文件格式。
+<br><br>
+如果<b>filename</b>是一个相对路径，则会使用<a href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html">Resource_AttachPack</a>先从所有资源包中检索并
+附加该文件，然后是程序目录。
+如果<b>filename</b>是一个绝对路径，将直接把音乐文件通过指定的路径从磁盘载入。
+<br><br>
+如果函数调用失败，可是通过调用<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>函数获得错误信息。
+如果设置了系统标记<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>，错误信息将被写入日志文件。
+<br><br>
+当音乐不再被使用时，必须使用<a href="hgefunc_musicfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicfree.html">Music_Free</a>函数删除它。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_musicfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicfree.html">Music_Free</a>,
+<a href="hgefunc_musicplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicplay.html">Music_Play</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

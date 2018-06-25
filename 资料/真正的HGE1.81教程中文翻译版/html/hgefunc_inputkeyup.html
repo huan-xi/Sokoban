@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Input_KeyUp</h1>
+<p>
+测试前一个帧函数调用过程中是否有按键被释放。
+</p>
+<pre>
+bool Input_KeyUp(
+  int <i><b>key</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>key</i>
+<dd>指定的虚拟键值。
+更多信息请参考<a href="hgeconst_keycodes.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_keycodes.html">键值</a>部分
+</dl>
+<h2>返回值</h2>
+<p>
+如果前一个框架调用过程中有按键被释放，则返回<b>true</b>，否则返回<b>false</b>。
+</p>
+<h2>备注</h2>
+<p>
+<b>Input_KeyUp</b>处理键盘和鼠标按键。
+<br><br>
+按键状态在用户的帧函数外被更新，所以不要在循环中使用<b>Input_KeyUp</b>判断一个按键是否被按下或释放，这将造成系统挂起。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_inputkeydown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputkeydown.html">Input_KeyDown</a>,
+<a href="hgefunc_inputgetkeyname.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeyname.html">Input_GetKeyName</a>,
+<a href="hgefunc_inputgetkey.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkey.html">Input_GetKey</a>,
+<a href="hgefunc_inputgetchar.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetchar.html">Input_GetChar</a>,
+<a href="hgeconst_keycodes.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_keycodes.html">Key codes</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_main.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_main.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">建议和提示</h1>
+<h2>显卡支持</h2>
+<p>
+<b>HGE</b>在低档显卡下仍可以运行，包括<b>Intel Solano</b> (i815 chipset)在内的内建显卡。
+</p>
+<h2>批处理</h2>
+<p>
+考虑到性能因素<a href="hgefunc_gfxrenderline.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrenderline.html">Gfx_RenderLine</a>,
+<a href="hgefunc_gfxrendertriple.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrendertriple.html">Gfx_RenderTriple</a>和<a href="hgefunc_gfxrenderquad.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrenderquad.html">Gfx_RenderQuad</a>
+将相同纹理和混合模式的连续精灵积累起来然后通过一次<b>DirectX</b>调用将其渲染出来。
+绝大多数时候你不会发现什么不同之处也不必考虑这些批处理。
+但是为了更明确和安全，建议你组织好渲染精灵的顺序，首先是精灵类型，然后是纹理然后是混合模式。
+此外你还可以使用<a href="hgefunc_gfxstartbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxstartbatch.html">Gfx_StartBatch</a>
+和<a href="hgefunc_gfxfinishbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxfinishbatch.html">Gfx_FinishBatch</a>来实现高速渲染大型精灵数组。
+</p>
+<h2>纹理维数</h2>
+<p>
+任何纹理的维数都必须是2的幂次。而且不建议使用大于1024x1024的纹理。
+因为他们可能很慢而且有些显卡可能不支持那么大的纹理。
+可以考虑将所有的图像放在若干个大的纹理中来最小化纹理转换，以避免影响性能。
+</p>
+<h2>使用Z缓冲</h2>
+<p>
+由于会影响到性能，所以只有在需要时再使用Z缓冲。默认Z缓冲是关闭的。
+要开启它可以通过<a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a>设置<a href="hgeconst_systemstate.html#HGE_ZBUFFER" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_ZBUFFER">HGE_ZBUFFER</a>系统标记为<b>true</b>。
+当开启Z缓冲时，建议最好将你的渲染顺序按照从前往后的顺序以获得更好的性能。
+</p>
+<h2>清屏</h2>
+<p>
+由于会影响到性能，所以只有在需要时再进行清屏。
+如果你每一帧都用图像将整个屏幕覆盖 - 就没有必要清屏了。
+然而，当使用Z缓冲时你可能不得不清屏来重置它。
+</p>
+<h2>缩放和旋转</h2>
+<p>
+如果你计划缩放或旋转你的精灵 - 确保图像在透明遮罩和/或边界框边缘延伸至少一像素以避免扭曲。
+<p>
+</p>
+<h2>精灵和Tile库Sprite and tile libraries</h2>
+<p>
+你可以使用<a href="hgeanim__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim__main.html">hgeAnimation</a>帮助类作为一个精灵或Tile库。
+不要调用<a href="hgeanim_update.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim_update.html">Update</a>方法，
+使用<a href="hgeanim_setframe.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim_setframe.html">SetFrame</a>方法手动选择需要的精灵。
+</p>
+<h2>复制</h2>
+<p>
+你可以使用运算符(=)或拷贝构造函数来轻松实现复制一个常用帮助类实例。
+例如，如果是精灵指针，语法可能是<b>*sprite2=*sprite1;</b>或<b>hgeSprite *sprite2=new hgeSprite(*sprite1);</b>
+<a href="hgegui__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui__main.html">hgeGUI</a>, <a href="hgeresource__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeresource__main.html">hgeResourceManager</a>和<a href="hgepmanager__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgepmanager__main.html">hgeParticleManager</a>是例外。
+</p>
+<h2>扭曲网格和无纹理精灵</h2>
+<p>
+你可以使用没有纹理的<a href="hgedistort__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgedistort__main.html">hgeDistortionMesh</a>和
+<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>实例来实现整个或者部分场景彩色效果。
+可以试着使用<a href="hgeconst_blendmode.html" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_blendmode.html">BLEND_ALPHAADD</a>混合模式。
+</p>
+<h2>显示一个鼠标指针</h2>
+<p>
+要显示鼠标指针，可以在你的帧函数中的<a href="hgefunc_inputgetmousepos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetmousepos.html">Input_GetMousePos</a>方法返回的坐标上渲染任何你想要的东西。
+为了保障稳定性最好只在<a href="hgefunc_inputismouseover.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputismouseover.html">Input_IsMouseOver</a>返回<b>true</b>时这么做。
+</p>
+<h2>使用外部的声音例程Using external sound routines</h2>
+<p>
+如果你不想用<b>BASS</b>来处理声音，而是使用你自己的声音例程，
+在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前使用<a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a>函数来将
+<a href="hgeconst_systemstate.html#HGE_USESOUND" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_USESOUND">HGE_USESOUND</a>设置为<b>false</b>。
+</p>
+<h2>管理HGE接口指针Managing HGE interface pointer</h2>
+<p>
+无论何时如果你想访问<b>HGE</b>，你就得调用<a href="hgefunc_interfaceget.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfaceget.html">hgeCreate</a>函数，
+然后使用获得的指针并在不在使用时通过<a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a>释放它。
+或者你可以在开始的时候获得一次接口并将其保存至一个全局变量中，然后在做清理工作的时候释放它。
+虽然后者被认为是一种“坏的实现方式”。但是当整个项目不是很大时工作良好，而且所有的<b>HGE</b>帮助类都是使用的此方法。
+Any time you need access to <b>HGE</b>, you may call the <a href="hgefunc_interfaceget.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfaceget.html">hgeCreate</a>
+function, then use the received pointer and release it with <a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a>.
+Or you may get the interface once during startup and store it in a global variable, then release during cleanup.
+Although the latter is supposed to be 'bad style', this works fine with not very big projects
+and all <b>HGE</b> helper classes use this approach.
+</p>
+<h2>浮点型到整型的转换Float to int conversion</h2>
+<p>
+如果你的代码中有大量的<b>float</b>到<b>int</b>的转换，你可能需要用到<b>Visual C++</b>
+编译器的<b>/QIfist</b>选项。使用此选项你将不能确定四舍五入方法是否被使用。
+但是绝大多数时候这都是无关紧要的，而且你也可以得到一个改进的性能。
+要激活此选项，需要将该选项内容写入<b>Project->Settings...->C/C++</b>对话框中的<b>Project Options</b>文本框中，分为debug和release设置。
+如果你使用的是不同的编译器，你需要找到类似的选项或使用网上的高速<b>float</b>到<b>int</b>转换例程来替换标准转换。
+</p>
+<h2>速度同步Speed synchronization</h2>
+<p>
+要想让你的游戏运行独立于执行速度，
+使用由<a href="hgefunc_timergetdelta.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergetdelta.html">Timer_GetDelta</a>返回的值的缩放值作为内部速度。
+此外你也可以设置<a href="hgeconst_systemstate.html#HGE_FPS" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_FPS">HGE_FPS</a>系统状态，使用固定FPS模式。
+
+</p>
+<h2>资源</h2>
+<p>
+开发时，你可以将所有的数据保存在磁盘文件中。然后通过<b>pkzip</b>来编译资源包并使用
+<a href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html">Resource_AttachPack</a>加载它。
+使用资源包不需要做其他额外的修改。
+更多信息请参考<a href="main_respack.html" tppabs="http://www.easis.cn/hgedoc/html/main_respack.html">Compiling resource pack</a>部分。
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

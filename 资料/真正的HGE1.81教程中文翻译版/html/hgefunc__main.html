@@ -1,0 +1,485 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="switchContents('cnt_main.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_main.html*/,'cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE Functions</h1>
+<p>
+在<b>这里</b>你会找到所有的<b>HGE</b>系统级函数:
+</p>
+<h2>接口函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_interfaceget.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfaceget.html">hgeCreate</a></td>
+<td>返回一个<b>HGE</b> 接口的指针</td>
+</tr>
+<tr>
+<td><a href="hgefunc_interfacerelease.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_interfacerelease.html">Release</a></td>
+<td>释放一个已获得的<b>HGE</b>接口。</td>
+</tr>
+</table>
+</p>
+<h2>系统函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a></td>
+<td>初始化运行引擎所需的软硬件</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html">System_Shutdown</a></td>
+<td>恢复视频模式并释放已分配的资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemstart.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemstart.html">System_Start</a></td>
+<td>开始运行用户自定义的帧函数。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemsetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsetstate.html">System_SetState</a></td>
+<td>设置内部系统状态。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemgetstate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgetstate.html">System_GetState</a></td>
+<td>获得内部系统状态值。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a></td>
+<td>返回最后一次产生的<b>HGE</b>错误描述。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemlog.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemlog.html">System_Log</a></td>
+<td>向日志文件中写入一个格式化的信息。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemlaunch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemlaunch.html">System_Launch</a></td>
+<td>运行一个URL或外部可执行文件或数据文件。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_systemsnapshot.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemsnapshot.html">System_Snapshot</a></td>
+<td>将当前屏幕截图保存在一个文件中。</td>
+</tr>
+</table>
+</p>
+<h2>资源函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_resourceload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceload.html">Resource_Load</a></td>
+<td>从磁盘中加载一个资源至内存中。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourcefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcefree.html">Resource_Free</a></td>
+<td>从内存中删除最近一次载入的资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html">Resource_AttachPack</a></td>
+<td>附加一个资源包。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourceremovepack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremovepack.html">Resource_RemovePack</a></td>
+<td>移除一个资源包。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourceremoveallpacks.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceremoveallpacks.html">Resource_RemoveAllPacks</a></td>
+<td>移除所有已加载的资源包。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourcemakepath.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourcemakepath.html">Resource_MakePath</a></td>
+<td>创建一个绝对文件路径。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourceenumfiles.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfiles.html">Resource_EnumFiles</a></td>
+<td>枚举符合所给通配符的文件。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_resourceenumfolders.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceenumfolders.html">Resource_EnumFolders</a></td>
+<td>枚举符合所给通配符的文件夹。</td>
+</tr>
+</table>
+</p>
+<h2>文件初始化函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_inisetint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetint.html">Ini_SetInt</a></td>
+<td>向初始化文件写入整数值。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inigetint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetint.html">Ini_GetInt</a></td>
+<td>从初始化文件中读取一个整数值。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inisetfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetfloat.html">Ini_SetFloat</a></td>
+<td>向初始化文件写入浮点值。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inigetfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetfloat.html">Ini_GetFloat</a></td>
+<td>从初始化文件中读取一个浮点值。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inisetstring.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inisetstring.html">Ini_SetString</a></td>
+<td>向初始化文件中写入一个字符串。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inigetstring.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inigetstring.html">Ini_GetString</a></td>
+<td>从初始化文件中读取一个字符串。</td>
+</tr>
+</table>
+</p>
+<h2>随机数生成函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_randomseed.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_randomseed.html">Random_Seed</a></td>
+<td>设置随机数生成器种子。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_randomint.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_randomint.html">Random_Int</a></td>
+<td>生成<b>Int型</b>随机数。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_randomfloat.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_randomfloat.html">Random_Float</a></td>
+<td>生成<b>Float型</b>随机数。</td>
+</tr>
+</table>
+</p>
+<h2>定时器函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_timergettime.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergettime.html">Timer_GetTime</a></td>
+<td>返回从调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>至今的时间。</td>
+</tr>
+<tr>
+<td width=33%><a href="hgefunc_timergetdelta.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergetdelta.html">Timer_GetDelta</a></td>
+<td>返回从调用上一次帧函数至今的时间。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_timergetfps.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergetfps.html">Timer_GetFPS</a></td>
+<td>返回当前的每秒帧数值。</td>
+</tr>
+</table>
+</p>
+<h2>音效(Sound)函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_effectload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectload.html">Effect_Load</a></td>
+<td>从磁盘或内存中加载一个音效。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_effectfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectfree.html">Effect_Free</a></td>
+<td>删除加载的音效和相关资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_effectplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectplay.html">Effect_Play</a></td>
+<td>播放音效。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_effectplayex.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_effectplayex.html">Effect_PlayEx</a></td>
+<td>播放音效（可设置相关参数）。</td>
+</tr>
+</table>
+</p>
+<h2>乐效(Music翻译为乐效只是为了与Sound区分开)函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_musicload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicload.html">Music_Load</a></td>
+<td>从磁盘或内存中加载一个乐效。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicfree.html">Music_Free</a></td>
+<td>删除加载的乐效和相关资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicplay.html">Music_Play</a></td>
+<td>播放音乐。</td>
+</tr>
+
+<tr>
+<td><a href="hgefunc_musicsetamplification.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetamplification.html">Music_SetAmplification</a></td>
+<td>设置音乐的功率(振幅)等级。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicgetamplification.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetamplification.html">Music_GetAmplification</a></td>
+<td>返回一段音乐的功率(振幅)等级</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicgetlength.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetlength.html">Music_GetLength</a></td>
+<td>返回一段音乐样本集合（a music's patterns list）的长度。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicsetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetpos.html">Music_SetPos</a></td>
+<td>设置样本和列中的音乐的位置。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicgetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetpos.html">Music_GetPos</a></td>
+<td>返回一段音乐样本或列中的当前位置。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicsetinstrvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetinstrvolume.html">Music_SetInstrVolume</a></td>
+<td>设置音乐中指定乐器的音量。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicgetinstrvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetinstrvolume.html">Music_GetInstrVolume</a></td>
+<td>返回音乐中指定乐器的音量。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicsetchannelvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicsetchannelvolume.html">Music_SetChannelVolume</a></td>
+<td>设置音乐中指定通道的音量。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_musicgetchannelvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_musicgetchannelvolume.html">Music_GetChannelVolume</a></td>
+<td>返回音乐中指定通道的音量。</td>
+</tr>
+</table>
+</p>
+<h2>压缩音频流函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_streamload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamload.html">Stream_Load</a></td>
+<td>从磁盘或内存中加载一个音频流。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_streamfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamfree.html">Stream_Free</a></td>
+<td>删除已加载的音频流和相关资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_streamplay.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_streamplay.html">Stream_Play</a></td>
+<td>播放音频流。</td>
+</tr>
+</table>
+</p>
+<h2>音频通道函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_channelsetpanning.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpanning.html">Channel_SetPanning</a></td>
+<td>修改一个音频通道的均衡器(panning)。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelsetvolume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetvolume.html">Channel_SetVolume</a></td>
+<td>修改一个音频通道的音量。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelsetpitch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpitch.html">Channel_SetPitch</a></td>
+<td>修改一个音频通道的音高。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelpause.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelpause.html">Channel_Pause</a></td>
+<td>暂停一个音频通道。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelresume.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelresume.html">Channel_Resume</a></td>
+<td>恢复一个音频通道。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelstop.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelstop.html">Channel_Stop</a></td>
+<td>停止一个音频通道。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelpauseall.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelpauseall.html">Channel_PauseAll</a></td>
+<td>暂停所有活动的音频通道。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelresumeall.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelresumeall.html">Channel_ResumeAll</a></td>
+<td>恢复所有活动的音频通道。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelstopall.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelstopall.html">Channel_StopAll</a></td>
+<td>停止所有活动的音频通道。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelisplaying.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelisplaying.html">Channel_IsPlaying</a></td>
+<td>检测一个音频通道是否在播放音频。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelgetlength.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelgetlength.html">Channel_GetLength</a></td>
+<td>取得一个播放通道的总长度。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelsetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelsetpos.html">Channel_SetPos</a></td>
+<td>在一个播放通道中向前或向后跳转。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelgetpos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelgetpos.html">Channel_GetPos</a></td>
+<td>取得一个播放通道的位置。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelslideto.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelslideto.html">Channel_SlideTo</a></td>
+<td>滑动一个通道音量，均衡值(Panning)或音高。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_channelissliding.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_channelissliding.html">Channel_IsSliding</a></td>
+<td>检测一个通道的参数是否在被滑动。</td>
+</tr>
+</table>
+</p>
+<h2>输入函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_inputgetmousepos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetmousepos.html">Input_GetMousePos</a></td>
+<td>返回当前鼠标指针的位置。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputsetmousepos.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputsetmousepos.html">Input_SetMousePos</a></td>
+<td>设置当前鼠标指针的位置。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputgetmousewheel.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetmousewheel.html">Input_GetMouseWheel</a></td>
+<td>返回鼠标滚轮当前位置距前一帧的位移。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputismouseover.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputismouseover.html">Input_IsMouseOver</a></td>
+<td>检测鼠标指针是否在<b>HGE</b>窗口内。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputkeydown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputkeydown.html">Input_KeyDown</a></td>
+<td>检测自前一帧为止是否有按键按下。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputkeyup.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputkeyup.html">Input_KeyUp</a></td>
+<td>检测自前一帧为止是否有按键松开。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputgetkeyname.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeyname.html">Input_GetKeyName</a></td>
+<td>通过键值(包括鼠标按键)获得按键的名称。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputgetkeystate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkeystate.html">Input_GetKeyState</a></td>
+<td>检测是否有按键(包括鼠标按键)按下。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputgetkey.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetkey.html">Input_GetKey</a></td>
+<td>返回上一个按下的按键代码。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputgetchar.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetchar.html">Input_GetChar</a></td>
+<td>返回上一次按下的按键对应的字符。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_inputgetevent.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_inputgetevent.html">Input_GetEvent</a></td>
+<td>从队列中取得下一个输入时间。</td>
+</tr>
+</table>
+</p>
+<h2>图形函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a></td>
+<td>开始渲染图形。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxendscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxendscene.html">Gfx_EndScene</a></td>
+<td>结束渲染并刷新屏幕信息。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxclear.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxclear.html">Gfx_Clear</a></td>
+<td>清除渲染目标和z缓冲。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxrenderline.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrenderline.html">Gfx_RenderLine</a></td>
+<td>渲染一条直线。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxrendertriple.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrendertriple.html">Gfx_RenderTriple</a></td>
+<td>渲染一个三角形。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxrenderquad.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxrenderquad.html">Gfx_RenderQuad</a></td>
+<td>渲染一个矩形。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxstartbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxstartbatch.html">Gfx_StartBatch</a></td>
+<td>开始渲染图形基元集合。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxfinishbatch.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxfinishbatch.html">Gfx_FinishBatch</a></td>
+<td>结束渲染图形基元集合。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxsetclipping.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxsetclipping.html">Gfx_SetClipping</a></td>
+<td>设置剪裁区域。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_gfxsettransform.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxsettransform.html">Gfx_SetTransform</a></td>
+<td>设置全局场景转换。</td>
+</tr>
+</table>
+</p>
+<h2>渲染目标函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_targetcreate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetcreate.html">Target_Create</a></td>
+<td>创建一个渲染目标。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_targetfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetfree.html">Target_Free</a></td>
+<td>删除一个渲染目标及相关资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_targetgettexture.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetgettexture.html">Target_GetTexture</a></td>
+<td>返回一个渲染目标的纹理句柄。</td>
+</tr>
+</table>
+</p>
+<h2>纹理函数</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td width=33%><a href="hgefunc_texturecreate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturecreate.html">Texture_Create</a></td>
+<td>创建一个空的纹理。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_textureload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureload.html">Texture_Load</a></td>
+<td>从磁盘或内存中加载一个纹理。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_texturefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturefree.html">Texture_Free</a></td>
+<td>删除已加载的纹理及相关资源。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_texturegetwidth.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturegetwidth.html">Texture_GetWidth</a></td>
+<td>返回一个纹理的宽度（以像素为单位）。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_texturegetheight.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturegetheight.html">Texture_GetHeight</a></td>
+<td>返回一个纹理的高度（以像素为单位）。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_texturelock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturelock.html">Texture_Lock</a></td>
+<td>锁定一个纹理(以便访问该纹理)。</td>
+</tr>
+<tr>
+<td><a href="hgefunc_textureunlock.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_textureunlock.html">Texture_Unlock</a></td>
+<td>解锁一个纹理。</td>
+</tr>
+</table>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

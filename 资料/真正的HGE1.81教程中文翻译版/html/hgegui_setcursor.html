@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgegui.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgegui.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUI::SetCursor</h1>
+<p>
+设置鼠标指针的精灵。
+</p>
+<pre>
+void SetCursor(
+  hgeSprite *<i><b>sprite</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>sprite</i>
+<dd>指向要被用作鼠标指针的精灵。如果是0，将不显示指针。
+</dl>
+<h2>备注</h2>
+<p>
+GUI默认不显示鼠标指针，因此需要自行设置或渲染一个。
+可以在任何时间修改鼠标指针的图像。
+<br><br>
+不同于控件，鼠标指针不由GUI内部管理，因此可以保存鼠标指针的信息并在不再使用的时候将其释放。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgegui.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

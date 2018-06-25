@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Texture_Load</h1>
+<p>
+从内存，资源包或磁盘文件中加载一个纹理。
+</p>
+<pre>
+HTEXTURE Texture_Load(
+  const char *<i><b>filename</b></i>,
+  DWORD <i><b>size</b></i> = 0,
+  bool <i><b>bMipmap</b></i> = false
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>纹理文件名。
+<dt><i>size</i>
+<dd>如果此参数不为零，它代表拥有已知格式纹理的内存块大小，参数<b>filename</b>被看做是这块内存的指针。
+<dt><i>bMipmap</i>
+<dd>如果为<b>true</b>,将自动创建一套MIP映射层级用于渲染。
+</dl>
+<h2>返回值</h2>
+<p>
+如果执行成功返回纹理句柄，否则返回0.
+</p>
+<h2>备注</h2>
+<p>
+支持<b>BMP</b>, <b>DDS</b>, <b>DIB</b>, <b>JPG</b>, <b>PNG</b> 和 <b>TGA</b>图形文件格式。
+<b>DDS</b>格式支持DXT1-DXT5纹理压缩技术，DXT1-DXT5有高效低需求的特点，可以再使用更少的显存的情况下有高效的表现。
+<br><br>
+纹理维数必须是2的幂数，如果此条件不满足，纹理维数将被自动转换为最接近的2的幂数值的维数，大于纹理的实际维数。 
+<br><br>
+如果<b>filename</b>代表相对路径，纹理文件首先在所有资源包范围内检索并通过<a href="hgefunc_resourceattachpack.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceattachpack.html">Resource_AttachPack</a>载入。
+然后再从程序磁盘文件夹检索。
+如果<b>filename</b>代表绝对磁盘路径，纹理文件将直接从磁盘载入。
+<br><br>
+如果使用了MIP映射请求，将生成一系列对应的小号版本的纹理来用于渲染。
+这将会产生更高效高质量的精灵（sprits）渲染，而使用他们的原尺寸纹理效率和质量都将会降低。
+使用此选项的纹理需要额外的1/3的显存。
+<br><br>
+如果函数调用失败，可以使用<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>函数来获得错误信息。
+另外如果设置了<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>系统标记，错误信息将被写入日志。
+<br><br>
+当纹理不再被使用时，必须使用<a href="hgefunc_texturefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturefree.html">Texture_Free</a>函数将其删除。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_texturecreate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturecreate.html">Texture_Create</a>,
+<a href="hgefunc_texturefree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_texturefree.html">Texture_Free</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

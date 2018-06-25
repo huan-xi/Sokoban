@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_peditor.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_peditor.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">粒子系统的小提示</h1>
+<p>
+<b>你</b>可以使用粒子系统来模拟自然现象，比如烟，火焰，岩浆，火花，喷泉，放射效果等等。
+你也可以创造一些类似于魔法的逼真效果。
+这里是一些如何在你的游戏中使用粒子系统的提示和方法：
+<ul>
+<li>
+一个粒子系统中允许同时存在的最大粒子数目是500。
+如果超过了这个数值，将不会产生新的粒子，直至当前的某些粒子死亡。
+<br><br>
+<li>
+使用尽可能小的粒子和尽可能少的粒子数来实现预期效果。这两个参数会影响程序的性能。
+<br><br>
+<li>
+可以在同一位置放置两个不同参数的粒子系统来实现一个非常复杂的实现。
+例如你可以将一个有火焰效果的粒子系统放置在一个有烟雾效果的粒子系统之上。
+<br><br>
+<li>
+实时修改粒子系统的参数来适应不同的情况。
+例如你可以使一个系统喷射烟雾，当玩家接近时，修改它的值使之转变为火。
+或者你可以周期性的修改<b>nEmission</b>参数来模仿潮汐。
+<br><br>
+<li>
+实时将一个粒子系统改变为另一个。要实现它只需要对两个粒子系统的预设的<a href="hgeparticle_psinfo.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_psinfo.html">hgeParticleSystemInfo</a>
+成员进行线性填补即可。唯一不可以修改的参数是粒子系统的精灵。
+<br><br>
+<li>
+将一个有<b>HGEBLEND_ALPHAADD</b>混合模式的精灵放在一个粒子系统中并随机的或者根据粒子的存活数量缩放它来模拟光线。
+<br><br>
+<li>
+试着用一个<b>HGEBLEND_ALPHABLEND</b>模式下的着色的粒子精灵来创建一个卡通效果。
+<br><br>
+<li>
+试着用一个带有偏心锚点的精灵。
+<br><br>
+<li>
+使用<a href="hgeanim__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim__main.html">hgeAnimation</a>类来取代<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>进行初始化行为，
+你可以创建一个带有动态粒子的粒子系统。
+此外，虽然<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>没有可以实现的虚函数，而且唯一可以修改的参数只有纹理坐标，
+你仍旧可以使用从<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>类派生而来的自制的带有附加功能的类来创建粒子系统。
+<br><br>
+<li>
+要使一个粒子系统沿着一条复杂的路径移动，
+尽量使用短的直线段或圆弧并且并使其沿路径快速移动。
+或者试着让粒子系统沿着一条利萨如曲线一动。
+或者将一个粒子系统附加在一个移动对象上。
+<br><br>
+<li>
+让粒子系统跟着鼠标移动。这是经常让玩家感到兴奋的交互方式。
+</ul>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

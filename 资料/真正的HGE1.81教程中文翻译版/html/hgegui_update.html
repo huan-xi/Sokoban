@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgegui.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgegui.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUI::Update</h1>
+<p>
+更新GUI控件并处理用户输入。
+</p>
+<pre>
+int Update(
+  float <i><b>fDeltaTime</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>fDeltaTime</i>
+<dd>自上一次调用<b>Update</b>方法至今的时间间隔，以秒为单位。
+</dl>
+<h2>返回值</h2>
+<p>
+如果某个控件改变了状态，<b>Update</b>将返回控件的标识。如果调用了<a href="hgegui_leave.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_leave.html">Leave</a>方法
+并且所有的控件都完成了结束动画，<b>Update</b>将返回-1。其他情况返回0。
+</p>
+<h2>备注</h2>
+<p>
+在你的帧函数中调用<b>Update</b>方法来更新GUI。
+自上一次调用帧函数至今的时间量可以通过系统层函数<a href="hgefunc_timergetdelta.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_timergetdelta.html">Timer_GetDelta</a>获得。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgegui.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

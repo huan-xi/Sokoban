@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgegui.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgegui.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeGUIListbox类</h1>
+<p>
+<b>hgeGUIListbox</b>是一个用于列表框GUI控件的类。
+要创建一个<b>hgeGUIListbox</b>对象可以使用如下构造函数：
+</p>
+<pre>
+hgeGUIListbox(
+  int       <i><b>id</b></i>,
+  float     <i><b>x</b></i>,
+  float     <i><b>y</b></i>,
+  float     <i><b>w</b></i>,
+  float     <i><b>h</b></i>,
+  hgeFont  *<i><b>fnt</b></i>,
+  DWORD     <i><b>tColor</b></i>,
+  DWORD     <i><b>thColor</b></i>,
+  DWORD     <i><b>hColor</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>id</i>
+<dd>已创建控件的整型标识。
+<dt><i>x</i>
+<dd>列表框的左上角X坐标。
+<dt><i>y</i>
+<dd>列表框的左上角Y坐标。
+<dt><i>w</i>
+<dd>列表框的宽度。
+<dt><i>h</i>
+<dd>列表框的高度。
+<dt><i>fnt</i>
+<dd>用于渲染列表框项文本的指向<a href="hgefont__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgefont__main.html">hgeFont</a>对象的指针。
+<dt><i>tColor</i>
+<dd>用于渲染列表框项的<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">颜色</a>。
+<dt><i>thColor</i>
+<dd>用于渲染高亮列表框项的<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">颜色</a>。
+<dt><i>hColor</i>
+<dd>用于渲染高亮列表框项条纹的<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">颜色</a>。
+</dl>
+<h2>其他方法</h2>
+<p>
+<table width=486 cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td><a href="hgegui_guilistbox_additem.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_additem.html">AddItem</a></td>
+<td>向列表框中加入一项</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_deleteitem.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_deleteitem.html">DeleteItem</a></td>
+<td>从列表框中删除一项</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_getselecteditem.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_getselecteditem.html">GetSelectedItem</a></td>
+<td>返回当前选中项的索引。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_setselecteditem.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_setselecteditem.html">SetSelectedItem</a></td>
+<td>设置选中项.</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_gettopitem.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_gettopitem.html">GetTopItem</a></td>
+<td>返回显示的第一项的索引。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_settopitem.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_settopitem.html">SetTopItem</a></td>
+<td>将指定项设置为显示的第一项。</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td><a href="hgegui_guilistbox_getitemtext.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_getitemtext.html">GetItemText</a></td>
+<td>返回指定项的文本字符串。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_getnumitems.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_getnumitems.html">GetNumItems</a></td>
+<td>返回列表框中所有项的数目。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_getnumrows.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_getnumrows.html">GetNumRows</a></td>
+<td>返回列表框中同时可显示的项数。</td>
+</tr>
+<tr>
+<td><a href="hgegui_guilistbox_clear.html" tppabs="http://www.easis.cn/hgedoc/html/hgegui_guilistbox_clear.html">Clear</a></td>
+<td>从列表框中移除所有项。</td>
+</tr>
+</table>
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeguictrls.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

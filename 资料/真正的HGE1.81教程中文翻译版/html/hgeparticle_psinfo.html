@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeparticle.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeparticle.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeParticleSystemInfo Structure</h1>
+<p>
+<b>hgeParticleSystemInfo</b>结构用于定义所有粒子系统参数：
+</p>
+<pre>
+struct hgeParticleSystemInfo
+{
+  hgeSprite*  <b>sprite</b>;
+  int         <b>nEmission</b>;
+  float       <b>fLifetime</b>;
+
+  float       <b>fParticleLifeMin</b>;
+  float       <b>fParticleLifeMax</b>;
+
+  float       <b>fDirection</b>;
+  float       <b>fSpread</b>;
+  bool        <b>bRelative</b>;
+
+  float       <b>fSpeedMin</b>;
+  float       <b>fSpeedMax</b>;
+
+  float       <b>fGravityMin</b>;
+  float       <b>fGravityMax</b>;
+
+  float       <b>fRadialAccelMin</b>;
+  float       <b>fRadialAccelMax</b>;
+
+  float       <b>fTangentialAccelMin</b>;
+  float       <b>fTangentialAccelMax</b>;
+
+  float       <b>fSizeStart</b>;
+  float       <b>fSizeEnd</b>;
+  float       <b>fSizeVar</b>;
+
+  float       <b>fSpinStart</b>;
+  float       <b>fSpinEnd</b>;
+  float       <b>fSpinVar</b>;
+
+  hgeColor    <b>colColorStart</b>;
+  hgeColor    <b>colColorEnd</b>;
+  float       <b>fColorVar</b>;
+  float       <b>fAlphaVar</b>;
+};
+</pre>
+<h2>成员</h2>
+<dl>
+<dt>sprite
+<dd>用于渲染粒子的指向<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>对象的指针。
+在这里精灵的最有用的参数肯可能就是纹理，渲染模式和锚点了。
+除了<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>本身以外，你还可以使用从它派生出来的<a href="hgeanim__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgeanim__main.html">hgeAnimation</a>或其他类。
+<dt>nEmission
+<dd>每秒放射的离子数。注意一个粒子系统中允许同时存在的最大粒子数为500。
+如果超过此数值，新的粒子系统将不会被创建直到当前的某些粒子进程终结。
+同时存在的粒子数取决于<b>nEmission</b>, <b>fParticleLifeMin</b>和<b>fParticleLifeMax成员</b>
+<dt>fLifetime
+<dd>粒子系统放射粒子的时间周期(以秒为单位)。
+从调用<a href="hgeparticle_fire.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_fire.html">Fire</a>方法开始直到这段时间过去后，粒子系统将不再放射。
+如果 = -1.0 粒子系统将一直放射粒子直到手动停止该系统。
+</dl>
+<dl>
+<dt>fParticleLifeMin
+<dd>指定粒子的最小生命周期，以秒为单位。
+<dt>fParticleLifeMax
+<dd>指定粒子的最大生命周期，以秒为单位。
+</dl>
+<dl>
+<dt>fDirection
+<dd>这是一个角度，以弧度为单位，定义了粒子放射的方向。
+<dt>fSpread
+<dd>
+这是一个角度，以弧度为单位，定义了粒子放射的扇形范围。例如如果该值是0.5，放射粒子的方向将位于
+<b>fDirection</b>-0.5和<b>fDirection</b>+0.5范围之内。而如果<b>fSpread</b>是2*pi，<b>fDirection</b>
+参数将变得没有任何意义，因为整个粒子的圆周都将被覆盖，也就是说放射将是全方位的。
+<dt>bRelative
+<dd>如果为<b>true</b>，<b>fDirection</b>成员将被看作是与当前粒子系统的移动方向关联。如果为<b>false</b>，
+<b>fDirection</b>成员将被直接处理（0代表直线向前）。
+</dl>
+<dl>
+<dt>fSpeedMin
+<dd>指定粒子的最小起始移动速度，以像素/每秒为单位。
+<dt>fSpeedMax
+<dd>指定粒子的最大起始移动速度，以像素/每秒为单位。
+</dl>
+<dl>
+<dt>fGravityMin
+<dd>指定粒子系统的最小重力值。
+重力从基本上说只是一个沿着Y轴的加速度。
+<dt>fGravityMax
+<dd>指定粒子系统的最大重力值。
+重力从基本上说只是一个沿着Y轴的加速度。
+</dl>
+<dl>
+<dt>fRadialAccelMin
+<dd>
+指定粒子的直接朝向粒子系统中心的加速度最小值。
+<dt>fRadialAccelMax
+<dd>指定粒子的直接朝向粒子系统中心的加速度最大值。
+</dl>
+<dl>
+<dt>fTangentialAccelMin
+<dd>指定粒子的与径向加速度垂直的加速度最小值（xy:也就是切线加速度，切点为径向加速度方向与圆周的焦点）。
+<dt>fTangentialAccelMax
+<dd>指定粒子的与径向加速度垂直的加速度最大值（xy:也就是切线加速度，切点为径向加速度方向与圆周的焦点）。
+</dl>
+<dl>
+<dt>fSizeStart
+<dd>指定粒子的起始缩放因子。1.0代表默认的精灵大小。
+<dt>fSizeEnd
+<dd>指定粒子的终止缩放因子。1.0代表默认的精灵大小。
+<dt>fSizeVar
+<dd>起始的缩放变量。从0.0(代表没有变化)到1.0(代表从<b>fSizeStart</b>到<b>fSizeEnd</b>的随机变量)。
+</dl>
+<dl>
+<dt>fSpinStart
+<dd>指定粒子的起始旋转量，以弧度为单位。
+<dt>fSpinEnd
+<dd>指定粒子的终止旋转量，以弧度为单位。
+<dt>fSpinVar
+<dd>起始的旋转变量。从0.0（代表没有变化）到1.0（代表从<b>fSpinStart</b>到<b>fSpinEnd</b>的随机变量）。
+</dl>
+<dl>
+<dt>colColorStart
+<dd>指定粒子的起始颜色和不透明度。详情参考<a href="hgecolor__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgecolor__main.html">hgeColor</a>类。
+<br>
+如果<b>colColorStart.r == -1</b>将开启一个特殊的颜色模式：粒子系统不再选择它的精灵的RGB，而是实际用它本身已经存在的颜色（其他粒子也是一样）。
+只有每个粒子的透明度会被改变。
+<dt>colColorEnd
+<dd>指定粒子的终止颜色和不透明度。详情参考<a href="hgecolor__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgecolor__main.html">hgeColor</a>类。
+<dt>fColorVar
+<dd>起始颜色变量从0.0（代表没有变化）到1.0（代表从起始颜色到终止颜色的随机变量）。
+<dt>fAlphaVar
+<dd>起始不透明度变量从0.0（代表没变化）到1.0（代表从开始不透明度到终止透明度的随机变量）。
+</dl>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeparticle.h<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_main.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_main.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">电源管理</h1>
+<p>
+很多玩家使用移动电脑，靠电池来供电。
+因此出于礼貌的说，你的游戏最好遵循电源相关条例。
+下面是一些非常重要的建议。
+</p>
+<h2>限制FPS</h2>
+<p>
+对于绝大多数游戏而言，没有必要使用CPU的全部计算资源。
+要降低电源损耗，延长电源使用时间，需要使用<a href="hgeconst_systemstate.html#HGE_FPS" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_FPS">HGE_FPS</a>系统标记来限制游戏的FPS：
+</p>
+<pre>
+hge->System_SetState(HGE_FPS, 50);
+</pre>
+</p>
+<h2>检测低电量的电源</h2>
+<p>
+使用<a href="hgeconst_systemstate.html#HGE_POWERSTATUS" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_POWERSTATUS">HGE_POWERSTATUS</a>系统标记来显示电源状态：
+<ul>
+<li><b>HGEPWR_UNSUPPORTED</b>值表示OS不支持电源状态报告，我们也没辙了。
+<li><b>HGEPWR_AC</b>值表示连接的是直流AC电源，那我们就没啥好担心的了。
+<li><b>Values 0-100</b>反映出当前电池的电量，当然也就是说正在使用电池啦。
+</ul>
+</p>
+<p>
+例如，检测电池电量是否小于5%可以使用如下代码：
+<pre>
+int pstatus = hge->System_GetState(HGE_POWERSTATUS);
+
+if(pstatus != HGEPWR_UNSUPPORTED)
+{
+	if(pstatus != HGEPWR_AC && pstatus < 5)
+	{
+		//用一条信息或者警告图标提示用户
+		//保存用户数据
+	}
+}
+</pre>
+</p>
+<p>
+如果你检测到电池电量小于5%，建议做如下操作：
+<ul>
+<li>通过信息活图标提示玩家。
+<li>保存所有玩家数据和进度以防数据丢失
+</ul>
+</p>
+
+<h2>须知</h2>
+<p>
+我们要感谢<b>Intel Corp.</b>和<b>Victoria Zhislina</b>，是他们帮助我们实现了<b>HGE</b>中的电源管理特性
+</p>
+
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

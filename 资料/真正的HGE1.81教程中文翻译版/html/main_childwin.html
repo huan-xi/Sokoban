@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_main.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_main.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">子窗口中的HGE</h1>
+<p>
+<b>在</b><b>Windows</b>程序的子窗口中运行<b>HGE</b>常用语创建编程工具，ActiveX控件
+或者是将<b>HGE</b>集成到一个第三方开发平台中。这里是实现的方法。
+</p>
+<h2>将HGE创建于子窗口中</h2>
+<p>
+要在子窗口模式中运行<b>HGE</b>你只需制定父窗口的句柄即可。实现方法为在调用<a href="hgefunc_systeminitiate.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systeminitiate.html">System_Initiate</a>之前设置<a href="hgeconst_systemstate.html#HGE_HWNDPARENT" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_HWNDPARENT">HGE_HWNDPARENT</a>系统状态：
+</p>
+<pre>
+hge->System_SetState(HGE_HWNDPARENT, hwnd);
+</pre>
+<h2>鼠标指针</h2>
+<p>
+你可能希望<b>HGE</b>在子窗口模式下使用Windows系统鼠标指针。
+可以通过设置<a href="hgeconst_systemstate.html#HGE_HIDEMOUSE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_HIDEMOUSE">HGE_HIDEMOUSE</a> 的系统状态为<b>false</b>来实现：
+</p>
+<pre>
+hge->System_SetState(HGE_HIDEMOUSE, false);
+</pre>
+<h2>处理程序消息和运行帧函数</h2>
+<p>
+为了提供更多的灵活性，<a href="hgefunc_systemstart.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemstart.html">System_Start</a>在子窗口模式中会表现出一些不同。
+首先，它会在调用用户帧函数后即被返回，而与函数的返回值无关。
+其次，它并不处理窗口消息。因此你应该创建你自己的消息处理循环。
+下面是一个非常简单的循环，但是已经足以很好的运行<b>HGE</b>
+</p>
+<pre>
+for(;;)
+{
+  if(hge->System_GetState(HGE_HWND))
+    hge->System_Start();
+
+  if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+  { 
+    if(msg.message == WM_QUIT) break;
+    DispatchMessage(&msg);
+  }
+}
+</pre>
+<h2>移动和改变HGE窗口的大小</h2>
+<p>
+你可以通过调用类似于<b>MoveWindow</b>的WinAPI函数来移动和改变<b>HGE</b>窗口的大小。
+当窗口大小被改变时，<b>HGE</b>将重新初始化DirectX来适合新窗口的维度：
+</p>
+<pre>
+MoveWindow(hge->System_GetState(HGE_HWND),
+           x, y, width, height, true);
+</pre>
+<h2>销毁HGE窗口</h2>
+<p>
+<b>HGE</b>有很多与窗口相关联的资源。因此你需要使用<a href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html">System_Shutdown</a>来释放掉他们，
+<b>HGE</b> has lots of resources associated with it's window. So you should use <a href="hgefunc_systemshutdown.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemshutdown.html">System_Shutdown</a>
+不要只依赖销毁窗口来实现这些。一个不错的实施地点就是父窗口的<b>WM_DESTROY</b>消息处理函数：
+</p>
+<pre>
+case WM_DESTROY:
+    FreeLoadedHGEResources();
+    hge->System_Shutdown();
+    PostQuitMessage(0);
+    return FALSE;
+</pre>
+<h2>子窗口模式的局限性</h2>
+<p>
+<b>1.</b>在子窗口中<b>接收键盘消息</b>，<b>HGE</b>窗口必须有输入焦点。
+当你点击窗口中的某个位置时，该窗口会自动获得焦点。还可以使用下面的调用来显示的设置焦点：
+</p>
+<pre>
+SetFocus(hge->System_GetState(HGE_HWND));
+</pre>
+<p>
+<b>2.</b> 在子窗口模式下<b>转换为全屏</b>是无法实现的。
+无论<a href="hgeconst_systemstate.html#HGE_WINDOWED" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_WINDOWED">HGE_WINDOWED</a>系统状态是否设置<b>HGE</b>依旧会在窗口状态下运行。
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgeparticle.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgeparticle.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeParticleSystem构造函数</h1>
+<p>
+要创建并初始化一个<b>hgeParticleSystem</b>对象，你可以使用如下这些构造函数：
+</p>
+<pre>
+hgeParticleSystem(
+  const char *<i><b>filename</b></i>,
+  hgeSprite *<i><b>sprite</b></i>
+);
+
+hgeParticleSystem(
+  hgeParticleSystemInfo *<i><b>psi</b></i>
+);
+
+hgeParticleSystem(
+  const hgeParticleSystem &<i><b>ps</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>filename</i>
+<dd>粒子系统描述文件名。此文件应该包含一个<a href="hgeparticle_psinfo.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_psinfo.html">hgeParticleSystemInfo</a>结构的磁盘镜像，用以描述粒子系统。
+<dt><i>sprite</i>
+<dd>用于粒子系统的指向有效<a href="hgesprite__main.html" tppabs="http://www.easis.cn/hgedoc/html/hgesprite__main.html">hgeSprite</a>对象的指针。
+<dt><i>psi</i>
+<dd>用以描述粒子系统的指向有效<a href="hgeparticle_psinfo.html" tppabs="http://www.easis.cn/hgedoc/html/hgeparticle_psinfo.html">hgeParticleSystemInfo</a>结构的指针。
+</dl>
+<h2>备注</h2>
+<p>
+粒子系统描述文件通过<a href="hgefunc_resourceload.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_resourceload.html">Resource_Load</a>函数加载。
+因此将可以实用它的所有特性。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgeparticle.h<br>
+<b>库文件:</b> hgehelp.lib<br>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

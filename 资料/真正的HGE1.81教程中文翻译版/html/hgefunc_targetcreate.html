@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgefunc.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgefunc.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">HGE::Target_Create</h1>
+<p>
+创建一个渲染目标。
+</p>
+<pre>
+HTARGET Target_Create(
+  int <i><b>width</b></i>,
+  int <i><b>height</b></i>,
+  bool <i><b>zbuffer</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>width</i>
+<dd>要创建目标的宽度。
+<dt><i>height</i>
+<dd>要创建目标的高度。
+<dt><i>zbuffer</i>
+<dd>如果为<b>true</b>, 将建立一个Z缓冲用以渲染目标。
+</dl>
+<h2>返回值</h2>
+<p>
+如果执行成功，返回供<a href="hgefunc_gfxbeginscene.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_gfxbeginscene.html">Gfx_BeginScene</a>使用的渲染目标句柄
+否则返回0。
+</p>
+<h2>备注</h2>
+<p>
+渲染目标维数必须是2的幂数，如果此条件不满足，请求的维数将被自动转换为最接近的2的幂数值的维数，大于请求的维数。
+<br><br>
+渲染目标只支持32位视频模式下的透明通道，16位视频模式下渲染目标总是不透明的。可以查看<a href="hgeconst_systemstate.html#HGE_SCREENBPP" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_SCREENBPP">HGE_SCREENBPP</a>
+了解当前运行的是何种视频模式。
+<br><br>
+如果函数调用失败，可以使用<a href="hgefunc_systemgeterror.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_systemgeterror.html">System_GetErrorMessage</a>函数获得错误信息。
+另外如果设置了<a href="hgeconst_systemstate.html#HGE_LOGFILE" tppabs="http://www.easis.cn/hgedoc/html/hgeconst_systemstate.html#HGE_LOGFILE">HGE_LOGFILE</a>系统标记，错误信息将被写入日志。
+<br><br>
+当渲染目标不再被使用时，必须使用<a href="hgefunc_targetfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetfree.html">Target_Free</a>来删除它。
+</p>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hge.h<br>
+<b>库文件:</b> hge.lib
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgefunc_targetfree.html" tppabs="http://www.easis.cn/hgedoc/html/hgefunc_targetfree.html">Target_Free</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>

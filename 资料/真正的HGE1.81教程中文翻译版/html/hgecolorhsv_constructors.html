@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- http://hge.relishgames.com -->
+
+<html>
+
+<head>
+<meta name="Keywords" content="game engine, 2d, hardware accelerated, hge, engine, relish games, game development">
+<meta name="Description" content="Haaf's Game Engine - Hardware accelerated 2D games engine">
+<title>Haaf's Game Engine - Hardware accelerated 2D games engine</title>
+<link rel=stylesheet type=text/css href="hge.css" tppabs="http://www.easis.cn/hgedoc/html/hge.css">
+<script language="JavaScript" src="hge.js" tppabs="http://www.easis.cn/hgedoc/html/hge.js"></script>
+</head>
+
+<body onload="setContents('cnt_hgecolorhsv.html'/*tpa=http://www.easis.cn/hgedoc/html/cnt_hgecolorhsv.html*/);" bgcolor=#ffffff text=#000000 link=#7F0000 vlink=#7F0000 alink=#7F0000 marginwidth=0 marginheight=0 leftmargin=0 topmargin=0>
+<table height=100% cellspacing=0 cellpadding=0 border=0><tr>
+
+<td valign=top>
+<table width=566 cellspacing=0 cellpadding=20 border=0><tr><td>
+<h1 style="margin-top:0px">hgeColorHSV Constructors</h1>
+<p>
+要创建并初始化一个<b>hgeColorHSV</b>对象你可以使用如下构造函数之一：
+</p>
+<pre>
+hgeColorHSV();
+
+hgeColorHSV(
+  DWORD <i><b>color</b></i>
+);
+
+hgeColorHSV(
+  float <i><b>h</b></i>,
+  float <i><b>s</b></i>,
+  float <i><b>v</b></i>,
+  float <i><b>a</b></i>
+);
+
+hgeColorHSV(
+  const hgeColorHSV &<i><b>col</b></i>
+);
+</pre>
+<h2>参数</h2>
+<dl>
+<dt><i>color</i>
+<dd>用于初始化<b>hgeColorHSV</b>对象的硬件颜色。
+<dt><i>h</i>
+<dd>色调值范围从0.0到1.0。
+<dt><i>s</i>
+<dd>饱和度值范围从0.0到1.0。
+<dt><i>v</i>
+<dd>亮度值范围从0.0到1.0。
+<dt><i>a</i>
+<dd>透明度值范围从0.0到1.0。
+</dl>
+<h2>需要</h2>
+<p>
+<b>头文件:</b> hgecolor.h<br>
+</p>
+<h2>另见</h2>
+<p>
+<a href="hgedata_hwcolor.html" tppabs="http://www.easis.cn/hgedoc/html/hgedata_hwcolor.html">硬件颜色格式</a>
+</p>
+<br>
+</td></tr></table>
+</td>
+
+</tr></table>
+</body>
+
+</html>
