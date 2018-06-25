@@ -10,10 +10,23 @@
 #include "hge.h"
 #include <hgesprite.h>
 
-
+//每格边长
+int const length = 64;
 HGE *hge = 0;
+//纹理资源
 HTEXTURE tex;
 hgeSprite *sprite;
+//人物(24 * 58)
+hgeSprite *sprite_player[10];
+//地板(64 * 64)
+hgeSprite *sprite_floor[10];
+//墙
+hgeSprite *sprite_wall[10];
+//终点
+hgeSprite *sprite_end_up[10];
+hgeSprite *sprite_end_down[10];
+
+int map[15][20] = {0};
 // This function will be called by HGE once per frame.
 // Put your game loop code here. In this example we
 // just check whether ESC key has been pressed.
@@ -37,12 +50,18 @@ bool RenderFunc()
 	hge->Gfx_BeginScene();
 
 	// Clear screen with black color
-	hge->Gfx_Clear(0);
-	sprite->Render(0,0);
-	
-	// End rendering and update the screen
-	hge->Gfx_EndScene();
+	hge->Gfx_Clear();
 
+	//画图
+	//sprite->Render(0,0);
+	//sprite_player[0]->Render(0,0);
+	// End rendering and update the screen
+	//hge->Gfx_EndScene();
+	for (int i=0;i<15;i++)
+		for (int j=0;j<20;j++)
+		{
+			sprite_floor[0]->Render(i*length,j*length);
+		}
 	// RenderFunc should always return false
 	return false;
 }
@@ -55,16 +74,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// have a corresponding hge->Release()
 	// for each call to hgeCreate()
 	hge = hgeCreate(HGE_VERSION);
-	
-	//加载资源
-
-
 
 	// Set our frame function
 	hge->System_SetState(HGE_FRAMEFUNC, FrameFunc);
 	hge->System_SetState(HGE_FRAMEFUNC, RenderFunc);
 	// Set the window title
-	hge->System_SetState(HGE_TITLE, "HGE Tutorial 01 - Minimal HGE application");
+	hge->System_SetState(HGE_TITLE, "推箱子游戏");
 	
 	// Run in windowed mode
 	// Default window size is 800x600
@@ -79,8 +94,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// happened can be read with System_GetErrorMessage().
 	if(hge->System_Initiate())
 	{
+		//加载资源
 		tex = hge->Texture_Load("res/image/bj.jpg");
 		sprite=new hgeSprite(tex,0,0,1000,600);
+		
+		sprite_player[0] = new hgeSprite(hge->Texture_Load("res/image/Character2.png"),0,0,42,58);
+
+		sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 42, 58);
 		// Starts running FrameFunc().
 		// Note that the execution "stops" here
 		// until "true" is returned from FrameFunc().

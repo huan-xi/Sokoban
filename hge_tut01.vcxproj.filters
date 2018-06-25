@@ -10,5 +10,11 @@
     <ClCompile Include="sokoban.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="View.h" />
   </ItemGroup>
 </Project>
