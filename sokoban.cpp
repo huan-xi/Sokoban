@@ -9,6 +9,9 @@
 
 #include "hge.h"
 #include <hgesprite.h>
+#include<hgeParticle.h>
+//Á£×Ó
+hgeParticleSystem *psi;
 
 //µØÍ¼
 int const map_side= 64;
@@ -113,8 +116,6 @@ bool RenderFunc()
 			
 		}
 
-
-
 	// End rendering and update the screen
 	hge->Gfx_EndScene();
 
@@ -155,11 +156,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		map[4][6] = 3;
 		map[4][4] = 3;
 		sprite_player[0] = new hgeSprite(hge->Texture_Load("res/image/Character2.png"), 0, 0, 42, 58);
+		psi = new hgeParticleSystem("psi/test.psi", sprite_player[0]);
+		int nSprite = ((DWORD)psi->sprite & 0xFFFF);
+		int blend = ((DWORD)psi->sprite >> 16);
+		ps->FireAt(100, 100);
 		sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
 		sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
 		sprite_floor[2] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Grass.png"), 0, 0, 64, 64);
 		sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
-
 		sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
 		// Starts running FrameFunc().
 		// Note that the execution "stops" here
