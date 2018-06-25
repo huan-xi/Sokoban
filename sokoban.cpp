@@ -11,7 +11,9 @@
 #include <hgesprite.h>
 
 //每格边长
-int const length = 64;
+int const map_side= 64;
+int const map_height = 10;
+int const map_width = 15;
 HGE *hge = 0;
 //纹理资源
 HTEXTURE tex;
@@ -26,7 +28,7 @@ hgeSprite *sprite_wall[10];
 hgeSprite *sprite_end_up[10];
 hgeSprite *sprite_end_down[10];
 
-int map[15][20] = {0};
+int map[15][21] = {0};
 // This function will be called by HGE once per frame.
 // Put your game loop code here. In this example we
 // just check whether ESC key has been pressed.
@@ -50,18 +52,20 @@ bool RenderFunc()
 	hge->Gfx_BeginScene();
 
 	// Clear screen with black color
-	hge->Gfx_Clear();
+	hge->Gfx_Clear(0);
 
-	//画图
-	//sprite->Render(0,0);
-	//sprite_player[0]->Render(0,0);
-	// End rendering and update the screen
-	//hge->Gfx_EndScene();
-	for (int i=0;i<15;i++)
-		for (int j=0;j<20;j++)
+	//sprite_floor[0]->Render(14*map_side,9*map_side);
+	for (int i=0;i<map_width;i++)
+		for (int j=0;j<map_height;j++)
 		{
-			sprite_floor[0]->Render(i*length,j*length);
+			sprite_floor[1]->Render(i * map_side, j* map_side);
 		}
+
+
+
+	// End rendering and update the screen
+	hge->Gfx_EndScene();
+
 	// RenderFunc should always return false
 	return false;
 }
@@ -84,14 +88,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// Run in windowed mode
 	// Default window size is 800x600
 	hge->System_SetState(HGE_WINDOWED, true);
-	hge->System_SetState(HGE_WINDOWED, true);
-	// Don't use BASS for sound
-	hge->System_SetState(HGE_SCREENWIDTH, 1000);
-
-	// Tries to initiate HGE with the states set.
-	// If something goes wrong, "false" is returned
-	// and more specific description of what have
-	// happened can be read with System_GetErrorMessage().
+	hge->System_SetState(HGE_SCREENHEIGHT,map_height*map_side);
+	hge->System_SetState(HGE_SCREENWIDTH, map_width*map_side);
 	if(hge->System_Initiate())
 	{
 		//加载资源
@@ -100,7 +98,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		
 		sprite_player[0] = new hgeSprite(hge->Texture_Load("res/image/Character2.png"),0,0,42,58);
 
-		sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 42, 58);
+		sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
+		sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
+		sprite_floor[2] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Grass.png"), 0, 0, 64, 64);
+		sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
 		// Starts running FrameFunc().
 		// Note that the execution "stops" here
 		// until "true" is returned from FrameFunc().
