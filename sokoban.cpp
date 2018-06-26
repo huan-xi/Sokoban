@@ -19,15 +19,24 @@ enum Map_TYPE //地图类型枚举
 {
 	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX, MAP_END
 };
+enum GameState{ Start, Game }g_GameState;
 //地图
 int const map_side = 64;
 int const map_height = 10;
 int const map_width = 15;
-int map[15][10];
+int map[10][15] = {
+	{ 0,0,0,0,1,3,0,0,0,0,0,0,0,0,0 },
+	{ 2,0,0,0,3,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,0,0,0,4,0,0,0,0,0,0,0,0,0,0 },
+	{ 2,2,2,2,4,0,2,2,2,2,2,2,2,2,2},
+	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+	{ 0,0,0,0,4,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0 }
+};
 HGE *hge = 0;
-//纹理资源
-HTEXTURE tex;
-hgeSprite *sprite;
 //人物(24 * 58)
 Player *player;
 hgeSprite *sprite_player[10];
@@ -51,7 +60,6 @@ float point_x, point_y;
 Timer timer;
 bool FrameFunc()
 {
-
 	timer.run();//记录
 	hge->Input_GetMousePos(&point_x,&point_y);
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
@@ -71,20 +79,48 @@ bool FrameFunc()
 	{
 		player->move(DIRE_LEFT, &timer, box, map);
 	}
-
 	player->update(1);
 	return false;
 }
 
 //渲染地图
 void RendMap() {
-	for (int i = 0; i < map_width; i++)
-		for (int j = 0; j < map_height; j++)
+	for (int i = 0; i < map_height; i++)
+		for (int j = 0; j < map_width; j++)
 		{
-			//Utils::alertInt(map[i][j]);
-			map[i][j]==MAP_WALL? sprite_wall[0]->Render(i * map_side, j* map_side): sprite_floor[2]->Render(i * map_side, j* map_side);//不是墙就画地板
-
+			sprite_floor[2]->Render(j * map_side, i* map_side);
+			switch (map[i][j])
+			{
+			case 0:
+				
+				break;
+			case 2:
+				sprite_wall[0]->Render(j * map_side, i* map_side);
+				break;
+			case 4:
+				sprite_end_up[0]->Render(j * map_side, i* map_side);
+				break;
+			}
 		}
+}
+void GameRender(){
+	switch (g_GameState)
+	{
+	case Start:
+		break;
+	case Game:
+		//渲染地图
+		RendMap();
+		//渲染箱子
+		for (int i=0;i<Box::box_count;i++)
+		{
+			box[i]->Render();
+		}
+		//渲染人物
+		player->Render();
+		break;
+	}
+
 }
 bool RenderFunc()
 {
@@ -93,53 +129,35 @@ bool RenderFunc()
 	// Clear screen with black color
 	hge->Gfx_Clear(0);
 	
-
-	RendMap();
-	//渲染箱子
-	//渲染人物
-	player->Render();
-
+	GameRender();
 	//渲染鼠标.
 	sprite_point->Render(point_x,point_y);
 	hge->Gfx_EndScene();
-
-	// RenderFunc should always return false
 	return false;
 }
 void level_init() {  //关卡初始化
 	Box::clear();
 	//初始化地图
-//  	int map [15][10] = {
-//  		{2,0,0,0,0,0,0,0,0,0},
-//  		{0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,2,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0},
-// 		{ 0,0,0,0,0,0,0,0,0,0}
-//  	};
-	map[1][1] = MAP_WALL;
-	map[2][2] = MAP_PLAYER;
+// 	map[1][1] = MAP_WALL;
+// 	map[2][2] = MAP_PLAYER;
 	//构建对象
-	for (int i = 0; i < map_width; i++)
-		for (int j = 0; j < map_height; j++)
+	for (int i = 0; i < map_height; i++)
+		for (int j = 0; j < map_width; j++)
 		{
 			switch (map[i][j])
-			{
-			case MAP_PLAYER: //构建玩家
+			{	
+			case MAP_PLAYER: //构建玩家	
 				player = new Player(tex_players, map_side);
 				player->setDire(DIRE_UP);         //关卡开始时玩家的方向
-				player->setX(i);
-				player->setY(j);
+				player->setX(j);
+				player->setY(i);
+				map[i][j] = 0; //不用记录玩家位置
 				break;
 			case MAP_BOX: //构造箱子
 				int count = Box::box_count;
-				box[count] = new Box(sprite_box[0], sprite_box[6], map_side);
-				box[Box::box_count - 1]->setX(i);
-				box[Box::box_count - 1]->setY(j);
+				box[count] = new Box(sprite_box[0], sprite_box[1], map_side);
+				box[Box::box_count - 1]->setX(j);
+				box[Box::box_count - 1]->setY(i);
 				break;
 			}
 		}
@@ -147,23 +165,24 @@ void level_init() {  //关卡初始化
 void init() { //初始化游戏系统
 	
 	//加载资源
-	tex = hge->Texture_Load("res/image/bj.jpg");
+	
 	tex_players = hge->Texture_Load("res/image/players.png");
-	player_animation = new hgeAnimation(tex_players, 3, 10,0, 0,55, 80);
-	player_animation->Play();
-	sprite = new hgeSprite(tex, 0, 0, 1000, 600);
 	sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
 	sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
 	sprite_floor[2] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Grass.png"), 0, 0, 64, 64);
 	sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
 
-	sprite_box[1] = new hgeSprite(hge->Texture_Load("res/image/Crate_Black.png"), 0, 0, 64, 64);
-	sprite_box[2] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
-	sprite_box[3] = new hgeSprite(hge->Texture_Load("res/image/Crate_Brown.png"), 0, 0, 64, 64);
+	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Beige.png"), 0, 0, 64, 64);
+	sprite_box[1] = new hgeSprite(hge->Texture_Load("res/image/CrateDark_Beige.png"), 0, 0, 64, 64);
+	sprite_box[2] = new hgeSprite(hge->Texture_Load("res/image/Crate_Black.png"), 0, 0, 64, 64);
+	sprite_box[4] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
+	sprite_box[5] = new hgeSprite(hge->Texture_Load("res/image/Crate_Brown.png"), 0, 0, 64, 64);
 
 	sprite_wall[0] = new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 64, 64);
-	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
 
+	sprite_end_up[0] = new hgeSprite(hge->Texture_Load("res/image/EndPoint_Blue.png"), 0, 0, 64, 64);
+	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
+	g_GameState=Game;
 	level_init();
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)

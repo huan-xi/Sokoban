@@ -10,6 +10,7 @@ private:
 	int x, y;  //地图坐标
 	float sence_x, sence_y;//场景坐标
 	bool isMoving = 0;
+	bool isDone=0; //是否完成
 public:
 	static int box_count;       //记录箱子个数
 	static void clear();

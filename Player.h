@@ -3,6 +3,7 @@
 #include <thread>
 #include "Box.h"
 #include "Timer.h"
+#include "Utils.h"
 #pragma once
 enum DIRE
 {
@@ -21,6 +22,7 @@ private:
 	Timer *timer;
 	bool isMoving = 0;
 	Box *box=NULL;
+	int (*map)[15];
 	void moveUP();
 	void moveRight();
 	void moveDown();
@@ -34,7 +36,7 @@ public:
 	void setDire(DIRE dire);
 	void Render(); //äÖÈ¾Íæ¼Ò
 	void update(int);
-	void move(DIRE dire,Timer *timer, Box *box[],int map[15][10]);
+	void move(DIRE dire,Timer *timer, Box *box[],int map[10][15]);
 	void pushBox(Box *box[],int x,int y);
 	~Player();
 };
