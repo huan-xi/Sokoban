@@ -14,6 +14,11 @@
 #include "Player.h"
 #include "Utils.h"
 #include <thread> 
+#include"Box.h"
+enum Map_TYPE //地图类型枚举
+{
+	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX
+};
 //地图
 int const map_side = 64;
 int const map_height = 10;
@@ -34,6 +39,7 @@ hgeSprite *sprite_floor[10];
 //墙
 hgeSprite *sprite_wall[10];
 //箱子
+Box *box;
 hgeSprite *sprite_box[10];
 //终点
 hgeSprite *sprite_end_up[10];
@@ -41,17 +47,12 @@ hgeSprite *sprite_end_down[10];
 //鼠标指针
 hgeSprite *sprite_point;
 float point_x, point_y;
-
 //全局计时器
 Timer timer;
-// This function will be called by HGE once per frame.
-// Put your game loop code here. In this example we
-// just check whether ESC key has been pressed.
-int x = 5, y = 5;
 bool FrameFunc()
 {
 
-
+	timer.run();//记录
 	hge->Input_GetMousePos(&point_x,&point_y);
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
@@ -61,15 +62,16 @@ bool FrameFunc()
 	}
 	if (hge->Input_GetKeyState(HGEK_D))
 	{
-		
+		player->pushBox(box);
+		player->move(DIRE_RIGHT, &timer);
 	}
 	if (hge->Input_GetKeyState(HGEK_S))
 	{
-
+		player->move(DIRE_DOWN, &timer);
 	}
 	if (hge->Input_GetKeyState(HGEK_A))
 	{
-
+		player->move(DIRE_LEFT, &timer);
 	}
 
 	player->update(1);
@@ -80,7 +82,7 @@ bool FrameFunc()
 // Put your rendering code here.
 bool RenderFunc()
 {
-	timer.run();//记录
+	
 	hge->Gfx_BeginScene();
 	// Clear screen with black color
 	hge->Gfx_Clear(0);
@@ -94,21 +96,22 @@ bool RenderFunc()
 			case 0: //不画
 				break;
 			case 1: //画人物
-				sprite_player[player_index]->Render(i * map_side + 10, j* map_side);
 				break;
 			case 2://画墙
 				break;
-			case 3://画箱子
-				sprite_box[0]->Render(i * map_side, j* map_side);
+			case MAP_BOX://画箱子
+				//box->Render();
+				   //sprite_box[0]->Render(i * map_side, j* map_side);
 				break;
 			default:
 				break;
 			}
 
 		}
+	box->Render();
 	player->Render();
 	player_animation->Render(100, 100);
-
+	player_animation->Update(100);
 	//渲染鼠标.
 	sprite_point->Render(point_x,point_y);
 	hge->Gfx_EndScene();
@@ -118,22 +121,33 @@ bool RenderFunc()
 }
 void init() {
 	//初始化地图
-	map[5][5] = 1;
-	map[5][6] = 3;
-	map[5][4] = 3;
-	map[4][6] = 3;
-	map[4][4] = 3;
+	map[0][0] = MAP_BOX;
+	map[5][6] = MAP_BOX;
+	map[5][4] = MAP_BOX;
+	map[4][6] = MAP_BOX;
+	map[4][4] = MAP_BOX;
 	//加载资源
 	tex = hge->Texture_Load("res/image/bj.jpg");
 	tex_players = hge->Texture_Load("res/image/players.png");
-
 	//构造玩家
 	player=new Player(tex_players,map_side);
 	player->setDire(DIRE_UP);
-	player->setX(8);
-	player->setY(8);
+	player->setX(0);
+	player->setY(0);
+
+	//构造箱子
+	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Beige.png"), 0, 0, 64, 64);
+	sprite_box[6] = new hgeSprite(hge->Texture_Load("res/image/CrateDark_Beige"), 0, 0, 64, 64);
+	box = new Box(sprite_box[0], sprite_box[6],map_side);
+	box->setX(1);
+	box->setY(0);
+	map[box->getX()][box->getY()] = MAP_BOX;
+	
+	map[player->getX()][player->getY()] = MAP_PLAYER;
+
 
 	player_animation = new hgeAnimation(tex_players, 3, 10,0, 0,55, 80);
+	player_animation->Play();
 	sprite = new hgeSprite(tex, 0, 0, 1000, 600);
 	sprite_player[0] = new hgeSprite(hge->Texture_Load("res/image/Character2.png"), 0, 0, 42, 58);//右
 	sprite_player[1] = new hgeSprite(hge->Texture_Load("res/image/Character3.png"), 0, 0, 42, 58);
@@ -150,8 +164,10 @@ void init() {
 	sprite_floor[2] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Grass.png"), 0, 0, 64, 64);
 	sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
 
-	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
-
+	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Beige.png"), 0, 0, 64, 64);
+	sprite_box[1] = new hgeSprite(hge->Texture_Load("res/image/Crate_Black.png"), 0, 0, 64, 64);
+	sprite_box[2] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
+	sprite_box[3] = new hgeSprite(hge->Texture_Load("res/image/Crate_Brown.png"), 0, 0, 64, 64);
 	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -184,8 +200,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		// If HGE initialization failed show error message
 		MessageBox(NULL, hge->System_GetErrorMessage(), "Error", MB_OK | MB_ICONERROR | MB_APPLMODAL);
 	}
-
-
 
 	//关闭引擎
 	hge->System_Shutdown();

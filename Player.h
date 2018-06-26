@@ -1,7 +1,7 @@
 #include <hgeanim.h>
 #include <hgesprite.h>
 #include <thread>
-
+#include "Box.h"
 #include "Timer.h"
 #pragma once
 enum DIRE
@@ -20,7 +20,7 @@ private:
 	int renderTime = 0; //上次渲染时间
 	Timer *timer;
 	bool isMoving = 0;
-
+	Box *box=NULL;
 	void moveUP();
 	void moveRight();
 	void moveDown();
@@ -29,11 +29,14 @@ public:
 	Player(HTEXTURE tex, int map_side);
 	void setX(int x);
 	void setY(int y);
+	int getX();
+	int getY();
 	void setDire(DIRE dire);
 	void Render(); //渲染玩家
 	void update(int);
 	void move(DIRE dire,Timer *timer);
-
+	Box * isBox(Box);
+	void pushBox(Box *box);
 	~Player();
 };
 

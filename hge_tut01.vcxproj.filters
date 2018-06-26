@@ -22,11 +22,15 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="View.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Box.h" />
   </ItemGroup>
 </Project>

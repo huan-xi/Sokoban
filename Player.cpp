@@ -17,6 +17,16 @@ void Player::setY(int y) {
 	sence_y = y*map_side;
 }
 
+int Player::getX()
+{
+	return x;
+}
+
+int Player::getY()
+{
+	return y;
+}
+
 void Player::setDire(DIRE dire)
 {
 	this->dire = dire;
@@ -26,8 +36,10 @@ void Player::Render()//渲染当前动画
 {
 	switch (dire) {
 	case DIRE_UP :
-			this->upAnimation->Render(sence_x, sence_y);
+			this->upAnimation->Render(sence_x, sence_y-10);
 			break;
+	default:
+		this->upAnimation->Render(sence_x, sence_y-10);
 	}
 	
 }
@@ -39,9 +51,10 @@ void Player::update(int time)
 
 void Player::move(DIRE dire,Timer *timer)
 {
-	this->dire = dire;
-	this->timer = timer;
+
 	if (!isMoving) {
+		this->dire = dire;
+		this->timer = timer;
 		switch (this->dire)
 		{
 		case DIRE_UP: 
@@ -75,6 +88,16 @@ void Player::move(DIRE dire,Timer *timer)
 }
 
 
+Box * Player::isBox(Box box)
+{
+	return &box;
+}
+
+void Player::pushBox(Box *box)
+{
+	this->box = box;
+}
+
 void Player::moveUP()
 {
 	upAnimation->Play();
@@ -89,6 +112,7 @@ void Player::moveUP()
 	}
 	//移动结束
 	y--;
+	sence_y = y*map_side;
 	isMoving = false;
 	upAnimation->Stop();
 }
@@ -101,14 +125,25 @@ void Player::moveRight()
 	{
 		if (timer->getTime() - renderTime > 1) {
 			this->sence_x += speed;
+			if (box)
+			{
+				box->sence_x=this->sence_x+map_side;
+			}
 			renderTime = timer->getTime();
 		}
 
 	}
 	//移动结束
 	x++;
+	sence_x = x*map_side; //规整箱子坐标
 	isMoving = false;
 	upAnimation->Stop();
+	if (box) {
+		//箱子一次移动结束
+		this->box->x++;
+		this->box->sence_x=this->box->x*map_side; //规整箱子坐标
+		box = NULL;
+	}
 }
 
 void Player::moveDown()
@@ -125,6 +160,7 @@ void Player::moveDown()
 	}
 	//移动结束
 	y++;
+	sence_y = y*map_side;
 	isMoving = false;
 	upAnimation->Stop();
 }
@@ -142,6 +178,7 @@ void Player::moveLeft()
 	}
 	//移动结束
 	x--;
+	sence_x = x*map_side;
 	isMoving = false;
 	upAnimation->Stop();
 }
