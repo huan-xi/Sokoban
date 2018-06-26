@@ -11,6 +11,8 @@ private:
 	float sence_x, sence_y;//场景坐标
 	bool isMoving = 0;
 public:
+	static int box_count;       //记录箱子个数
+	static void clear();
 	void setX(int x);
 	void setY(int y);
 	int getX();

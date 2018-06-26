@@ -34,9 +34,8 @@ public:
 	void setDire(DIRE dire);
 	void Render(); //äÖÈ¾Íæ¼Ò
 	void update(int);
-	void move(DIRE dire,Timer *timer);
-	Box * isBox(Box);
-	void pushBox(Box *box);
+	void move(DIRE dire,Timer *timer, Box *box[],int map[15][10]);
+	void pushBox(Box *box[],int x,int y);
 	~Player();
 };
 

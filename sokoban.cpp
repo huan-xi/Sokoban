@@ -17,13 +17,13 @@
 #include"Box.h"
 enum Map_TYPE //地图类型枚举
 {
-	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX
+	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX, MAP_END
 };
 //地图
 int const map_side = 64;
 int const map_height = 10;
 int const map_width = 15;
-int map[15][10] = { 0 };
+int map[15][10];
 HGE *hge = 0;
 //纹理资源
 HTEXTURE tex;
@@ -39,7 +39,7 @@ hgeSprite *sprite_floor[10];
 //墙
 hgeSprite *sprite_wall[10];
 //箱子
-Box *box;
+Box *box[10];   
 hgeSprite *sprite_box[10];
 //终点
 hgeSprite *sprite_end_up[10];
@@ -57,29 +57,35 @@ bool FrameFunc()
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
 	{
-		player->move(DIRE_UP,&timer);
-
+		player->move(DIRE_UP,&timer,box, map);
 	}
 	if (hge->Input_GetKeyState(HGEK_D))
 	{
-		player->pushBox(box);
-		player->move(DIRE_RIGHT, &timer);
+		player->move(DIRE_RIGHT, &timer,box, map);
 	}
 	if (hge->Input_GetKeyState(HGEK_S))
 	{
-		player->move(DIRE_DOWN, &timer);
+		player->move(DIRE_DOWN, &timer, box, map);
 	}
 	if (hge->Input_GetKeyState(HGEK_A))
 	{
-		player->move(DIRE_LEFT, &timer);
+		player->move(DIRE_LEFT, &timer, box, map);
 	}
 
 	player->update(1);
 	return false;
 }
-// This function will be called by HGE when
-// the application window should be redrawn.
-// Put your rendering code here.
+
+//渲染地图
+void RendMap() {
+	for (int i = 0; i < map_width; i++)
+		for (int j = 0; j < map_height; j++)
+		{
+			//Utils::alertInt(map[i][j]);
+			map[i][j]==MAP_WALL? sprite_wall[0]->Render(i * map_side, j* map_side): sprite_floor[2]->Render(i * map_side, j* map_side);//不是墙就画地板
+
+		}
+}
 bool RenderFunc()
 {
 	
@@ -87,31 +93,12 @@ bool RenderFunc()
 	// Clear screen with black color
 	hge->Gfx_Clear(0);
 	
-	for (int i = 0; i < map_width; i++)
-		for (int j = 0; j < map_height; j++)
-		{
-			sprite_floor[2]->Render(i * map_side, j* map_side);
-			switch (map[i][j])
-			{
-			case 0: //不画
-				break;
-			case 1: //画人物
-				break;
-			case 2://画墙
-				break;
-			case MAP_BOX://画箱子
-				//box->Render();
-				   //sprite_box[0]->Render(i * map_side, j* map_side);
-				break;
-			default:
-				break;
-			}
 
-		}
-	box->Render();
+	RendMap();
+	//渲染箱子
+	//渲染人物
 	player->Render();
-	player_animation->Render(100, 100);
-	player_animation->Update(100);
+
 	//渲染鼠标.
 	sprite_point->Render(point_x,point_y);
 	hge->Gfx_EndScene();
@@ -119,56 +106,65 @@ bool RenderFunc()
 	// RenderFunc should always return false
 	return false;
 }
-void init() {
+void level_init() {  //关卡初始化
+	Box::clear();
 	//初始化地图
-	map[0][0] = MAP_BOX;
-	map[5][6] = MAP_BOX;
-	map[5][4] = MAP_BOX;
-	map[4][6] = MAP_BOX;
-	map[4][4] = MAP_BOX;
+//  	int map [15][10] = {
+//  		{2,0,0,0,0,0,0,0,0,0},
+//  		{0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,2,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0},
+// 		{ 0,0,0,0,0,0,0,0,0,0}
+//  	};
+	map[1][1] = MAP_WALL;
+	map[2][2] = MAP_PLAYER;
+	//构建对象
+	for (int i = 0; i < map_width; i++)
+		for (int j = 0; j < map_height; j++)
+		{
+			switch (map[i][j])
+			{
+			case MAP_PLAYER: //构建玩家
+				player = new Player(tex_players, map_side);
+				player->setDire(DIRE_UP);         //关卡开始时玩家的方向
+				player->setX(i);
+				player->setY(j);
+				break;
+			case MAP_BOX: //构造箱子
+				int count = Box::box_count;
+				box[count] = new Box(sprite_box[0], sprite_box[6], map_side);
+				box[Box::box_count - 1]->setX(i);
+				box[Box::box_count - 1]->setY(j);
+				break;
+			}
+		}
+}
+void init() { //初始化游戏系统
+	
 	//加载资源
 	tex = hge->Texture_Load("res/image/bj.jpg");
 	tex_players = hge->Texture_Load("res/image/players.png");
-	//构造玩家
-	player=new Player(tex_players,map_side);
-	player->setDire(DIRE_UP);
-	player->setX(0);
-	player->setY(0);
-
-	//构造箱子
-	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Beige.png"), 0, 0, 64, 64);
-	sprite_box[6] = new hgeSprite(hge->Texture_Load("res/image/CrateDark_Beige"), 0, 0, 64, 64);
-	box = new Box(sprite_box[0], sprite_box[6],map_side);
-	box->setX(1);
-	box->setY(0);
-	map[box->getX()][box->getY()] = MAP_BOX;
-	
-	map[player->getX()][player->getY()] = MAP_PLAYER;
-
-
 	player_animation = new hgeAnimation(tex_players, 3, 10,0, 0,55, 80);
 	player_animation->Play();
 	sprite = new hgeSprite(tex, 0, 0, 1000, 600);
-	sprite_player[0] = new hgeSprite(hge->Texture_Load("res/image/Character2.png"), 0, 0, 42, 58);//右
-	sprite_player[1] = new hgeSprite(hge->Texture_Load("res/image/Character3.png"), 0, 0, 42, 58);
-	sprite_player[2] = new hgeSprite(hge->Texture_Load("res/image/Character4.png"), 0, 0, 42, 58);//下
-	sprite_player[3] = new hgeSprite(hge->Texture_Load("res/image/Character5.png"), 0, 0, 42, 58);
-	sprite_player[4] = new hgeSprite(hge->Texture_Load("res/image/Character6.png"), 0, 0, 42, 58);
-	sprite_player[5] = new hgeSprite(hge->Texture_Load("res/image/Character7.png"), 0, 0, 42, 58);//上
-	sprite_player[6] = new hgeSprite(hge->Texture_Load("res/image/Character8.png"), 0, 0, 42, 58);
-	sprite_player[7] = new hgeSprite(hge->Texture_Load("res/image/Character9.png"), 0, 0, 42, 58);
-	sprite_player[8] = new hgeSprite(hge->Texture_Load("res/image/Character10.png"), 0, 0, 42, 58);//左
-	sprite_player[9] = new hgeSprite(hge->Texture_Load("res/image/Character11.png"), 0, 0, 42, 58);
 	sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
 	sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
 	sprite_floor[2] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Grass.png"), 0, 0, 64, 64);
 	sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
 
-	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Beige.png"), 0, 0, 64, 64);
 	sprite_box[1] = new hgeSprite(hge->Texture_Load("res/image/Crate_Black.png"), 0, 0, 64, 64);
 	sprite_box[2] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
 	sprite_box[3] = new hgeSprite(hge->Texture_Load("res/image/Crate_Brown.png"), 0, 0, 64, 64);
+
+	sprite_wall[0] = new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 64, 64);
 	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
+
+	level_init();
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

@@ -6,7 +6,7 @@ Player::Player(HTEXTURE tex,int map_side)
 {
 	this->upAnimation =new hgeAnimation(tex, 3, 1, 0, 0, 55, 80);
 	this->map_side = map_side;
-	this->speed = 20;
+	this->speed = 16;
 }
 void Player::setX(int x) {
 	this->x = x;
@@ -49,7 +49,7 @@ void Player::update(int time)
 	this->upAnimation->Update(time);
 }
 
-void Player::move(DIRE dire,Timer *timer)
+void Player::move(DIRE dire,Timer *timer,Box *box[],int map[15][10])
 {
 
 	if (!isMoving) {
@@ -59,16 +59,24 @@ void Player::move(DIRE dire,Timer *timer)
 		{
 		case DIRE_UP: 
 		{
+			if (!map[x][y-1] == 2)
+			{
 			std::thread t(&Player::moveUP, this);  //多线程移动
 			t.detach();
 			isMoving = true;
+			}
 			break;
 		}
 		case DIRE_RIGHT:
-		{	std::thread t(&Player::moveRight, this);
-		t.detach();
-		isMoving = true;
-		break;
+		{	
+			if (!map[x+1][y] == 2 )
+			{
+				if (map[x + 1][y] == 3)
+					pushBox(box,x+1,y);
+				std::thread t(&Player::moveRight, this);
+				t.detach();
+				isMoving = true;
+			}	break;
 		}
 		case DIRE_DOWN:
 		{
@@ -88,14 +96,18 @@ void Player::move(DIRE dire,Timer *timer)
 }
 
 
-Box * Player::isBox(Box box)
-{
-	return &box;
-}
 
-void Player::pushBox(Box *box)
+void Player::pushBox(Box *box[], int x, int y) //开始推箱子
 {
-	this->box = box;
+	for (int i = 0; i < Box::box_count;i++) {
+		if (box[i]->x==x&&box[i]->y==y)
+		{
+			this->box = box[i];
+			break;
+		}
+	}
+
+	this->box->isMoving = true;
 }
 
 void Player::moveUP()
@@ -135,13 +147,12 @@ void Player::moveRight()
 	}
 	//移动结束
 	x++;
-	sence_x = x*map_side; //规整箱子坐标
 	isMoving = false;
 	upAnimation->Stop();
 	if (box) {
-		//箱子一次移动结束
+		//箱子移动结束
 		this->box->x++;
-		this->box->sence_x=this->box->x*map_side; //规整箱子坐标
+		this->box->isMoving = false;
 		box = NULL;
 	}
 }
