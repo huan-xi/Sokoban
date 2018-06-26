@@ -1,5 +1,8 @@
 #include <hgeanim.h>
 #include <hgesprite.h>
+#include <thread>
+
+#include "Timer.h"
 #pragma once
 enum DIRE
 {
@@ -9,17 +12,28 @@ class Player
 {
 private:
 	hgeAnimation *upAnimation;
-	hgeAnimation *nowAnimation; //当前动画
-	int x, y,dire;
+	int map_side;//地图坐标边长
+	int x, y;  //地图坐标
+	float sence_x, sence_y;//场景坐标
+	int speed; //移动速度
+	int dire;//当前方向
+	int renderTime = 0; //上次渲染时间
+	Timer *timer;
+	bool isMoving = 0;
+
+	void moveUP();
+	void moveRight();
+	void moveDown();
+	void moveLeft();
 public:
-	Player(HTEXTURE tex);
+	Player(HTEXTURE tex, int map_side);
 	void setX(int x);
 	void setY(int y);
 	void setDire(DIRE dire);
-	void Render(int map_side); //渲染玩家
-	void moveUP(){
-		this->y--;
-	}
+	void Render(); //渲染玩家
+	void update(int);
+	void move(DIRE dire,Timer *timer);
+
 	~Player();
 };
 

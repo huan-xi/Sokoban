@@ -10,7 +10,10 @@
 #include "hge.h"
 #include <hgesprite.h>
 #include <hgeanim.h>
+#include "Timer.h"
 #include "Player.h"
+#include "Utils.h"
+#include <thread> 
 //地图
 int const map_side = 64;
 int const map_height = 10;
@@ -35,63 +38,41 @@ hgeSprite *sprite_box[10];
 //终点
 hgeSprite *sprite_end_up[10];
 hgeSprite *sprite_end_down[10];
-int time = 0; //时间
-int times = 0; //时间记速器
-int oldTime = 0;
+//鼠标指针
+hgeSprite *sprite_point;
+float point_x, point_y;
+
+//全局计时器
+Timer timer;
 // This function will be called by HGE once per frame.
 // Put your game loop code here. In this example we
 // just check whether ESC key has been pressed.
 int x = 5, y = 5;
 bool FrameFunc()
 {
-	// By returning "true" we tell HGE
-	// to stop running the application.
+
+
+	hge->Input_GetMousePos(&point_x,&point_y);
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
 	{
-		if (time - oldTime > 1)
-		{
-			map[x][y] = 0;
-			y--;
-			map[x][y] = 1;
-			oldTime = time;
-		}
+		player->move(DIRE_UP,&timer);
 
 	}
 	if (hge->Input_GetKeyState(HGEK_D))
 	{
-		if (time - oldTime > 1)
-		{
-			map[x][y] = 0;
-			x++;
-			map[x][y] = 1;
-			oldTime = time;
-		}
-
+		
 	}
 	if (hge->Input_GetKeyState(HGEK_S))
 	{
-		if (time - oldTime > 1)
-		{
-			map[x][y] = 0;
-			y++;
-			map[x][y] = 1;
-			oldTime = time;
-		}
+
 	}
 	if (hge->Input_GetKeyState(HGEK_A))
 	{
-		if (time - oldTime > 1)
-		{
-			map[x][y] = 0;
-			x--;
-			player_index = 8;
-			player_index = 9;
-			map[x][y] = 1;
-			oldTime = time;
-		}
+
 	}
-	// Continue execution
+
+	player->update(1);
 	return false;
 }
 // This function will be called by HGE when
@@ -99,16 +80,7 @@ bool FrameFunc()
 // Put your rendering code here.
 bool RenderFunc()
 {
-	times++;
-	if (times >= 10) //100ms
-	{
-		time++;
-		times = 0;
-	}
-
-	// Begin rendering quads.
-	// This function must be called
-	// before any actual rendering.
+	timer.run();//记录
 	hge->Gfx_BeginScene();
 	// Clear screen with black color
 	hge->Gfx_Clear(0);
@@ -134,13 +106,11 @@ bool RenderFunc()
 			}
 
 		}
-	player->Render(map_side);
+	player->Render();
 	player_animation->Render(100, 100);
-	if (time - oldTime) {
-		player_animation->Update(1);
-		oldTime = time;
-	}
-	
+
+	//渲染鼠标.
+	sprite_point->Render(point_x,point_y);
 	hge->Gfx_EndScene();
 
 	// RenderFunc should always return false
@@ -158,15 +128,12 @@ void init() {
 	tex_players = hge->Texture_Load("res/image/players.png");
 
 	//构造玩家
-	player=new Player(tex_players);
+	player=new Player(tex_players,map_side);
 	player->setDire(DIRE_UP);
-	player->setX(1);
-	player->setY(1);
-
-
+	player->setX(8);
+	player->setY(8);
 
 	player_animation = new hgeAnimation(tex_players, 3, 10,0, 0,55, 80);
-	player_animation->Play();
 	sprite = new hgeSprite(tex, 0, 0, 1000, 600);
 	sprite_player[0] = new hgeSprite(hge->Texture_Load("res/image/Character2.png"), 0, 0, 42, 58);//右
 	sprite_player[1] = new hgeSprite(hge->Texture_Load("res/image/Character3.png"), 0, 0, 42, 58);
@@ -184,6 +151,8 @@ void init() {
 	sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
 
 	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
+
+	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
