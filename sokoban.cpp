@@ -57,10 +57,10 @@ hgeSprite *sprite_end_down[10];
 hgeSprite *sprite_point;
 float point_x, point_y;
 //全局计时器
-Timer timer;
+float timer;
 bool FrameFunc()
 {
-	timer.run();//记录
+	timer=hge->Timer_GetTime();//每次调用记录时间，让移动线程知道时间
 	hge->Input_GetMousePos(&point_x,&point_y);
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
@@ -82,7 +82,10 @@ bool FrameFunc()
 	player->update(1);
 	return false;
 }
+//开始界面渲染
+void startRender() {
 
+}
 //渲染地图
 void RendMap() {
 	for (int i = 0; i < map_height; i++)
@@ -107,6 +110,7 @@ void GameRender(){
 	switch (g_GameState)
 	{
 	case Start:
+		startRender();
 		break;
 	case Game:
 		//渲染地图
@@ -189,7 +193,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 
 	hge = hgeCreate(HGE_VERSION);
-
 	// Set our frame function
 	hge->System_SetState(HGE_FRAMEFUNC, FrameFunc);
 	hge->System_SetState(HGE_RENDERFUNC, RenderFunc);

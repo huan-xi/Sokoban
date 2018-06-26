@@ -49,7 +49,7 @@ void Player::update(int time)
 	this->upAnimation->Update(time);
 }
 
-void Player::move(DIRE dire,Timer *timer,Box *box[],int map[10][15])
+void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
 {
 	this->map = map;
 	if (!isMoving) {
@@ -63,7 +63,7 @@ void Player::move(DIRE dire,Timer *timer,Box *box[],int map[10][15])
 			{
 				if (map[y - 1][x] == 3) //推箱子
 				{
-					if (map[y - 2][x] == 2) break; //有箱子下一格为墙就中断
+					if (map[y - 2][x] == 2) break; //有箱子下一格为墙就或箱子就推不动
 					pushBox(box, x, y - 1);
 				}
 			std::thread t(&Player::moveUP, this);  //多线程移动
@@ -76,7 +76,11 @@ void Player::move(DIRE dire,Timer *timer,Box *box[],int map[10][15])
 		{	
 			if (map[y][x + 1] != 2)
 			{
-				if (map[y][x + 1] == 3)	pushBox(box,x+1,y);
+				if (map[y][x + 1] == 3)
+				{
+					if (map[y][x + 2] == 2 || map[y][x + 2] == 3)break;
+					pushBox(box, x + 1, y);
+				}
 				std::thread t(&Player::moveRight, this);
 				t.detach();
 				isMoving = true;
@@ -113,8 +117,6 @@ void Player::move(DIRE dire,Timer *timer,Box *box[],int map[10][15])
 	
 }
 
-
-
 void Player::pushBox(Box *box[], int x, int y) //开始推箱子
 {
 	for (int i = 0; i < Box::box_count;i++) {
@@ -124,7 +126,6 @@ void Player::pushBox(Box *box[], int x, int y) //开始推箱子
 			break;
 		}
 	}
-
 	this->box->isMoving = true;
 }
 
@@ -137,13 +138,13 @@ void Player::moveUP()
 	map[y - 2][x] == 4 ? isEnd = true : isEnd = false; //判断上两步是不是终点
 	while (sence_y > (y-1)*map_side)
 	{
-		if (timer->getTime() - renderTime > 1) {
+		if (*timer - renderTime > 0.1) {
 			this->sence_y -= speed;
 			if (box)
 			{
 				box->sence_y = this->sence_y - map_side;
 			}
-			renderTime = timer->getTime();
+			renderTime = *timer;
 		}
 		
 	}
@@ -178,13 +179,13 @@ void Player::moveRight()
 	map[y][x+2] == 4 ? isEnd = true : isEnd = false; //判断右两步是不是终点
 	while (sence_x < (x+ 1)*map_side)
 	{
-		if (timer->getTime() - renderTime > 1) {
+		if (*timer - renderTime > 0.1) {
 			this->sence_x += speed;
 			if (box)
 			{
 				box->sence_x=this->sence_x+map_side;
 			}
-			renderTime = timer->getTime();
+			renderTime = *timer;
 		}
 
 	}
@@ -218,13 +219,13 @@ void Player::moveDown()
 	map[y + 2][x]==4?isEnd=true:isEnd=false; //判断下两步是不是终点
 	while (sence_y < (y + 1)*map_side)
 	{
-		if (timer->getTime() - renderTime > 1) {
+		if (*timer - renderTime > 0.1) {
 			this->sence_y += speed;
 			if (box)
 			{
 				box->sence_y = this->sence_y + map_side;
 			}
-			renderTime = timer->getTime();
+			renderTime = *timer;
 		}
 
 	}
@@ -257,13 +258,13 @@ void Player::moveLeft()
 	map[y][x + 2] == 4 ? isEnd = true : isEnd = false; //判断左两步是不是终点
 	while (sence_x > (x - 1)*map_side)
 	{
-		if (timer->getTime() - renderTime > 1) {
+		if (*timer - renderTime > 0.1) {
 			this->sence_x -= speed;
 			if (box)        //如果有箱子，箱子和它一起启动
 			{
 				box->sence_x = this->sence_x - map_side;
 			}
-			renderTime = timer->getTime();
+			renderTime = *timer;
 		}
 
 	}

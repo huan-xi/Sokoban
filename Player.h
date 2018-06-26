@@ -18,8 +18,8 @@ private:
 	float sence_x, sence_y;//场景坐标
 	int speed; //移动速度
 	int dire;//当前方向
-	int renderTime = 0; //上次渲染时间
-	Timer *timer;
+	float renderTime = 0; //上次渲染时间
+	float *timer;
 	bool isMoving = 0;
 	Box *box=NULL;
 	int (*map)[15];
@@ -36,7 +36,7 @@ public:
 	void setDire(DIRE dire);
 	void Render(); //渲染玩家
 	void update(int);
-	void move(DIRE dire,Timer *timer, Box *box[],int map[10][15]);
+	void move(DIRE dire,float *timer, Box *box[],int map[10][15]);
 	void pushBox(Box *box[],int x,int y);
 	~Player();
 };
