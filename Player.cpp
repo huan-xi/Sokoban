@@ -1,10 +1,9 @@
 #include "Player.h"
 #include <stdio.h>
-
-
+#include <ctime>
 Player::Player(HTEXTURE tex,int map_side)
 {
-	this->upAnimation =new hgeAnimation(tex, 3, 1, 0, 0, 55, 80);
+	this->upAnimation =new hgeAnimation(tex, 3, 60, 0, 0, 55, 80);
 	this->map_side = map_side;
 	this->speed = 16;
 }
@@ -32,14 +31,14 @@ void Player::setDire(DIRE dire)
 	this->dire = dire;
 }
 
-void Player::Render()//渲染当前动画
+void Player::Render(float off_x,float off_y)//渲染当前动画
 {
 	switch (dire) {
 	case DIRE_UP :
-			this->upAnimation->Render(sence_x, sence_y-10);
+			this->upAnimation->Render(sence_x+off_x, sence_y-10+off_y);
 			break;
 	default:
-		this->upAnimation->Render(sence_x, sence_y-10);
+		this->upAnimation->Render(sence_x+off_x, sence_y-10+off_y);
 	}
 	
 }
@@ -59,11 +58,15 @@ void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
 		{
 		case DIRE_UP: 
 		{
-			if (map[y-1][x] != 2)
+			if (map[y-1][x] != 2 && !this->box)
 			{
 				if (map[y - 1][x] == 3) //推箱子
 				{
-					if (map[y - 2][x] == 2) break; //有箱子下一格为墙就或箱子就推不动
+					if (map[y-2][x] == 2 || map[y - 2][x] == 3){//有箱子下一格为墙就或箱子就推不动
+						//启用箱子推不动特效
+						stopBox(box, x , y-1);
+						break;
+					} 
 					pushBox(box, x, y - 1);
 				}
 			std::thread t(&Player::moveUP, this);  //多线程移动
@@ -74,11 +77,15 @@ void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
 		}
 		case DIRE_RIGHT:
 		{	
-			if (map[y][x + 1] != 2)
+			if (map[y][x + 1] != 2 && !this->box)
 			{
 				if (map[y][x + 1] == 3)
 				{
-					if (map[y][x + 2] == 2 || map[y][x + 2] == 3)break;
+					if (map[y][x + 2] == 2 || map[y][x + 2] == 3) {
+						//启用箱子推不动特效
+						stopBox(box, x + 1, y);
+						break;
+					}
 					pushBox(box, x + 1, y);
 				}
 				std::thread t(&Player::moveRight, this);
@@ -89,11 +96,15 @@ void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
 		}
 		case DIRE_DOWN:
 		{
-			if (map[y+1][x]!=2) //不为墙就移动
+			if (map[y+1][x]!=2 &&!this->box) //不为墙就移动
 			{
 				if (map[y + 1][x] == 3) //推箱子
 				{
-					if (map[y + 2][x] ==2) break; //有箱子下一格为墙就中断
+					if (map[y+2][x ] == 3 || map[y + 2][x] == 2) {//有箱子下一格为墙就或箱子就推不动
+						//启用箱子推不动特效
+						stopBox(box, x, y+1);
+						break;
+					}
 					pushBox(box, x,y + 1);
 				}
 				std::thread t(&Player::moveDown, this);
@@ -104,9 +115,17 @@ void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
 			break;
 		}
 		case DIRE_LEFT:
-			if (map[y][x - 1] != 2)
+			if (map[y][x - 1] != 2 && !this->box)
 			{
-				if (map[y][x - 1] == 3)	pushBox(box, x - 1, y);
+				if (map[y][x - 1] == 3)
+				{
+					if (map[y][x - 2] == 2 || map[y][x - 2] == 3) {
+					//启用箱子推不动特效
+					stopBox(box, x - 1, y);
+					break;
+					}
+					pushBox(box, x - 1, y);
+				}
 				std::thread t(&Player::moveLeft, this);
 				t.detach();
 				isMoving = true;
@@ -116,19 +135,35 @@ void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
 	}
 	
 }
-
-void Player::pushBox(Box *box[], int x, int y) //开始推箱子
-{
-	for (int i = 0; i < Box::box_count;i++) {
-		if (box[i]->x==x&&box[i]->y==y)
+void Player::findBox(Box *box[], int x, int y) {
+	for (int i = 0; i < Box::box_count; i++) {
+		if (box[i]->x == x&&box[i]->y == y)
 		{
 			this->box = box[i];
 			break;
 		}
 	}
+}
+void Player::pushBox(Box *box[], int x, int y) //开始推箱子
+{
+	findBox(box, x, y);
 	this->box->isMoving = true;
 }
-
+void Player::stopBox(Box *box[], int x, int y) {
+	findBox(box,x,y);
+	boxStopTime = *timer;
+	if (!this->box->isMoving) {
+		this->box->isMoving = true;
+	std::thread t(&Player::stopBoxThread, this);  //启动线程通知提醒
+	t.detach();
+	}
+}
+void Player::stopBoxThread() {
+	Sleep(100);
+	this->box->isMoving = false;
+	this->box = NULL;
+	
+}
 void Player::moveUP()
 {
 	upAnimation->Play();
@@ -255,7 +290,7 @@ void Player::moveLeft()
 	upAnimation->Play();
 	//开始移动
 	bool isEnd = false;
-	map[y][x + 2] == 4 ? isEnd = true : isEnd = false; //判断左两步是不是终点
+	map[y][x - 2] == 4 ? isEnd = true : isEnd = false; //判断左两步是不是终点
 	while (sence_x > (x - 1)*map_side)
 	{
 		if (*timer - renderTime > 0.1) {

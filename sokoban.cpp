@@ -5,6 +5,7 @@
 **
 ** hge_tut01 - Minimal HGE application
 */
+ //__vsnprintf，该符号在函数 "public: void __cdecl hgeFont::printf(float,float,int,char const *,...)" (? printf@hgeFont@@QAAXMMHPBDZZ) 中被引用	sokoban	C : \Users\huanzi\Source\Repos\Sokoban\hgehelp.lib(hgefont.obj)	1
 
 
 #include "hge.h"
@@ -15,6 +16,7 @@
 #include "Utils.h"
 #include <thread> 
 #include"Box.h"
+#include <hgefont.h>
 enum Map_TYPE //地图类型枚举
 {
 	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX, MAP_END
@@ -22,26 +24,24 @@ enum Map_TYPE //地图类型枚举
 enum GameState{ Start, Game }g_GameState;
 //地图
 int const map_side = 64;
-int const map_height = 10;
-int const map_width = 15;
+int const map_height = 8;
+int const map_width = 12;
+int const map_off_x = 0;
+int const map_off_y = 0;
 int map[10][15] = {
-	{ 0,0,0,0,1,3,0,0,0,0,0,0,0,0,0 },
-	{ 2,0,0,0,3,0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,4,0,0,0,0,0,0,0,0,0,0 },
-	{ 2,2,2,2,4,0,2,2,2,2,2,2,2,2,2},
-	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-	{ 0,0,0,0,4,0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-	{ 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0 }
+	{ 2,2,2,2,2,2,2,2,2,5,5,5,5,5,5},
+	{ 2,1,0,4,0,0,0,0,2,5,5,5,5,5,5 },
+	{ 2,0,0,3,0,0,0,0,2,5,5,5,5,5,5 },
+	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
+	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
+	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
+	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
+	{ 2,2,2,2,2,2,2,2,2,5,5,5,5,5,5 }
 };
 HGE *hge = 0;
 //人物(24 * 58)
 Player *player;
-hgeSprite *sprite_player[10];
 HTEXTURE tex_players;
-hgeAnimation *player_animation;
 int player_index = 0; //图片索引
 //地板(64 * 64)
 hgeSprite *sprite_floor[10];
@@ -58,18 +58,21 @@ hgeSprite *sprite_point;
 float point_x, point_y;
 //全局计时器
 float timer;
-bool FrameFunc()
-{
-	timer=hge->Timer_GetTime();//每次调用记录时间，让移动线程知道时间
-	hge->Input_GetMousePos(&point_x,&point_y);
+float updateTime=0; //上次更新时间
+//背景
+hgeSprite *sprite_backgroud;
+//字体
+hgeFont *font;
+bool GameUpdate() {
+	
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
 	{
-		player->move(DIRE_UP,&timer,box, map);
+		player->move(DIRE_UP, &timer, box, map);
 	}
 	if (hge->Input_GetKeyState(HGEK_D))
 	{
-		player->move(DIRE_RIGHT, &timer,box, map);
+		player->move(DIRE_RIGHT, &timer, box, map);
 	}
 	if (hge->Input_GetKeyState(HGEK_S))
 	{
@@ -79,29 +82,53 @@ bool FrameFunc()
 	{
 		player->move(DIRE_LEFT, &timer, box, map);
 	}
-	player->update(1);
+	if (timer - updateTime > 0.1)
+	{
+		player->update(100);
+	}
+	return false;
+}
+bool StartUpdate() {
+	return false;
+}
+bool FrameFunc()
+{
+	timer=hge->Timer_GetTime();//每次调用记录时间，让移动线程知道时间
+	hge->Input_GetMousePos(&point_x, &point_y);
+	switch (g_GameState)
+	{
+	case Start:
+		return StartUpdate();
+	case Game:
+		return GameUpdate();
+	}
 	return false;
 }
 //开始界面渲染
-void startRender() {
-
+bool startRender() {
+	return false;
 }
 //渲染地图
 void RendMap() {
+	//sprite_backgroud->Render(0, 0);
 	for (int i = 0; i < map_height; i++)
 		for (int j = 0; j < map_width; j++)
 		{
-			sprite_floor[2]->Render(j * map_side, i* map_side);
+			if (map[i][j] == 5) continue;
+			float x = j * map_side + map_off_x, y = i* map_side + map_off_y;
+			map[i][j] == 2 ? sprite_wall[0]->Render(x,y ) : sprite_floor[2]->Render(x, y);
+			if (map[i][j]==4) sprite_end_up[0]->Render(x, y);
 			switch (map[i][j])
 			{
 			case 0:
-				
+				sprite_floor[2]->Render(x, y);
 				break;
 			case 2:
-				sprite_wall[0]->Render(j * map_side, i* map_side);
+				sprite_wall[0]->Render(x, y);
 				break;
 			case 4:
-				sprite_end_up[0]->Render(j * map_side, i* map_side);
+				sprite_floor[2]->Render(x, y);
+				sprite_end_up[0]->Render(x, y);
 				break;
 			}
 		}
@@ -118,10 +145,10 @@ void GameRender(){
 		//渲染箱子
 		for (int i=0;i<Box::box_count;i++)
 		{
-			box[i]->Render();
+			box[i]->Render(map_off_x,map_off_y);
 		}
 		//渲染人物
-		player->Render();
+		player->Render(map_off_x,map_off_y);
 		break;
 	}
 
@@ -159,7 +186,7 @@ void level_init() {  //关卡初始化
 				break;
 			case MAP_BOX: //构造箱子
 				int count = Box::box_count;
-				box[count] = new Box(sprite_box[0], sprite_box[1], map_side);
+				box[count] = new Box(sprite_box[0], sprite_box[1],sprite_box[2], map_side);
 				box[Box::box_count - 1]->setX(j);
 				box[Box::box_count - 1]->setY(i);
 				break;
@@ -169,7 +196,7 @@ void level_init() {  //关卡初始化
 void init() { //初始化游戏系统
 	
 	//加载资源
-	
+	//font = new hgeFont("res/font/font1.fnt");
 	tex_players = hge->Texture_Load("res/image/players.png");
 	sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
 	sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
@@ -186,7 +213,8 @@ void init() { //初始化游戏系统
 
 	sprite_end_up[0] = new hgeSprite(hge->Texture_Load("res/image/EndPoint_Blue.png"), 0, 0, 64, 64);
 	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
-	g_GameState=Game;
+	sprite_backgroud = new hgeSprite(hge->Texture_Load("res/image/background.jpg"), 0, 0, 1000,1000);
+	g_GameState=Start;
 	level_init();
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)

@@ -19,6 +19,8 @@ private:
 	int speed; //移动速度
 	int dire;//当前方向
 	float renderTime = 0; //上次渲染时间
+	float updateTime = 0; //上次更新动画时间
+	float boxStopTime; //箱子停止时间
 	float *timer;
 	bool isMoving = 0;
 	Box *box=NULL;
@@ -34,10 +36,13 @@ public:
 	int getX();
 	int getY();
 	void setDire(DIRE dire);
-	void Render(); //渲染玩家
+	void Render(float,float); //渲染玩家
 	void update(int);
 	void move(DIRE dire,float *timer, Box *box[],int map[10][15]);
+	void findBox(Box * box[], int x, int y);
 	void pushBox(Box *box[],int x,int y);
+	void stopBox(Box * box[], int x, int y);
+	void stopBoxThread();
 	~Player();
 };
 

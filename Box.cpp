@@ -3,11 +3,12 @@
 
 int  Box::box_count = 0;
 
-Box::Box(hgeSprite *sprite, hgeSprite *sprite_moving,int map_side)
+Box::Box(hgeSprite *sprite, hgeSprite *sprite_moving, hgeSprite *sprite_done,int map_side)
 {
 	this->map_side = map_side;
 	this->sprite = sprite;
 	this->sprite_moving = sprite_moving;
+	this->sprite_done = sprite_done;
 	box_count++;
 }
 void Box::setX(int x) {
@@ -19,13 +20,15 @@ void Box::setY(int y) {
 	sence_y = y*map_side;
 }
 
-void Box::Render()
+void Box::Render(float off_x,float off_y)
 {
 	
 	if (isMoving)
-		this->sprite_moving->Render(sence_x, sence_y);
+		this->sprite_moving->Render(sence_x+off_x, sence_y+off_y);
+	else if (isDone)
+		this->sprite_done->Render(sence_x+off_x, sence_y+off_y);
 	else
-		this->sprite->Render(sence_x,sence_y);
+		this->sprite->Render(sence_x+off_x,sence_y+off_y);
 }
 
 Box::~Box()
