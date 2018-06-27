@@ -18,27 +18,22 @@
 #include"Box.h"
 #include <hgefont.h>
 #include <hgeguictrls.h>
+#include <iostream>
+#include "MyButton.h"
+#include "LoadingUI.h"
+void level_init();
 enum Map_TYPE //地图类型枚举
 {
 	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX, MAP_END
 };
-enum GameState{ Start, Game }g_GameState;
+enum GameState{ Start, Game,Win,Loading }g_GameState;
 //地图
 int const map_side = 64;
 int const map_height = 8;
-int const map_width = 12;
+int const map_width = 9;
 int const map_off_x = 0;
 int const map_off_y = 0;
-int map[10][15] = {
-	{ 2,2,2,2,2,2,2,2,2,5,5,5,5,5,5},
-	{ 2,1,0,4,0,0,0,0,2,5,5,5,5,5,5 },
-	{ 2,0,0,3,0,0,0,0,2,5,5,5,5,5,5 },
-	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
-	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
-	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
-	{ 2,0,0,0,0,0,0,0,2,5,5,5,5,5,5 },
-	{ 2,2,2,2,2,2,2,2,2,5,5,5,5,5,5 }
-};
+int map[8][9] = {0};
 HGE *hge = 0;
 //人物(24 * 58)
 Player *player;
@@ -67,14 +62,57 @@ hgeSprite *sprite_start;
 hgeSprite *sprite_man;
 float man_x = 100, man_y = 200;
 float man_time=0;
+//进度条
+HTEXTURE tex_loadings;
+hgeSprite *sprite_loading[6];
+LoadingUI *loading;
 int man_status=0; //上升
 //字体
 hgeFont *font;
 hgeGUIText *text;
 //按钮
-hgeGUIButton *but_start;
+//开始按钮点击
+void start_click() {
+	//Utils::alertInt(4);
+	g_GameState = Loading;
+}
+MyButton *but;
+
+//
+//开始游戏
+hgeSprite * btn_start[2];
+bool btn_statu = 0;
+//当前关卡
+int level;
+void ReadMap(int num) //读取地图
+{
+	char path[20] = "res/map/";
+	char c[20] = "";
+	itoa(num, c, 10);
+	char c1[10] = ".map";
+	strcat(c, c1);
+	strcat(path, c);
+	FILE *pflie = fopen(path, "rb");
+	//文件的写
+	fread(&map[0][0], sizeof(int), 8 * 9, pflie);
+	fclose(pflie);
+}
+bool isWin() {
+	int i;
+	for ( i=0;i<Box::box_count;i++)
+	{
+		if (!box[i]->getDone())break;
+	}
+	if (i == Box::box_count) return true;
+	else return false;
+}
+void doWin() { //游戏胜利
+	//g_GameState = Win;
+	level++;
+	level_init();
+}
+
 bool GameUpdate() {
-	
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
 	{
@@ -92,10 +130,7 @@ bool GameUpdate() {
 	{
 		player->move(DIRE_LEFT, &timer, box, map);
 	}
-	if (timer - updateTime > 0.1)
-	{
-		player->update(100);
-	}
+	if (isWin()) doWin();
 	return false;
 }
 bool StartUpdate() {
@@ -105,11 +140,20 @@ bool StartUpdate() {
 		if (man_y == 200) man_status = 0;
 		man_status?man_y++:man_y--;
 	}
-	if (but_start->GetState())
-	{
-		Utils::alertInt(1);
+	if (hge->Input_KeyDown(HGEK_LBUTTON)) {
+		but->keyDown(point_x,point_y,hge->Timer_GetTime());
 	}
-	but_start->Update(hge->Timer_GetDelta());
+	return false;
+}
+bool LoadingUpdate() {
+	
+	if (hge->Timer_GetTime() - loading->getUpdateTime() > 0.7) {
+		loading->Update();
+		if (!loading->isLoading()) //加载完毕
+			g_GameState = Game;
+		loading->setUpdateTime(hge->Timer_GetTime());
+	}
+	
 	return false;
 }
 bool FrameFunc()
@@ -122,25 +166,22 @@ bool FrameFunc()
 		return StartUpdate();
 	case Game:
 		return GameUpdate();
+	case Loading:
+		return LoadingUpdate();
 	}
 	return false;
 }
 //开始界面渲染
 void startRender() {
-	font->printf(100, 100, HGETEXT_CENTER, "hello");
-	font->Render(100,100, HGETEXT_LEFT, "hello");
-	text->Render();
-	sprite_start->Render(0, 0);
-	sprite_man->Render(man_x,man_y);
-	but_start->Render();
+ 	sprite_start->Render(0, 0);
+ 	sprite_man->Render(man_x,man_y);
+	but->Render();
 }
 //渲染地图
-void RendMap() {
-	//sprite_backgroud->Render(0, 0);
+void RenderMap() {
 	for (int i = 0; i < map_height; i++)
 		for (int j = 0; j < map_width; j++)
 		{
-			if (map[i][j] == 5) continue;
 			float x = j * map_side + map_off_x, y = i* map_side + map_off_y;
 			map[i][j] == 2 ? sprite_wall[0]->Render(x,y ) : sprite_floor[2]->Render(x, y);
 			if (map[i][j]==4) sprite_end_up[0]->Render(x, y);
@@ -165,9 +206,13 @@ void GameRender(){
 	case Start:
 		startRender();
 		break;
+	case Loading:
+		startRender();
+		loading->Render();
+		break;
 	case Game:
 		//渲染地图
-		RendMap();
+		RenderMap();
 		//渲染箱子
 		for (int i=0;i<Box::box_count;i++)
 		{
@@ -194,8 +239,7 @@ bool RenderFunc()
 void level_init() {  //关卡初始化
 	Box::clear();
 	//初始化地图
-// 	map[1][1] = MAP_WALL;
-// 	map[2][2] = MAP_PLAYER;
+	ReadMap(level);
 	//构建对象
 	for (int i = 0; i < map_height; i++)
 		for (int j = 0; j < map_width; j++)
@@ -219,7 +263,7 @@ void level_init() {  //关卡初始化
 		}
 }
 void init() { //初始化游戏系统
-	
+
 	//加载资源
 	font = new hgeFont("res/font/font1.fnt");
 	text = new hgeGUIText(0,10,10,10,10,font);
@@ -241,12 +285,26 @@ void init() { //初始化游戏系统
 
 	sprite_end_up[0] = new hgeSprite(hge->Texture_Load("res/image/EndPoint_Blue.png"), 0, 0, 64, 64);
 	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
-	sprite_backgroud = new hgeSprite(hge->Texture_Load("res/image/background.jpg"), 0, 0, 1000,1000);
+	
 	sprite_start = new hgeSprite(hge->Texture_Load("res/image/start.jpg"), 0, 0,768, 512);
 	sprite_man = new hgeSprite(hge->Texture_Load("res/image/man.png"), 0, 0, 82, 130);
-	but_start = new hgeGUIButton(0,20,20,100,100,tex_players,20,20);
-	but_start->SetMode(true);
+	//按钮加载
+	btn_start[0]= new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 30, 60);
+	btn_start[1] = new hgeSprite(hge->Texture_Load(""), 0, 0, 30, 60);
+	but = new MyButton(200,450,btn_start[0],btn_start[1],start_click);
+	
+	sprite_box[3] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
+	tex_loadings = hge->Texture_Load("res/image/loading.png");
+	sprite_loading[0] = new hgeSprite(tex_loadings, 45,40, 70, 70);
+	sprite_loading[1] = new hgeSprite(tex_loadings, 45+70+2, 40, 70, 70);
+	sprite_loading[2] = new hgeSprite(tex_loadings, 45, 40+70+5, 70, 70);
+	sprite_loading[3] = new hgeSprite(tex_loadings, 45 +70 + 2, 40 + 70 + 5, 70, 70);
+	sprite_loading[4] = new hgeSprite(tex_loadings, 45, 40 +70*2+12, 70, 70);
+	sprite_loading[5] = new hgeSprite(tex_loadings, 45 +70+2, 40+70 * 2 + 15, 70, 70);
+	loading = new LoadingUI(280,250,sprite_loading);
 	g_GameState=Start;
+	//读取关卡
+	level = 3;
 	level_init();
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -263,7 +321,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// Default window size is 800x600
 	hge->System_SetState(HGE_WINDOWED, true);
 	hge->System_SetState(HGE_SCREENHEIGHT, map_height*map_side);
-	hge->System_SetState(HGE_SCREENWIDTH, map_width*map_side);
+	hge->System_SetState(HGE_SCREENWIDTH, (map_width+3)*map_side);
 	hge->System_SetState(HGE_FPS, 60); //执行60次为一秒
 	 // 是否使用声音
 	hge->System_SetState(HGE_USESOUND, false);

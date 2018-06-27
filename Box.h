@@ -13,6 +13,7 @@ private:
 	bool isMoving = 0;
 	bool isDone=0; //是否完成
 public:
+	bool getDone();
 	static int box_count;       //记录箱子个数
 	static void clear();
 	Box(hgeSprite * sprite, hgeSprite * sprite_moving, hgeSprite * sprite_done, int map_side);

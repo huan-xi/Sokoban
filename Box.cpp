@@ -19,7 +19,6 @@ void Box::setY(int y) {
 	this->y = y;
 	sence_y = y*map_side;
 }
-
 void Box::Render(float off_x,float off_y)
 {
 	
@@ -44,6 +43,11 @@ int Box::getX()
 int Box::getY()
 {
 	return y;
+}
+
+bool Box::getDone()
+{
+	return this->isDone;
 }
 
 void Box::clear()

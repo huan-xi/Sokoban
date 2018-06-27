@@ -129,6 +129,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="LoadingUI.cpp" />
+    <ClCompile Include="MyButton.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="sokoban.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /QIfist   /QIfist </AdditionalOptions>
@@ -140,6 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
+    <ClInclude Include="LoadingUI.h" />
+    <ClInclude Include="MyButton.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Utils.h" />

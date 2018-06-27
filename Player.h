@@ -1,4 +1,3 @@
-#include <hgeanim.h>
 #include <hgesprite.h>
 #include <thread>
 #include "Box.h"
@@ -12,7 +11,11 @@ enum DIRE
 class Player 
 {
 private:
-	hgeAnimation *upAnimation;
+	hgeSprite *rightAnimation[4];
+	hgeSprite *upAnimation[4];
+	hgeSprite *downAnimation[4];
+	hgeSprite *leftAnimation[4];
+	int spr_index;//当前状态精灵索引
 	int map_side;//地图坐标边长
 	int x, y;  //地图坐标
 	float sence_x, sence_y;//场景坐标
@@ -24,7 +27,7 @@ private:
 	float *timer;
 	bool isMoving = 0;
 	Box *box=NULL;
-	int (*map)[15];
+	int (*map)[9];
 	void moveUP();
 	void moveRight();
 	void moveDown();
@@ -38,7 +41,7 @@ public:
 	void setDire(DIRE dire);
 	void Render(float,float); //渲染玩家
 	void update(int);
-	void move(DIRE dire,float *timer, Box *box[],int map[10][15]);
+	void move(DIRE dire,float *timer, Box *box[],int map[8][9]);
 	void findBox(Box * box[], int x, int y);
 	void pushBox(Box *box[],int x,int y);
 	void stopBox(Box * box[], int x, int y);

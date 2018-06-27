@@ -3,7 +3,26 @@
 #include <ctime>
 Player::Player(HTEXTURE tex,int map_side)
 {
-	this->upAnimation =new hgeAnimation(tex, 3, 60, 0, 0, 55, 80);
+	this->rightAnimation[0] =new hgeSprite(tex,0,0,64,64);
+	this->rightAnimation[1] = new hgeSprite(tex, 64, 0, 64, 64);
+	this->rightAnimation[2] = new hgeSprite(tex, 64*2, 0, 64, 64);
+	this->rightAnimation[3] = new hgeSprite(tex, 64*3, 0, 64, 64);
+	
+	this->upAnimation[0] = new hgeSprite(tex, 64*4, 0, 64, 64);
+	this->upAnimation[1] = new hgeSprite(tex, 64*5, 0, 64, 64);
+	this->upAnimation[2] = new hgeSprite(tex, 64 * 6, 0, 64, 64);
+	this->upAnimation[3] = new hgeSprite(tex, 64 * 7, 0, 64, 64);
+
+	this->downAnimation[0] = new hgeSprite(tex, 64 * 8, 0, 64, 64);
+	this->downAnimation[1] = new hgeSprite(tex, 64 * 9, 0, 64, 64);
+	this->downAnimation[2] = new hgeSprite(tex, 64 * 10, 0, 64, 64);
+	this->downAnimation[3] = new hgeSprite(tex, 64 * 11, 0, 64, 64);
+
+	this->leftAnimation[0] = new hgeSprite(tex, 64 * 12, 0, 64, 64);
+	this->leftAnimation[1] = new hgeSprite(tex, 64 * 13, 0, 64, 64);
+	this->leftAnimation[2] = new hgeSprite(tex, 64 * 14, 0, 64, 64);
+	this->leftAnimation[3] = new hgeSprite(tex, 64 * 15, 0, 64, 64);
+	spr_index = 0;
 	this->map_side = map_side;
 	this->speed = 16;
 }
@@ -34,21 +53,27 @@ void Player::setDire(DIRE dire)
 void Player::Render(float off_x,float off_y)//渲染当前动画
 {
 	switch (dire) {
-	case DIRE_UP :
-			this->upAnimation->Render(sence_x+off_x, sence_y-10+off_y);
-			break;
-	default:
-		this->upAnimation->Render(sence_x+off_x, sence_y-10+off_y);
+	case DIRE_UP:
+		if (spr_index > 3) spr_index = 0;
+		this->upAnimation[spr_index]->Render(sence_x + off_x, sence_y + off_y);
+		break;
+	case DIRE_RIGHT:
+		if (spr_index > 3) spr_index = 0;
+		this->rightAnimation[spr_index]->Render(sence_x + off_x, sence_y + off_y);
+		break;
+	case DIRE_DOWN:
+		if (spr_index > 3) spr_index = 0;
+		this->downAnimation[spr_index]->Render(sence_x + off_x, sence_y + off_y);
+		break;
+	case DIRE_LEFT:
+		if (spr_index > 3) spr_index = 0;
+		this->leftAnimation[spr_index]->Render(sence_x + off_x, sence_y + off_y);
+		break;
 	}
-	
 }
 
-void Player::update(int time)
-{
-	this->upAnimation->Update(time);
-}
 
-void Player::move(DIRE dire,float *timer,Box *box[],int map[10][15])
+void Player::move(DIRE dire,float *timer,Box *box[],int map[8][9])
 {
 	this->map = map;
 	if (!isMoving) {
@@ -166,7 +191,6 @@ void Player::stopBoxThread() {
 }
 void Player::moveUP()
 {
-	upAnimation->Play();
 	//开始移动
 	//记录移动时地图值
 	bool isEnd;
@@ -175,6 +199,7 @@ void Player::moveUP()
 	{
 		if (*timer - renderTime > 0.1) {
 			this->sence_y -= speed;
+			this->spr_index++;
 			if (box)
 			{
 				box->sence_y = this->sence_y - map_side;
@@ -187,7 +212,6 @@ void Player::moveUP()
 	y--;
 	sence_y = y*map_side;
 	isMoving = false;
-	upAnimation->Stop();
 	if (box) {//箱子移动结束
 		if (box->isDone) {
 			map[box->y][box->x] = 4;
@@ -207,7 +231,6 @@ void Player::moveUP()
 
 void Player::moveRight()
 {
-	upAnimation->Play();
 	//开始移动
 	//记录移动时地图值
 	bool isEnd=false;
@@ -216,6 +239,8 @@ void Player::moveRight()
 	{
 		if (*timer - renderTime > 0.1) {
 			this->sence_x += speed;
+			//Utils::alertInt(this->spr_index);
+			this->spr_index++;
 			if (box)
 			{
 				box->sence_x=this->sence_x+map_side;
@@ -227,7 +252,6 @@ void Player::moveRight()
 	//移动结束
 	x++;
 	isMoving = false;
-	upAnimation->Stop();
 	if (box) {//箱子移动结束
 		if (box->isDone) {
 			map[box->y][box->x] = 4;       //脱离终点
@@ -247,7 +271,6 @@ void Player::moveRight()
 
 void Player::moveDown()
 {
-	upAnimation->Play();
 	//开始移动
 	//记录移动时地图值
 	bool isEnd;
@@ -256,6 +279,7 @@ void Player::moveDown()
 	{
 		if (*timer - renderTime > 0.1) {
 			this->sence_y += speed;
+			this->spr_index++;
 			if (box)
 			{
 				box->sence_y = this->sence_y + map_side;
@@ -267,7 +291,6 @@ void Player::moveDown()
 	//移动结束
 	y++;
 	isMoving = false;
-	upAnimation->Stop();
 	if (box) {//箱子移动结束
 		if (box->isDone) {
 			map[box->y][box->x] = 4;
@@ -287,7 +310,6 @@ void Player::moveDown()
 }
 void Player::moveLeft()
 {
-	upAnimation->Play();
 	//开始移动
 	bool isEnd = false;
 	map[y][x - 2] == 4 ? isEnd = true : isEnd = false; //判断左两步是不是终点
@@ -295,6 +317,7 @@ void Player::moveLeft()
 	{
 		if (*timer - renderTime > 0.1) {
 			this->sence_x -= speed;
+			this->spr_index++;
 			if (box)        //如果有箱子，箱子和它一起启动
 			{
 				box->sence_x = this->sence_x - map_side;
@@ -307,7 +330,6 @@ void Player::moveLeft()
 	x--;
 	sence_x = x*map_side;
 	isMoving = false;
-	upAnimation->Stop();
 	if (box) {//箱子移动结束
 		if (box->isDone) {
 			map[box->y][box->x] = 4;       //脱离终点
@@ -327,4 +349,7 @@ void Player::moveLeft()
 Player::~Player()
 {
 	delete(upAnimation);
+	delete(downAnimation);
+	delete(leftAnimation);
+	delete(rightAnimation);
 }
