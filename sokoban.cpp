@@ -17,6 +17,7 @@
 #include <thread> 
 #include"Box.h"
 #include <hgefont.h>
+#include <hgeguictrls.h>
 enum Map_TYPE //地图类型枚举
 {
 	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX, MAP_END
@@ -61,8 +62,17 @@ float timer;
 float updateTime=0; //上次更新时间
 //背景
 hgeSprite *sprite_backgroud;
+hgeSprite *sprite_start;
+//人物动画
+hgeSprite *sprite_man;
+float man_x = 100, man_y = 200;
+float man_time=0;
+int man_status=0; //上升
 //字体
 hgeFont *font;
+hgeGUIText *text;
+//按钮
+hgeGUIButton *but_start;
 bool GameUpdate() {
 	
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
@@ -89,6 +99,17 @@ bool GameUpdate() {
 	return false;
 }
 bool StartUpdate() {
+	if (hge->Timer_GetTime()-man_time>0.2)
+	{
+		if (man_y == 70) man_status = 1;
+		if (man_y == 200) man_status = 0;
+		man_status?man_y++:man_y--;
+	}
+	if (but_start->GetState())
+	{
+		Utils::alertInt(1);
+	}
+	but_start->Update(hge->Timer_GetDelta());
 	return false;
 }
 bool FrameFunc()
@@ -105,8 +126,13 @@ bool FrameFunc()
 	return false;
 }
 //开始界面渲染
-bool startRender() {
-	return false;
+void startRender() {
+	font->printf(100, 100, HGETEXT_CENTER, "hello");
+	font->Render(100,100, HGETEXT_LEFT, "hello");
+	text->Render();
+	sprite_start->Render(0, 0);
+	sprite_man->Render(man_x,man_y);
+	but_start->Render();
 }
 //渲染地图
 void RendMap() {
@@ -151,14 +177,13 @@ void GameRender(){
 		player->Render(map_off_x,map_off_y);
 		break;
 	}
-
 }
 bool RenderFunc()
 {
 	
 	hge->Gfx_BeginScene();
 	// Clear screen with black color
-	hge->Gfx_Clear(0);
+	hge->Gfx_Clear(100);
 	
 	GameRender();
 	//渲染鼠标.
@@ -196,7 +221,10 @@ void level_init() {  //关卡初始化
 void init() { //初始化游戏系统
 	
 	//加载资源
-	//font = new hgeFont("res/font/font1.fnt");
+	font = new hgeFont("res/font/font1.fnt");
+	text = new hgeGUIText(0,10,10,10,10,font);
+	font->SetColor(100);
+	font->SetScale(0.2);
 	tex_players = hge->Texture_Load("res/image/players.png");
 	sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
 	sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
@@ -214,6 +242,10 @@ void init() { //初始化游戏系统
 	sprite_end_up[0] = new hgeSprite(hge->Texture_Load("res/image/EndPoint_Blue.png"), 0, 0, 64, 64);
 	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
 	sprite_backgroud = new hgeSprite(hge->Texture_Load("res/image/background.jpg"), 0, 0, 1000,1000);
+	sprite_start = new hgeSprite(hge->Texture_Load("res/image/start.jpg"), 0, 0,768, 512);
+	sprite_man = new hgeSprite(hge->Texture_Load("res/image/man.png"), 0, 0, 82, 130);
+	but_start = new hgeGUIButton(0,20,20,100,100,tex_players,20,20);
+	but_start->SetMode(true);
 	g_GameState=Start;
 	level_init();
 }
