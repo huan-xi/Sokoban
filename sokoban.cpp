@@ -34,10 +34,13 @@ int const map_width = 9;
 int const map_off_x = 0;
 int const map_off_y = 0;
 int map[8][9] = {0};
+int map_back[200][8][9]; //记录回退地图
+int step = 0; //当前步数
 HGE *hge = 0;
 //人物(24 * 58)
-Player *player;
+Player *player=NULL;
 HTEXTURE tex_players;
+DIRE dir;
 int player_index = 0; //图片索引
 //地板(64 * 64)
 hgeSprite *sprite_floor[10];
@@ -71,16 +74,26 @@ int man_status=0; //上升
 hgeFont *font;
 hgeGUIText *text;
 //按钮
+hgeSprite * btn_start_spr[2];
+MyButton *btn_start;
+hgeSprite * btn_back_spr[2]; //回退按钮
+MyButton *btn_back;
+hgeSprite * btn_restart_spr[2]; //从新开始按钮
+MyButton *btn_restart;
 //开始按钮点击
 void start_click() {
-	//Utils::alertInt(4);
-	g_GameState = Loading;
+	g_GameState = Loading;  //进入加载状态
 }
-MyButton *but;
-
-//
+bool isBack = false;  //记录是否是回退状态，如果是关卡初始化使用回退地图
+void back_click() {
+	isBack = true;
+	level_init();
+	isBack = false;
+}
+void restart_click() {
+	level_init();
+}
 //开始游戏
-hgeSprite * btn_start[2];
 bool btn_statu = 0;
 //当前关卡
 int level;
@@ -98,13 +111,16 @@ void ReadMap(int num) //读取地图
 	fclose(pflie);
 }
 bool isWin() {
-	int i;
-	for ( i=0;i<Box::box_count;i++)
-	{
-		if (!box[i]->getDone())break;
+	if (Box::box_count!=0) {
+		int i;
+		for ( i=0;i<Box::box_count;i++)
+		{
+			if (!box[i]->getDone())break;
+		}
+		if (i == Box::box_count) return true;
+		else return false;
 	}
-	if (i == Box::box_count) return true;
-	else return false;
+	return false;
 }
 void doWin() { //游戏胜利
 	//g_GameState = Win;
@@ -116,32 +132,36 @@ bool GameUpdate() {
 	if (hge->Input_GetKeyState(HGEK_ESCAPE)) return true;
 	if (hge->Input_GetKeyState(HGEK_W))
 	{
-		player->move(DIRE_UP, &timer, box, map);
+		player->move(DIRE_UP, &timer, box, map,map_back,&step);
 	}
 	if (hge->Input_GetKeyState(HGEK_D))
 	{
-		player->move(DIRE_RIGHT, &timer, box, map);
+		player->move(DIRE_RIGHT, &timer, box, map, map_back, &step);
 	}
 	if (hge->Input_GetKeyState(HGEK_S))
 	{
-		player->move(DIRE_DOWN, &timer, box, map);
+		player->move(DIRE_DOWN, &timer, box, map, map_back, &step);
 	}
 	if (hge->Input_GetKeyState(HGEK_A))
 	{
-		player->move(DIRE_LEFT, &timer, box, map);
+		player->move(DIRE_LEFT, &timer, box, map, map_back, &step);
+	}
+	if (hge->Input_KeyDown(HGEK_LBUTTON)) {
+		btn_restart->keyDown(point_x, point_y, hge->Timer_GetTime());
+		btn_back->keyDown(point_x, point_y, hge->Timer_GetTime());
 	}
 	if (isWin()) doWin();
 	return false;
 }
 bool StartUpdate() {
-	if (hge->Timer_GetTime()-man_time>0.2)
+	if (hge->Timer_GetTime()-man_time>0.2) //人物上下移动特效
 	{
 		if (man_y == 70) man_status = 1;
 		if (man_y == 200) man_status = 0;
 		man_status?man_y++:man_y--;
 	}
 	if (hge->Input_KeyDown(HGEK_LBUTTON)) {
-		but->keyDown(point_x,point_y,hge->Timer_GetTime());
+		btn_start->keyDown(point_x,point_y,hge->Timer_GetTime());
 	}
 	return false;
 }
@@ -175,7 +195,7 @@ bool FrameFunc()
 void startRender() {
  	sprite_start->Render(0, 0);
  	sprite_man->Render(man_x,man_y);
-	but->Render();
+	btn_start->Render();
 }
 //渲染地图
 void RenderMap() {
@@ -220,6 +240,9 @@ void GameRender(){
 		}
 		//渲染人物
 		player->Render(map_off_x,map_off_y);
+		//渲染按钮
+		btn_restart->Render();
+		btn_back->Render();
 		break;
 	}
 }
@@ -239,27 +262,44 @@ bool RenderFunc()
 void level_init() {  //关卡初始化
 	Box::clear();
 	//初始化地图
-	ReadMap(level);
+	if (step == 0) 
+		for (int i = 0; i < map_height; i++) //记录第零步
+			for (int j = 0; j < map_width; j++)
+				map_back[step][i][j]= map[i][j];
+	if (isBack) {
+		if (step - 1 >= 0) {
+			step--;
+		for (int i = 0; i < map_height; i++)
+			for (int j = 0; j < map_width; j++)
+			{
+				map[i][j] = map_back[step][i][j];
+			}
+		}
+	}
+	else  ReadMap(level);    //不是回退就读关卡地图是就读历史地图
+	
 	//构建对象
+	Box::box_count = 0;
 	for (int i = 0; i < map_height; i++)
 		for (int j = 0; j < map_width; j++)
 		{
-			switch (map[i][j])
-			{	
-			case MAP_PLAYER: //构建玩家	
-				player = new Player(tex_players, map_side);
-				player->setDire(DIRE_UP);         //关卡开始时玩家的方向
-				player->setX(j);
-				player->setY(i);
-				map[i][j] = 0; //不用记录玩家位置
-				break;
-			case MAP_BOX: //构造箱子
-				int count = Box::box_count;
-				box[count] = new Box(sprite_box[0], sprite_box[1],sprite_box[2], map_side);
-				box[Box::box_count - 1]->setX(j);
-				box[Box::box_count - 1]->setY(i);
-				break;
-			}
+				switch (map[i][j])
+				{
+				case MAP_PLAYER: //构建玩家	
+					if (player != NULL) dir = player->getDir();
+					player = new Player(tex_players, map_side);
+					player->setDire(dir);         //关卡开始时玩家的方向
+					player->setX(j);
+					player->setY(i);
+					map[i][j] = 0; //不用记录玩家位置
+					break;
+				case MAP_BOX: //构造箱子
+					int count = Box::box_count;
+					box[count] = new Box(sprite_box[0], sprite_box[1], sprite_box[2], map_side);
+					box[Box::box_count - 1]->setX(j);
+					box[Box::box_count - 1]->setY(i);
+					break;
+				}
 		}
 }
 void init() { //初始化游戏系统
@@ -289,10 +329,13 @@ void init() { //初始化游戏系统
 	sprite_start = new hgeSprite(hge->Texture_Load("res/image/start.jpg"), 0, 0,768, 512);
 	sprite_man = new hgeSprite(hge->Texture_Load("res/image/man.png"), 0, 0, 82, 130);
 	//按钮加载
-	btn_start[0]= new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 30, 60);
-	btn_start[1] = new hgeSprite(hge->Texture_Load(""), 0, 0, 30, 60);
-	but = new MyButton(200,450,btn_start[0],btn_start[1],start_click);
+	btn_start_spr[0] = new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 30, 60);
+	btn_start_spr[1] = new hgeSprite(hge->Texture_Load(""), 0, 0, 30, 60);
+	btn_start = new MyButton(200,450,btn_start_spr[0],btn_start_spr[1],start_click);
 	
+	btn_restart= new MyButton(600, 450, btn_start_spr[0], btn_start_spr[1], restart_click);
+	btn_back = new MyButton(700, 450, btn_start_spr[0], btn_start_spr[1], back_click);
+
 	sprite_box[3] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
 	tex_loadings = hge->Texture_Load("res/image/loading.png");
 	sprite_loading[0] = new hgeSprite(tex_loadings, 45,40, 70, 70);
@@ -304,7 +347,7 @@ void init() { //初始化游戏系统
 	loading = new LoadingUI(280,250,sprite_loading);
 	g_GameState=Start;
 	//读取关卡
-	level = 3;
+	level = 1;
 	level_init();
 }
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)

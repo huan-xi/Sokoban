@@ -73,12 +73,14 @@ void Player::Render(float off_x,float off_y)//渲染当前动画
 }
 
 
-void Player::move(DIRE dire,float *timer,Box *box[],int map[8][9])
+void Player::move(DIRE dire,float *timer,Box *box[],int map[8][9],int map_back[][8][9],int *step)
 {
 	this->map = map;
 	if (!isMoving) {
 		this->dire = dire;
 		this->timer = timer;
+		this->map_back = map_back;
+		this->step = step;
 		switch (this->dire)
 		{
 		case DIRE_UP: 
@@ -189,10 +191,23 @@ void Player::stopBoxThread() {
 	this->box = NULL;
 	
 }
+void Player::recodeMap()
+{
+	for (int i = 0; i < 8; i++)
+		for (int j = 0; j < 9; j++)
+			map_back[*step][i][j] = map[i][j];
+	map_back[*step][y][x] = 1;
+}
+DIRE Player::getDir()
+{
+	return this->dire;
+}
 void Player::moveUP()
 {
 	//开始移动
 	//记录移动时地图值
+	recodeMap();
+	(*step)++;
 	bool isEnd;
 	map[y - 2][x] == 4 ? isEnd = true : isEnd = false; //判断上两步是不是终点
 	while (sence_y > (y-1)*map_side)
@@ -228,11 +243,12 @@ void Player::moveUP()
 		box = NULL;
 	}
 }
-
 void Player::moveRight()
 {
 	//开始移动
 	//记录移动时地图值
+	recodeMap();
+	(*step)++;
 	bool isEnd=false;
 	map[y][x+2] == 4 ? isEnd = true : isEnd = false; //判断右两步是不是终点
 	while (sence_x < (x+ 1)*map_side)
@@ -273,6 +289,8 @@ void Player::moveDown()
 {
 	//开始移动
 	//记录移动时地图值
+	recodeMap();
+	(*step)++;
 	bool isEnd;
 	map[y + 2][x]==4?isEnd=true:isEnd=false; //判断下两步是不是终点
 	while (sence_y < (y + 1)*map_side)
@@ -311,6 +329,9 @@ void Player::moveDown()
 void Player::moveLeft()
 {
 	//开始移动
+	//记录移动时地图值
+	recodeMap();
+	(*step)++;
 	bool isEnd = false;
 	map[y][x - 2] == 4 ? isEnd = true : isEnd = false; //判断左两步是不是终点
 	while (sence_x > (x - 1)*map_side)
