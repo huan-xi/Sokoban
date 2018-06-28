@@ -48,6 +48,9 @@ public:
 	void stopBox(Box * box[], int x, int y);
 	void stopBoxThread();
 	void recodeMap();
+	bool getIsmove();
+	bool isEnd;
+	bool isDone();
 	DIRE getDir();
 	~Player();
 };

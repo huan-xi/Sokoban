@@ -27,6 +27,9 @@ enum Map_TYPE //地图类型枚举
 	MAP_FLLOR, MAP_PLAYER, MAP_WALL, MAP_BOX, MAP_END
 };
 enum GameState{ Start, Game,Win,Loading }g_GameState;
+HEFFECT effs[6];//所有声音
+//当前音频通道
+HCHANNEL channel;
 //地图
 int const map_side = 64;
 int const map_height = 8;
@@ -43,12 +46,12 @@ HTEXTURE tex_players;
 DIRE dir;
 int player_index = 0; //图片索引
 //地板(64 * 64)
-hgeSprite *sprite_floor[10];
+hgeSprite *sprite_floor[2];
 //墙
-hgeSprite *sprite_wall[10];
+hgeSprite *sprite_wall;
 //箱子
 Box *box[10];   
-hgeSprite *sprite_box[10];
+hgeSprite *sprite_box[3];
 //终点
 hgeSprite *sprite_end_up[10];
 hgeSprite *sprite_end_down[10];
@@ -81,6 +84,10 @@ MyButton *btn_back;
 hgeSprite * btn_restart_spr[2]; //从新开始按钮
 MyButton *btn_restart;
 //开始按钮点击
+//是否在播放声音
+bool isPlay = false;
+float movetime = 0;
+float donetime = 0;
 void start_click() {
 	g_GameState = Loading;  //进入加载状态
 }
@@ -150,7 +157,21 @@ bool GameUpdate() {
 		btn_restart->keyDown(point_x, point_y, hge->Timer_GetTime());
 		btn_back->keyDown(point_x, point_y, hge->Timer_GetTime());
 	}
-	if (isWin()) doWin();
+	if (isWin()) doWin(); //播放音效
+	if (player->getIsmove() && hge->Timer_GetTime() - movetime > 0.5) { //人物音效
+		hge->Effect_Play(effs[3]);
+		movetime = hge->Timer_GetTime();
+	}
+	if (player->isDone() && hge->Timer_GetTime() - donetime > 0.5){ //箱子完成时音效
+		hge->Effect_Play(effs[4]);
+		donetime = hge->Timer_GetTime();
+	}
+
+	if (!isPlay) {
+		hge->Effect_Play(effs[2]);
+		hge->Channel_Pause(channel);
+		isPlay = true;
+	}
 	return false;
 }
 bool StartUpdate() {
@@ -163,6 +184,7 @@ bool StartUpdate() {
 	if (hge->Input_KeyDown(HGEK_LBUTTON)) {
 		btn_start->keyDown(point_x,point_y,hge->Timer_GetTime());
 	}
+	
 	return false;
 }
 bool LoadingUpdate() {
@@ -171,7 +193,7 @@ bool LoadingUpdate() {
 		loading->Update();
 		if (!loading->isLoading()) //加载完毕
 			g_GameState = Game;
-		loading->setUpdateTime(hge->Timer_GetTime());
+			loading->setUpdateTime(hge->Timer_GetTime());
 	}
 	
 	return false;
@@ -179,7 +201,10 @@ bool LoadingUpdate() {
 bool FrameFunc()
 {
 	timer=hge->Timer_GetTime();//每次调用记录时间，让移动线程知道时间
-	hge->Input_GetMousePos(&point_x, &point_y);
+	hge->Input_GetMousePos(&point_x, &point_y); //获取鼠标指针位置
+	if (hge->Input_KeyDown(HGEK_LBUTTON)) { //播放鼠标点击音效
+		hge->Effect_Play(effs[1]);
+	}
 	switch (g_GameState)
 	{
 	case Start:
@@ -203,20 +228,23 @@ void RenderMap() {
 		for (int j = 0; j < map_width; j++)
 		{
 			float x = j * map_side + map_off_x, y = i* map_side + map_off_y;
-			map[i][j] == 2 ? sprite_wall[0]->Render(x,y ) : sprite_floor[2]->Render(x, y);
+			map[i][j] == 2 ? sprite_wall->Render(x,y ) : sprite_floor[1]->Render(x, y);
 			if (map[i][j]==4) sprite_end_up[0]->Render(x, y);
 			switch (map[i][j])
 			{
 			case 0:
-				sprite_floor[2]->Render(x, y);
+				sprite_floor[0]->Render(x, y);
 				break;
 			case 2:
-				sprite_wall[0]->Render(x, y);
+				sprite_wall->Render(x, y);
 				break;
 			case 4:
-				sprite_floor[2]->Render(x, y);
-				sprite_end_up[0]->Render(x, y);
+				sprite_floor[0]->Render(x, y);
+				sprite_end_up[0]->Render(x, y); //终点
 				break;
+			case MAP_BOX:
+				sprite_floor[0]->Render(x, y);
+
 			}
 		}
 }
@@ -305,23 +333,15 @@ void level_init() {  //关卡初始化
 void init() { //初始化游戏系统
 
 	//加载资源
-	font = new hgeFont("res/font/font1.fnt");
-	text = new hgeGUIText(0,10,10,10,10,font);
-	font->SetColor(100);
-	font->SetScale(0.2);
 	tex_players = hge->Texture_Load("res/image/players.png");
-	sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
-	sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
-	sprite_floor[2] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Grass.png"), 0, 0, 64, 64);
-	sprite_floor[3] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Sand.png"), 0, 0, 64, 64);
+	sprite_floor[0] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Dirt.png"), 0, 0, 64, 64);
+	sprite_floor[1] = new hgeSprite(hge->Texture_Load("res/image/GroundGravel_Concrete.png"), 0, 0, 64, 64);
 
 	sprite_box[0] = new hgeSprite(hge->Texture_Load("res/image/Crate_Beige.png"), 0, 0, 64, 64);
-	sprite_box[1] = new hgeSprite(hge->Texture_Load("res/image/CrateDark_Beige.png"), 0, 0, 64, 64);
-	sprite_box[2] = new hgeSprite(hge->Texture_Load("res/image/Crate_Black.png"), 0, 0, 64, 64);
-	sprite_box[4] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
-	sprite_box[5] = new hgeSprite(hge->Texture_Load("res/image/Crate_Brown.png"), 0, 0, 64, 64);
+	sprite_box[1]= new hgeSprite(hge->Texture_Load("res/image/CrateDark_Beige.png"), 0, 0, 64, 64);
+	sprite_box[2] = new hgeSprite(hge->Texture_Load("res/image/Crate_Red.png"), 0, 0, 64, 64);
 
-	sprite_wall[0] = new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 64, 64);
+	sprite_wall = new hgeSprite(hge->Texture_Load("res/image/Wall_Brown.png"), 0, 0, 64, 64);
 
 	sprite_end_up[0] = new hgeSprite(hge->Texture_Load("res/image/EndPoint_Blue.png"), 0, 0, 64, 64);
 	sprite_point = new hgeSprite(hge->Texture_Load("res/image/cur.png"), 0, 0, 32, 32);
@@ -336,8 +356,9 @@ void init() { //初始化游戏系统
 	btn_restart= new MyButton(600, 450, btn_start_spr[0], btn_start_spr[1], restart_click);
 	btn_back = new MyButton(700, 450, btn_start_spr[0], btn_start_spr[1], back_click);
 
-	sprite_box[3] = new hgeSprite(hge->Texture_Load("res/image/Crate_Blue.png"), 0, 0, 64, 64);
+	
 	tex_loadings = hge->Texture_Load("res/image/loading.png");
+
 	sprite_loading[0] = new hgeSprite(tex_loadings, 45,40, 70, 70);
 	sprite_loading[1] = new hgeSprite(tex_loadings, 45+70+2, 40, 70, 70);
 	sprite_loading[2] = new hgeSprite(tex_loadings, 45, 40+70+5, 70, 70);
@@ -345,8 +366,14 @@ void init() { //初始化游戏系统
 	sprite_loading[4] = new hgeSprite(tex_loadings, 45, 40 +70*2+12, 70, 70);
 	sprite_loading[5] = new hgeSprite(tex_loadings, 45 +70+2, 40+70 * 2 + 15, 70, 70);
 	loading = new LoadingUI(280,250,sprite_loading);
+	effs[0] = hge->Effect_Load("res/sound/start.mp3");
+	effs[1] = hge->Effect_Load("res/sound/btn.mp3");
+	effs[2] = hge->Effect_Load("res/sound/game.mp3");
+	effs[3] = hge->Effect_Load("res/sound/move.mp3");
+	effs[4] = hge->Effect_Load("res/sound/done.mp3");
 	g_GameState=Start;
 	//读取关卡
+	channel = hge->Effect_PlayEx(effs[0], 100, 0, 1, true);
 	level = 1;
 	level_init();
 }
@@ -367,7 +394,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	hge->System_SetState(HGE_SCREENWIDTH, (map_width+3)*map_side);
 	hge->System_SetState(HGE_FPS, 60); //执行60次为一秒
 	 // 是否使用声音
-	hge->System_SetState(HGE_USESOUND, false);
+	hge->System_SetState(HGE_USESOUND, true);
 	if (hge->System_Initiate())
 	{
 		init();

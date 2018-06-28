@@ -25,6 +25,7 @@ Player::Player(HTEXTURE tex,int map_side)
 	spr_index = 0;
 	this->map_side = map_side;
 	this->speed = 16;
+	this->isEnd = false;
 }
 void Player::setX(int x) {
 	this->x = x;
@@ -198,6 +199,14 @@ void Player::recodeMap()
 			map_back[*step][i][j] = map[i][j];
 	map_back[*step][y][x] = 1;
 }
+bool Player::getIsmove()
+{
+	return isMoving;
+}
+bool Player::isDone()
+{
+	return isEnd;
+}
 DIRE Player::getDir()
 {
 	return this->dire;
@@ -208,7 +217,6 @@ void Player::moveUP()
 	//记录移动时地图值
 	recodeMap();
 	(*step)++;
-	bool isEnd;
 	map[y - 2][x] == 4 ? isEnd = true : isEnd = false; //判断上两步是不是终点
 	while (sence_y > (y-1)*map_side)
 	{
@@ -241,6 +249,7 @@ void Player::moveUP()
 		this->box->isMoving = false;
 		map[box->y][box->x] = 3;
 		box = NULL;
+		this->isEnd = false;
 	}
 }
 void Player::moveRight()
@@ -249,7 +258,6 @@ void Player::moveRight()
 	//记录移动时地图值
 	recodeMap();
 	(*step)++;
-	bool isEnd=false;
 	map[y][x+2] == 4 ? isEnd = true : isEnd = false; //判断右两步是不是终点
 	while (sence_x < (x+ 1)*map_side)
 	{
@@ -282,6 +290,8 @@ void Player::moveRight()
 		this->box->isMoving = false;
 		map[box->y][box->x] = 3; //更新地图
 		box = NULL;
+		this->isEnd = false;
+
 	}
 }
 
@@ -291,7 +301,6 @@ void Player::moveDown()
 	//记录移动时地图值
 	recodeMap();
 	(*step)++;
-	bool isEnd;
 	map[y + 2][x]==4?isEnd=true:isEnd=false; //判断下两步是不是终点
 	while (sence_y < (y + 1)*map_side)
 	{
@@ -324,6 +333,7 @@ void Player::moveDown()
 
 		map[box->y][box->x] = 3;
 		box = NULL;
+		this->isEnd = false;
 	}
 }
 void Player::moveLeft()
@@ -332,7 +342,6 @@ void Player::moveLeft()
 	//记录移动时地图值
 	recodeMap();
 	(*step)++;
-	bool isEnd = false;
 	map[y][x - 2] == 4 ? isEnd = true : isEnd = false; //判断左两步是不是终点
 	while (sence_x > (x - 1)*map_side)
 	{
@@ -365,6 +374,7 @@ void Player::moveLeft()
 		this->box->isMoving = false;
 		map[box->y][box->x] = 3; //更新地图
 		box = NULL;
+		this->isEnd = false;
 	}
 }
 Player::~Player()
