@@ -24,13 +24,13 @@
 >   - 退出信息框提示
 ### 运行图片
 
-![ '开始界面'](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134119.png)
+![ '开始界面' ](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134119.png)
 
-!['游戏界面'](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134216.png)
+![ '游戏界面' ](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134216.png)
 
-!['游戏界面2'](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134449.png)
+![ '游戏界面2' ](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134449.png)
 
-!['退出提示框'](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134521.png)
+![ '退出提示框' ](https://huanxi-image.oss-cn-beijing.aliyuncs.com/markdown/QQ%E6%88%AA%E5%9B%BE20180809134521.png)
 
 ###  项目总结
 
